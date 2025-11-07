@@ -53,11 +53,11 @@ export const PROJECTS: Project[] = [
     tags: ["Raspberry Pi", "Servo Motor", "Python", "Automation", "Mechanics"],
     area: "ROS/Arduino",
     status: "Complete",
-    thumb: "media/cardgame/IMG_3126.HEIC",
+    thumb: "media/cardgame/IMG_3127.jpg",
     links: {
       code: "https://github.com/wonseola/GitCollabo_Auto_Card_Game/tree/Control_moter",
     },
-    mainVideo: "media/cardgame/IMG_3130.MOV",
+    mainVideo: "media/cardgame/card.mp4",
     body: {
       ko: `라즈베리파이와 서보 모터를 활용해 홀덤 게임용 자동 카드 분배기를 제작했습니다.  
 
@@ -96,12 +96,13 @@ Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
 ثم يستخدم إشارات GPIO وPWM لتوزيع البطاقات بالترتيب وفقًا لقواعد “Seven Poker”.`,
     },
     gallery: [
-      "media/cardgame/IMG_2578.HEIC",
-      "media/cardgame/IMG_2591.HEIC",
-      "media/cardgame/IMG_3130.MOV",
-      "media/cardgame/IMG_2743.HEIC",
-      "media/cardgame/IMG_2745.HEIC",
-      "media/cardgame/IMG_3127.HEIC",
+      "media/cardgame/IMG_2578.jpg",
+      "media/cardgame/IMG_2591.jpg",
+      "media/cardgame/IMG_2594.JPG",
+      "media/cardgame/card.mp4",
+      "media/cardgame/IMG_2743.jpg",
+      "media/cardgame/IMG_2745.jpg",
+      "media/cardgame/IMG_3127.jpg",
     ],
   },
 
@@ -167,9 +168,9 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
 - مراقبة وتصحيح الأخطاء في الوقت الحقيقي.`,
     },
     gallery: [
-      "media/car/IMG_2346.HEIC",
-      "media/car/IMG_2342.MOV",
-      "media/car/IMG_2340.MOV",
+      "media/car/IMG_2346.jpg",
+      "media/car/car1.mp4",
+      "media/car/car2.mp4",
     ],
   },
 
