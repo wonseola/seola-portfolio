@@ -1,13 +1,13 @@
 import React from "react";
 const GLITCH_CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*+-_=:;<>/?";
-import Section from "@/components/Section";
-import Container from "@/components/Container";
-import avatarFile from "@/assets/12.jpeg";
+import Section from "../components/Section";
+import Container from "../components/Container";
+import avatarFile from "../assets/12.jpeg";
 import { Download } from "lucide-react";
-import { PROFILE } from "@/data/links";
-import TypingEffect from "@/components/TypingEffect";
-import { useLang } from "@/context/LangContext";
+import { PROFILE } from "../data/links";
+import TypingEffect from "../components/TypingEffect";
+import { useLang } from "../context/LangContext";
 
 const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
 

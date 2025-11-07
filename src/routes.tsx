@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import App from "@/App";
-import ProjectDetail from "@/components/ProjectDetail";
+import App from "./App";
+import ProjectDetail from "./components/ProjectDetail";
 
 export default function AppRoutes() {
   return (

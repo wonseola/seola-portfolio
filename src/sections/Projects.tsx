@@ -1,10 +1,10 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
-import Section from "@/components/Section";
-import Container from "@/components/Container";
-import { PROJECTS } from "@/data/projects";
+import Section from "../components/Section";
+import Container from "../components/Container";
+import { PROJECTS } from "../data/projects";
 import { Link } from "react-router-dom";
 import { Github, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
-import { useLang } from "@/context/LangContext";
+import { useLang } from "../context/LangContext";
 
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;

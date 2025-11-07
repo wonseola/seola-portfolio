@@ -16,9 +16,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
 
-    "baseUrl": ".",
+    "baseUrl": "/",
     "paths": {
-      "@/*": ["src/*"]
+      "../*": ["src/*"]
     },
   },
 }

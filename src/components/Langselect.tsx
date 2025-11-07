@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { useLang } from "@/context/LangContext";
+import { useLang } from "../context/LangContext";
 
 const LANG_OPTIONS = [
   { code: "ko", label: "🇰🇷 한국어" },

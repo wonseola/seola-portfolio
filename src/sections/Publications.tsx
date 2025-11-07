@@ -1,8 +1,8 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
-import Section from "@/components/Section";
-import Container from "@/components/Container";
-import { PUBLICATIONS } from "@/data/publications";
+import Container from "../components/Container";
+import { PUBLICATIONS } from "../data/publications";
 import { ExternalLink, Github } from "lucide-react";
+import Section from "../components/Section";
 
 /** Build a base-aware URL for files in /public */
 const withBase = (path?: string) =>
@@ -24,7 +24,7 @@ function MediaPreview({
   useEffect(() => {
     if (hovering && videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => { });
+      videoRef.current.play().catch(() => {});
     } else if (!hovering && videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
@@ -71,7 +71,10 @@ function formatAuthors(authors?: string[] | string) {
       {list.map((name, i) => {
         const isOjas = /ojas\s+mediratta/i.test(name);
         return (
-          <span key={`${name}-${i}`} className={isOjas ? "text-accent-orange" : undefined}>
+          <span
+            key={`${name}-${i}`}
+            className={isOjas ? "text-accent-orange" : undefined}
+          >
             {name}
             {i < list.length - 1 ? ", " : ""}
           </span>
@@ -128,10 +131,19 @@ export default function Publications() {
 
                   {/* Outlet, Date, Type line */}
                   <p className="mt-1 text-sm">
-                    {p.outlet && <span className="text-subtext">{p.outlet}</span>}
-                    {p.date && <><span className="text-subtext"> • </span><span className="text-accent-orange">{p.date}</span></>}
+                    {p.outlet && (
+                      <span className="text-subtext">{p.outlet}</span>
+                    )}
+                    {p.date && (
+                      <>
+                        <span className="text-subtext"> • </span>
+                        <span className="text-accent-orange">{p.date}</span>
+                      </>
+                    )}
                     <span className="text-subtext"> • </span>
-                    <span className="text-accent-orange capitalize">{p.type}</span>
+                    <span className="text-accent-orange capitalize">
+                      {p.type}
+                    </span>
                   </p>
 
                   {/* Links: Paper / Code */}
@@ -159,7 +171,7 @@ export default function Publications() {
                           <Github className="size-4 transition-transform" />
                         </a>
                       )}
-                      
+
                       {p.status === "Under Review" && (
                         <span className="ml-auto inline-flex items-center gap-2 text-sm font-medium text-emerald-400 px-2">
                           <span className="relative inline-flex h-2.5 w-2.5">

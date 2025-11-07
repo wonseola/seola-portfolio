@@ -1,11 +1,11 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Container from "@/components/Container";
-import Section from "@/components/Section";
-// import Gallery from "@/components/Gallery";
-import { PROJECTS } from "@/data/projects";
+import Container from "../components/Container";
+import Section from "../components/Section";
+// import Gallery from "../components/Gallery";
+import { PROJECTS } from "../data/projects";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { useLang } from "@/context/LangContext";
+import { useLang } from "../context/LangContext";
 
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
-import Container from "@/components/Container";
-import Brandmark from "@/components/Brandmark";
-import { useScrollSpy } from "@/components/useScrollSpy";
+import Container from "../components/Container";
+import Brandmark from "../components/Brandmark";
+import { useScrollSpy } from "../components/useScrollSpy";
 import { Menu, X } from "lucide-react";
 import { FaGithub, FaInstagram } from "react-icons/fa";
 import LangSelect from "./Langselect";

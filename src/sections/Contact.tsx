@@ -1,9 +1,9 @@
 import React from "react";
-import Section from "@/components/Section";
-import Container from "@/components/Container";
+import Section from "../components/Section";
+import Container from "../components/Container";
 import { Mail, Phone } from "lucide-react";
-import { PROFILE } from "@/data/links";
-import { useLang } from "@/context/LangContext";
+import { PROFILE } from "../data/links";
+import { useLang } from "../context/LangContext";
 
 export default function Contact() {
   const { lang } = useLang();

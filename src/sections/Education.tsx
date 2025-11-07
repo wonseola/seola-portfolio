@@ -1,8 +1,8 @@
 import React from "react";
-import Section from "@/components/Section";
-import Container from "@/components/Container";
-import { EDUCATION } from "@/data/education";
-import GTLogo from "@/assets/gt_logo.svg?react";
+import Section from "../components/Section";
+import Container from "../components/Container";
+import { EDUCATION } from "../data/education";
+import GTLogo from "../assets/gt_logo.svg?react";
 
 // simple registry: add more schools by importing and mapping here
 const eduLogos = {
@@ -32,7 +32,9 @@ export default function Education() {
                   {/* Left: logo — left-justified, vertically centered */}
                   {Logo && (
                     <Logo
-                      className={"text-subtext transition-colors group-hover:text-accent-yellow [&_*]:fill-current"}
+                      className={
+                        "text-subtext transition-colors group-hover:text-accent-yellow [&_*]:fill-current"
+                      }
                       style={{
                         width: size,
                         height: size,
@@ -53,10 +55,23 @@ export default function Education() {
                       <div className="mt-3 text-sm text-subtext space-y-1">
                         {edu.details.map((d, i) => (
                           <div key={i} className="leading-relaxed">
-                            {d.split(/(Concentration:|Coursework:|Activities and Societies:)/).map((part, idx) => 
-                              ['Concentration:', 'Coursework:', 'Activities and Societies:'].includes(part) ? 
-                                <span key={idx} className="font-semibold">{part}</span> : part
-                            )}
+                            {d
+                              .split(
+                                /(Concentration:|Coursework:|Activities and Societies:)/
+                              )
+                              .map((part, idx) =>
+                                [
+                                  "Concentration:",
+                                  "Coursework:",
+                                  "Activities and Societies:",
+                                ].includes(part) ? (
+                                  <span key={idx} className="font-semibold">
+                                    {part}
+                                  </span>
+                                ) : (
+                                  part
+                                )
+                              )}
                           </div>
                         ))}
                       </div>
