@@ -92,8 +92,8 @@ export default function Projects() {
     {
       value: "All",
       label: "All",
-      color: "var(--color-accent-blue)",
-      hoverColor: "#8fd7ff",
+      color: "var(--color-accent-yellow)",
+      hoverColor: "#ffd966",
     },
     {
       value: "Robotics",
@@ -104,8 +104,9 @@ export default function Projects() {
     {
       value: "Embedded",
       label: "Embedded",
-      color: "var(--color-accent-yellow)",
-      hoverColor: "#ffd966",
+
+      color: "var(--color-accent-blue)",
+      hoverColor: "#8fd7ff",
     },
     {
       value: "ROS/Arduino",
@@ -198,7 +199,7 @@ export default function Projects() {
               <Link
                 key={p.slug}
                 to={`/projects/${p.slug}`}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-purple hover:shadow-sm hover:-translate-y-1 cursor-pointer"
+                className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-yellow hover:shadow-sm hover:-translate-y-1 cursor-pointer"
                 onMouseEnter={() => setHoveredSlug(p.slug)}
                 onMouseLeave={() => setHoveredSlug(null)}
               >

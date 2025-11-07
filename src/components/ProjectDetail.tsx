@@ -2,7 +2,6 @@ import React, { useMemo, useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import Section from "../components/Section";
-// import Gallery from "../components/Gallery";
 import { PROJECTS } from "../data/projects";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { useLang } from "../context/LangContext";
@@ -37,6 +36,15 @@ export default function ProjectDetail() {
   const { lang } = useLang();
   const navigate = useNavigate();
 
+  const TAG_CLASSES = [
+    "border-accent-blue text-accent-blue",
+    "border-accent-green text-accent-green",
+    "border-accent-yellow text-accent-yellow",
+    "border-accent-orange text-accent-orange",
+    "border-accent-purple text-accent-purple",
+    "border-accent-cyan text-accent-cyan",
+  ];
+
   // Scroll to top when component mounts or slug changes
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,7 +68,7 @@ export default function ProjectDetail() {
           <p className="text-subtext">Project not found.</p>
           <Link
             to="/"
-            className="mt-4 inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+            className="mt-4 inline-flex items-center gap-1 text-accent-yellow hover:text-accent-yellow hover:underline"
           >
             <ArrowLeft className="size-4" /> Back to home
           </Link>
@@ -92,7 +100,7 @@ export default function ProjectDetail() {
           <div className="mb-6">
             <button
               onClick={goBack}
-              className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
+              className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-yellow hover:border-accent-yellow"
             >
               <ArrowLeft className="size-4" /> Back
             </button>
@@ -106,18 +114,20 @@ export default function ProjectDetail() {
               </h1>
 
               {/* Tags */}
-              {project.tags?.length ? (
+              {project.tags?.length && (
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {project.tags.map((t) => (
+                  {project.tags.map((t, i) => (
                     <span
                       key={t}
-                      className="rounded-full border border-accent-purple bg-bg px-2.5 py-1 text-[11px] text-accent-purple"
+                      className={`rounded-full border ${
+                        TAG_CLASSES[i % TAG_CLASSES.length]
+                      } bg-bg px-2.5 py-1 text-[11px]`}
                     >
                       {t}
                     </span>
                   ))}
                 </div>
-              ) : null}
+              )}
             </div>
 
             {/* Top-right links: Live / Code */}
@@ -127,7 +137,7 @@ export default function ProjectDetail() {
                   href={project.links.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
+                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-yellow hover:border-accent-yellow"
                 >
                   Live{" "}
                   <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -138,7 +148,7 @@ export default function ProjectDetail() {
                   href={project.links.code}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
+                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-yellow hover:border-accent-yellow"
                 >
                   Code{" "}
                   <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
