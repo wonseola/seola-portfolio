@@ -4,12 +4,12 @@ const GLITCH_CHARS =
 import Section from "../components/Section";
 import Container from "../components/Container";
 import avatarFile from "../assets/12.jpeg";
-import { Download } from "lucide-react";
+// import { Download } from "lucide-react";
 import { PROFILE } from "../data/links";
 import TypingEffect from "../components/TypingEffect";
 import { useLang } from "../context/LangContext";
 
-const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
+// const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
 
 function useGlitchCycle(messages: string[], dwellMs = 2000, scrambleMs = 450) {
   const [idx, setIdx] = React.useState(0);
@@ -126,7 +126,7 @@ export default function About() {
             >
               {profile.tagline[lang]}
             </p>
-
+            {/* 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href={resumeHref}
@@ -137,7 +137,7 @@ export default function About() {
                 Resume
                 <Download className="size-4" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           <div className="group rounded-3xl border border-border bg-panel md:col-span-2 transition-all hover:border-accent-blue hover:shadow-sm hover:-translate-y-1">
