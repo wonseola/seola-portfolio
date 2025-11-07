@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -17,7 +14,8 @@ export default {
         "accent-yellow": "#ffcc66",
         "accent-orange": "#f28779",
         "accent-purple": "#d4bfff",
-        "accent-cyan": "#95e6cb",
+        // "accent-cyan": "#95e6cb",
+        "accent-cyan": "#59c2ff",
         "accent-white": "#cbccc6",
       },
       fontFamily: {
@@ -26,4 +24,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

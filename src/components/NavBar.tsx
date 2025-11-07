@@ -6,14 +6,13 @@ import { Menu, X } from "lucide-react";
 import { FaGithub, FaInstagram } from "react-icons/fa";
 import LangSelect from "./Langselect";
 
-// Color mapping for buttons
 const buttonColors = [
-  { border: "#95e6cb", text: "#95e6cb" }, // cyan
+  { border: "#59c2ff", text: "#59c2ff" }, // blue
   { border: "#d4bfff", text: "#d4bfff" }, // purple
   { border: "#bae67e", text: "#bae67e" }, // green
   { border: "#ffcc66", text: "#ffcc66" }, // yellow
   { border: "#f28779", text: "#f28779" }, // orange
-  { border: "#59c2ff", text: "#59c2ff" }, // blue
+  { border: "#95e6cb", text: "#95e6cb" }, // cyan
 ];
 
 export default function Navbar() {
@@ -47,17 +46,17 @@ export default function Navbar() {
   });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-[rgba(31,36,48,0.6)] backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-[rgba(255, 252, 252, 0.6)] backdrop-blur">
       <Container>
         <div className="relative flex h-16 items-center justify-between">
           {/* Left: Name */}
           <a
             href="#top"
-            className="group text-subtext transition-colors hover:text-accent-cyan"
+            className="group flex items-center gap-2 text-subtext transition-colors hover:text-accent-cyan"
             aria-label="Seola Won"
           >
             <Brandmark className="h-6 w-6" />
-            <span className="sr-only">Seola Won</span>
+            {/* <span className="text-subtext">이름이용?.</span> */}
           </a>
 
           {/* Center */}

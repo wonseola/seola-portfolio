@@ -1,5 +1,10 @@
 export const PROFILE = {
-  name: "Seola Won",
+  name: {
+    ko: "원설아",
+    en: "Seola Won",
+    tr: "Seola Won",
+    ar: "Seola Won",
+  },
   location: {
     ko: "김포, 대한민국",
     en: "Gimpo, South Korea",

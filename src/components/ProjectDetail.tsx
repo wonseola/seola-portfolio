@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import Section from "../components/Section";
 // import Gallery from "../components/Gallery";
@@ -35,11 +35,16 @@ export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = useMemo(() => PROJECTS.find((p) => p.slug === slug), [slug]);
   const { lang } = useLang();
+  const navigate = useNavigate();
 
   // Scroll to top when component mounts or slug changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const [pos, setPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   useEffect(() => {
@@ -85,12 +90,12 @@ export default function ProjectDetail() {
 
         <div className="relative z-10 rounded-3xl border border-border bg-panel p-5 md:p-8">
           <div className="mb-6">
-            <Link
-              to="/"
+            <button
+              onClick={goBack}
               className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
             >
               <ArrowLeft className="size-4" /> Back
-            </Link>
+            </button>
           </div>
 
           {/* Header row */}

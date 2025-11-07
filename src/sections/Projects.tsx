@@ -73,20 +73,52 @@ function Preview({
 }
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState<
-    "All" | "Robotics" | "Embedded" | "ROS/Arduino" | "Other"
-  >("All");
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const [hoveredFilter, setHoveredFilter] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
   const { lang } = useLang();
 
-  const filters = [
-    { label: "All", value: "All" as const },
-    { label: "Robotics", value: "Robotics" as const },
-    { label: "Embedded", value: "Embedded" as const },
-    { label: "ROS/Arduino", value: "ROS/Arduino" as const }, // Commented out - no AI/ML projects yet
-    { label: "Other", value: "Other" as const },
+  type FilterValue = "All" | "Robotics" | "Embedded" | "ROS/Arduino" | "Other";
+
+  type Filter = {
+    label: string;
+    value: FilterValue;
+    color?: string;
+    hoverColor?: string;
+  };
+  const [activeFilter, setActiveFilter] = useState<FilterValue>("All");
+
+  const filters: Filter[] = [
+    {
+      value: "All",
+      label: "All",
+      color: "var(--color-accent-blue)",
+      hoverColor: "#8fd7ff",
+    },
+    {
+      value: "Robotics",
+      label: "Robotics",
+      color: "var(--color-accent-green)",
+      hoverColor: "#d0f29e",
+    },
+    {
+      value: "Embedded",
+      label: "Embedded",
+      color: "var(--color-accent-yellow)",
+      hoverColor: "#ffd966",
+    },
+    {
+      value: "ROS/Arduino",
+      label: "ROS/Arduino",
+      color: "var(--color-accent-orange)",
+      hoverColor: "#f59d8f",
+    },
+    {
+      value: "Other",
+      label: "Other",
+      color: "var(--color-accent-purple)",
+      hoverColor: "#e0c9ff",
+    },
   ];
 
   const items = useMemo(() => {
@@ -123,169 +155,173 @@ export default function Projects() {
     setShowAll(false);
   }, [activeFilter]);
 
-  return (
-    <Section id="projects" className="py-12 md:py-20">
-      <Container>
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Projects
-          </h2>
+  {
+    return (
+      <Section id="projects" className="py-12 md:py-20">
+        <Container>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Projects
+            </h2>
 
-          {/* Filter buttons */}
-          <div
-            className="flex flex-wrap items-center gap-3"
-            onMouseLeave={() => setHoveredFilter(null)}
-          >
-            {filters.map((filter) => {
-              const isActive = activeFilter === filter.value && !hoveredFilter;
-              const isHovered = hoveredFilter === filter.value;
-              const isHighlighted = isHovered || isActive;
-
-              return (
-                <button
-                  key={filter.value}
-                  onClick={() => setActiveFilter(filter.value)}
-                  onMouseEnter={() => setHoveredFilter(filter.value)}
-                  className="rounded-xl border px-3 py-1.5 text-sm transition-all duration-300 ease-out"
-                  style={{
-                    borderColor: isHighlighted ? "#d4bfff" : "#2b3240",
-                    color: isHighlighted ? "#d4bfff" : "#9da5b4",
-                  }}
-                >
-                  {filter.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {displayedItems.map((p) => (
-            <Link
-              key={p.slug}
-              to={`/projects/${p.slug}`}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-purple hover:shadow-sm hover:-translate-y-1 cursor-pointer"
-              onMouseEnter={() => setHoveredSlug(p.slug)}
-              onMouseLeave={() => setHoveredSlug(null)}
+            {/* Filter buttons */}
+            <div
+              className="flex flex-wrap items-center gap-3"
+              onMouseLeave={() => setHoveredFilter(null)}
             >
-              <div className="pt-4 px-4">
-                <Preview
-                  title={p.title[lang] ?? p.title["en"]} // 여기서 string으로 변환
-                  thumb={p.thumb}
-                  previewVideo={p.previewVideo}
-                  hovering={hoveredSlug === p.slug}
-                />
-              </div>
+              {filters.map((filter) => {
+                const isHighlighted =
+                  activeFilter === filter.value ||
+                  hoveredFilter === filter.value;
 
-              <div className="flex flex-1 flex-col p-5">
-                {/* Title */}
-                <h3 className="text-base font-medium text-accent-white transition-all">
-                  {p.title[lang]}
-                </h3>
+                return (
+                  <button
+                    key={filter.value}
+                    onClick={() => setActiveFilter(filter.value)}
+                    onMouseEnter={() => setHoveredFilter(filter.value)}
+                    onMouseLeave={() => setHoveredFilter(null)}
+                    className="rounded-xl border px-3 py-1.5 text-sm transition-all duration-300 ease-out"
+                    style={{
+                      borderColor: isHighlighted ? filter.color : "#2b3240",
+                      color: isHighlighted ? filter.color : "#9da5b4",
+                    }}
+                  >
+                    {filter.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
 
-                <div className="flex-grow">
-                  {/* Blurb */}
-                  <p className="mt-2 text-sm leading-relaxed text-subtext">
-                    {p.blurb[lang]}
-                  </p>
-
-                  {/* Tags */}
-                  {p.tags?.length ? (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {p.tags.map((t, i) => {
-                        const accents = [
-                          "border-accent-purple text-accent-purple",
-                          "border-accent-green text-accent-green",
-                          "border-accent-orange text-accent-orange",
-                          "border-accent-yellow text-accent-yellow",
-                          "border-accent-blue text-accent-blue",
-                          "border-accent-cyan text-accent-cyan",
-                        ];
-                        const style = accents[i % accents.length];
-                        return (
-                          <span
-                            key={t}
-                            className={`rounded-full border px-2.5 py-1 text-[11px] ${style} bg-bg`}
-                          >
-                            {t}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  ) : null}
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {displayedItems.map((p) => (
+              <Link
+                key={p.slug}
+                to={`/projects/${p.slug}`}
+                className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-purple hover:shadow-sm hover:-translate-y-1 cursor-pointer"
+                onMouseEnter={() => setHoveredSlug(p.slug)}
+                onMouseLeave={() => setHoveredSlug(null)}
+              >
+                <div className="pt-4 px-4">
+                  <Preview
+                    title={p.title[lang] ?? p.title["en"]} // 여기서 string으로 변환
+                    thumb={p.thumb}
+                    previewVideo={p.previewVideo}
+                    hovering={hoveredSlug === p.slug}
+                  />
                 </div>
 
-                {/* Buttons/Active indicator - anchored to bottom */}
-                {(p.links?.link ||
-                  p.links?.code ||
-                  p.active ||
-                  p.status === "In Progress") && (
-                  <div className="mt-4 flex items-center gap-4 items-center">
-                    {p.links?.link && (
-                      <a
-                        href={p.links.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Link{" "}
-                        <ExternalLink className="size-4 transition-transform" />
-                      </a>
-                    )}
-                    {p.links?.code && (
-                      <a
-                        href={p.links.code}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Code <Github className="size-4 transition-transform" />
-                      </a>
-                    )}
+                <div className="flex flex-1 flex-col p-5">
+                  {/* Title */}
+                  <h3 className="text-base font-medium text-accent-white transition-all">
+                    {p.title[lang]}
+                  </h3>
 
-                    {(p.active || p.status === "Active") && (
-                      <span className="ml-auto inline-flex items-center gap-2 text-sm font-medium text-emerald-400 px-2">
-                        <span className="relative inline-flex h-2.5 w-2.5">
-                          {/* bright core */}
-                          <span
-                            className="absolute inset-0 rounded-full bg-emerald-400 opacity-100 shadow-[0_0_12px_3px_rgba(16,185,129,0.9)]"
-                            aria-hidden
-                          />
-                          {/* soft halo with enhanced pulse */}
-                          <span
-                            className="absolute inset-0 rounded-full bg-emerald-400/80 blur-[4px] animate-[pulse_1.5s_ease-in-out_infinite]"
-                            aria-hidden
-                          />
-                        </span>
-                        Active
-                      </span>
-                    )}
+                  <div className="flex-grow">
+                    {/* Blurb */}
+                    <p className="mt-2 text-sm leading-relaxed text-subtext">
+                      {p.blurb[lang]}
+                    </p>
+
+                    {/* Tags */}
+                    {p.tags?.length ? (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {p.tags.map((t, i) => {
+                          const accents = [
+                            "border-accent-purple text-accent-purple",
+                            "border-accent-green text-accent-green",
+                            "border-accent-orange text-accent-orange",
+                            "border-accent-yellow text-accent-yellow",
+                            "border-accent-blue text-accent-blue",
+                            "border-accent-cyan text-accent-cyan",
+                          ];
+                          const style = accents[i % accents.length];
+                          return (
+                            <span
+                              key={t}
+                              className={`rounded-full border px-2.5 py-1 text-[11px] ${style} bg-bg`}
+                            >
+                              {t}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    ) : null}
                   </div>
-                )}
-              </div>
-            </Link>
-          ))}
-        </div>
 
-        {/* See More Button */}
-        {hasMoreItems && (
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="group inline-flex items-center gap-2 rounded-2xl border border-border px-6 py-3 text-sm font-medium text-accent-white transition-all hover:border-accent-purple hover:text-accent-purple hover:shadow-sm"
-            >
-              {showAll ? "Show Less" : "See More"}
-              {showAll ? (
-                <ChevronUp className="size-4 transition-transform duration-200" />
-              ) : (
-                <ChevronDown className="size-4 transition-transform duration-200" />
-              )}
-            </button>
+                  {/* Buttons/Active indicator - anchored to bottom */}
+                  {(p.links?.link ||
+                    p.links?.code ||
+                    p.active ||
+                    p.status === "In Progress") && (
+                    <div className="mt-4 flex items-center gap-4 items-center">
+                      {p.links?.link && (
+                        <a
+                          href={p.links.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Link{" "}
+                          <ExternalLink className="size-4 transition-transform" />
+                        </a>
+                      )}
+                      {p.links?.code && (
+                        <a
+                          href={p.links.code}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Code{" "}
+                          <Github className="size-4 transition-transform" />
+                        </a>
+                      )}
+
+                      {(p.active || p.status === "Active") && (
+                        <span className="ml-auto inline-flex items-center gap-2 text-sm font-medium text-emerald-400 px-2">
+                          <span className="relative inline-flex h-2.5 w-2.5">
+                            {/* bright core */}
+                            <span
+                              className="absolute inset-0 rounded-full bg-emerald-400 opacity-100 shadow-[0_0_12px_3px_rgba(16,185,129,0.9)]"
+                              aria-hidden
+                            />
+                            {/* soft halo with enhanced pulse */}
+                            <span
+                              className="absolute inset-0 rounded-full bg-emerald-400/80 blur-[4px] animate-[pulse_1.5s_ease-in-out_infinite]"
+                              aria-hidden
+                            />
+                          </span>
+                          Active
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
           </div>
-        )}
-      </Container>
-    </Section>
-  );
+
+          {/* See More Button */}
+          {hasMoreItems && (
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="group inline-flex items-center gap-2 rounded-2xl border border-border px-6 py-3 text-sm font-medium text-accent-white transition-all hover:border-accent-purple hover:text-accent-purple hover:shadow-sm"
+              >
+                {showAll ? "Show Less" : "See More"}
+                {showAll ? (
+                  <ChevronUp className="size-4 transition-transform duration-200" />
+                ) : (
+                  <ChevronDown className="size-4 transition-transform duration-200" />
+                )}
+              </button>
+            </div>
+          )}
+        </Container>
+      </Section>
+    );
+  }
 }

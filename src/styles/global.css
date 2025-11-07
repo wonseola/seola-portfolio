@@ -17,20 +17,34 @@
   --color-accent-yellow: #ffcc66;
   --color-accent-orange: #f28779;
   --color-accent-purple: #d4bfff;
-  --color-accent-cyan: #95E6CB;
+  --color-accent-cyan: #95e6cb;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
 }
 
-html { scroll-behavior: smooth; }
-a { color: var(--color-accent-blue); transition: color .2s ease; }
-a:hover { color: var(--color-accent-green); }
-.panel { background-color: var(--color-panel); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1rem; }
+html {
+  scroll-behavior: smooth;
+}
+a {
+  color: var(--color-accent-blue);
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--color-accent-green);
+}
+.panel {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1rem;
+}
 
 /* gentle fade for mobile */
 .mobile-fade {
@@ -38,13 +52,19 @@ a:hover { color: var(--color-accent-green); }
 }
 
 @keyframes fadePulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* accessibility: kill intense motion everywhere if users prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .mobile-fade, .glitch {
+  .mobile-fade,
+  .glitch {
     animation: none !important;
     transition: none !important;
   }

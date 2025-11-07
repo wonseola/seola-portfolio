@@ -108,11 +108,11 @@ export default function About() {
         <div className="grid gap-10 py-16 md:grid-cols-5 md:items-center md:gap-12 md:py-5">
           <div className="md:col-span-3">
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-              {PROFILE.name}
+              {PROFILE.name[lang]}
             </h1>
 
             <p
-              className={`mt-2 text-xl lg:text-2xl text-accent-cyan ${
+              className={`mt-2 text-xl lg:text-2xl text-accent-blue ${
                 lang === "ar" ? "text-right" : "text-left"
               }`}
             >
@@ -132,7 +132,7 @@ export default function About() {
                 href={resumeHref}
                 target="_blank"
                 rel="noreferrer"
-                className={`resume-button inline-flex items-center gap-2 rounded-2xl border border-border bg-panel px-4 py-2 text-sm text-accent-white transition-colors hover:border-accent-cyan hover:text-accent-cyan`}
+                className={`resume-button inline-flex items-center gap-2 rounded-2xl border border-border bg-panel px-4 py-2 text-sm text-accent-white transition-colors hover:border-accent-blue hover:text-accent-blue`}
               >
                 Resume
                 <Download className="size-4" />
@@ -140,7 +140,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="group rounded-3xl border border-border bg-panel md:col-span-2 transition-all hover:border-accent-cyan hover:shadow-sm hover:-translate-y-1">
+          <div className="group rounded-3xl border border-border bg-panel md:col-span-2 transition-all hover:border-accent-blue hover:shadow-sm hover:-translate-y-1">
             <div className="p-6">
               <div className="relative">
                 {!avatarLoaded && (
@@ -175,11 +175,11 @@ export default function About() {
 
                 <div className="relative flex-1 h-6">
                   {/* Desktop/Tablet: standard (glitchy scramble is enabled via scrambleMs on md+) */}
-                  <span className="hidden md:block leading-6 font-semibold text-accent-cyan font-mono">
+                  <span className="hidden md:block leading-6 font-semibold text-accent-blue font-mono">
                     {text}
                   </span>
                   {/* Mobile: gentle fade only (no scramble) */}
-                  <span className="md:hidden leading-6 font-semibold text-accent-cyan font-mono mobile-fade">
+                  <span className="md:hidden leading-6 font-semibold text-accent-blue font-mono mobile-fade">
                     {text}
                   </span>
                 </div>

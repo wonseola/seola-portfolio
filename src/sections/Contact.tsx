@@ -29,12 +29,15 @@ export default function Contact() {
         </p>
 
         <div className="mt-8 space-y-4 text-sm text-subtext">
-          <a
-            href={`mailto:${PROFILE.email}`}
-            className="flex items-center gap-2 underline-offset-4 text-accent-cyan hover:text-accent-purple hover:underline transition-colors"
-          >
-            <Mail className="size-4" /> {PROFILE.email}
-          </a>
+          <div className="flex items-center gap-2">
+            <Mail className="size-4" />
+            <a
+              href={`mailto:${PROFILE.email}`}
+              className="flex items-center gap-2 underline-offset-4 text-accent-cyan hover:text-accent-purple hover:underline transition-colors"
+            >
+              {PROFILE.email}
+            </a>
+          </div>
           <div className="flex items-center gap-2">
             <Phone className="size-4" />
             <a href={`tel:${PROFILE.phone}`} className="hover:underline">
