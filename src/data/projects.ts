@@ -13,8 +13,8 @@ export type Project = {
   youtubeVideo?: string;
   previewGif?: string;
   links?: { link?: string; code?: string };
-  area?: "Robotics" | "Embedded" | "ROS/Arduino" | "Other";
-  status?: "Active" | "In Progress" | "Paused" | "Archived" | "Complete";
+  area?: "React" | "AI" | "ROS/Arduino" | "Other";
+  status?: "Active" | "In Progress" | "Paused" | "Study" | "Complete";
   active?: boolean;
   body?: LocalizedString; // long writeup per language
   gallery?: string[]; // additional images in public/media
@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     slug: "card-game",
     title: { ko: "", en: "", tr: "", ar: "" },
     blurb: { ko: "", en: "", tr: "", ar: "" },
-    tags: [""],
+    tags: [],
     area: "Other",
     status: "Complete",
     thumb: "",
@@ -35,6 +35,430 @@ export const PROJECTS: Project[] = [
     body: { ko: "", en: "", tr: "", ar: "" },
     gallery: [],
   },
+  //portfolio-site
+  {
+    slug: "portfolio-site",
+    title: {
+      ko: "개인 포트폴리오 사이트",
+      en: "Personal Portfolio Site",
+      tr: "Kişisel Portföy Sitesi",
+      ar: "موقع محفظة شخصية",
+    },
+    blurb: {
+      ko: "다국어 지원과 반응형 UI를 적용한 개인 포트폴리오 사이트입니다.",
+      en: "Personal portfolio site with multi-language support and responsive UI.",
+      tr: "Çoklu dil desteği ve duyarlı UI ile kişisel portföy sitesi.",
+      ar: "موقع محفظة شخصية مع دعم لغات متعددة وتصميم واجهة متجاوبة.",
+    },
+    tags: ["React", "TypeScript", "TailwindCSS", "study"],
+    area: "React",
+    status: "Active",
+    thumb: "media/this/port.png",
+    previewVideo: "",
+    mainVideo: "",
+    links: {
+      code: "https://github.com/wonseola/seola-portfolio",
+      link: "https://wonseola.netlify.app",
+    },
+    body: {
+      ko: `
+- 다국어 지원 구현 (한국어, 영어, 터키어, 아랍어)
+- 언어별 UI/UX 최적화
+- 반응형 디자인 적용
+`,
+      en: `
+- Multi-language support implemented (KO, EN, TR, AR)
+- Optimized UI/UX per language
+- Responsive design applied
+`,
+      tr: `
+- Çoklu dil desteği uygulandı (KO, EN, TR, AR)
+- Dile özel UI/UX optimizasyonu
+- Duyarlı tasarım uygulandı
+`,
+      ar: `
+- تم تنفيذ دعم لغات متعددة (KO, EN, TR, AR)
+- تحسين واجهة المستخدم وتجربة الاستخدام لكل لغة
+- تم تطبيق تصميم متجاوب
+`,
+    },
+    gallery: [],
+  },
+  //infocompany
+  {
+    slug: "infocompany",
+    title: {
+      ko: "인포컴퍼니",
+      en: "InfoCompany",
+      tr: "InfoCompany",
+      ar: "InfoCompany",
+    },
+    blurb: {
+      ko: "React로 만든 회사 소개 페이지",
+      en: "Company info page built with React",
+      tr: "React ile yapılmış şirket tanıtım sayfası",
+      ar: "صفحة تعريف الشركة مصممة بـ React",
+    },
+    tags: ["React", "Web", "Firebase", "javaScript"],
+    area: "React",
+    status: "Active",
+    links: { link: "https://infocompany.co.kr" },
+    thumb: "media/infocompany/info1.png",
+    previewVideo: "media/infocompany/info_v1.mov",
+    mainVideo: "",
+    body: {
+      ko: `
+React를 사용하여 제작한 회사 소개 페이지입니다.
+- 회사 정보, 서비스, 연락처 섹션 구현
+- 간단한 반응형 레이아웃 적용
+- 배포 완료 및 운영 중
+    `,
+      en: `
+Company info page built with React.
+- Sections: Company info, Services, Contact
+- Simple responsive layout
+- Deployed and live
+    `,
+      tr: `
+React ile yapılmış şirket tanıtım sayfası.
+- Bölümler: Şirket bilgisi, Hizmetler, İletişim
+- Basit duyarlı tasarım
+- Yayında
+    `,
+      ar: `
+صفحة تعريف الشركة مصممة بـ React.
+- الأقسام: معلومات الشركة، الخدمات، الاتصال
+- تصميم متجاوب بسيط
+- تم النشر وتشغيله
+    `,
+    },
+    gallery: ["media/infocompany/info1.png", "media/infocompany/info_v1.mov"],
+  },
+  //randommong
+  {
+    slug: "random-mong",
+    title: {
+      ko: "랜덤몽",
+      en: "Random Mong",
+      tr: "Rastgele Mong",
+      ar: "راندوم مونج",
+    },
+    blurb: {
+      ko: "Firebase Realtime Database를 활용한 실시간 랜덤 채팅 사이트",
+      en: "A real-time random chat platform using Firebase Realtime Database",
+      tr: "Firebase Realtime Database kullanan gerçek zamanlı rastgele sohbet sitesi",
+      ar: "موقع دردشة عشوائي في الوقت الفعلي باستخدام Firebase Realtime Database",
+    },
+    tags: ["React", "TypeScript", "Firebase", "Realtime", "Study"],
+    area: "React",
+    status: "Complete",
+    thumb: "media/random/1.png",
+    previewVideo: "media/random/mong_1.mov",
+    mainVideo: "media/random/mong_1.mov",
+    links: {
+      link: "https://bom-random2.web.app",
+      code: "https://github.com/wonseola/typescript",
+    },
+    body: {
+      ko: `
+랜덤몽은 Firebase Realtime Database와 React를 활용하여 만든 실시간 랜덤 채팅 사이트입니다.
+- 사용자 이름 저장 및 입장/퇴장 처리
+- 실시간 메시지 전송 및 수신
+- 이모지 선택 기능
+- Firebase Realtime Database를 활용한 메시지 동기화
+- TypeScript와 React Hooks로 구현
+- 학습용 실습 프로젝트
+    `,
+      en: `
+Random Mong is a real-time random chat platform built with Firebase Realtime Database and React.
+- Stores user names and manages join/leave events
+- Sends and receives messages in real-time
+- Emoji picker functionality
+- Message synchronization via Firebase Realtime Database
+- Implemented using TypeScript and React Hooks
+- Practice/learning project
+    `,
+      tr: `
+Random Mong, Firebase Realtime Database ve React kullanılarak oluşturulmuş gerçek zamanlı rastgele sohbet sitesidir.
+- Kullanıcı adlarını saklama ve giriş/çıkış yönetimi
+- Gerçek zamanlı mesaj gönderme ve alma
+- Emoji seçici özelliği
+- Firebase Realtime Database üzerinden mesaj senkronizasyonu
+- TypeScript ve React Hooks ile uygulanmıştır
+- Öğrenme/deneme amaçlı proje
+    `,
+      ar: `
+Random Mong هو موقع دردشة عشوائي في الوقت الفعلي تم إنشاؤه باستخدام Firebase Realtime Database وReact.
+- تخزين أسماء المستخدمين وإدارة الدخول والخروج
+- إرسال واستقبال الرسائل في الوقت الفعلي
+- وظيفة اختيار الرموز التعبيرية
+- مزامنة الرسائل باستخدام Firebase Realtime Database
+- تم التنفيذ باستخدام TypeScript وReact Hooks
+- مشروع تجريبي للتعلم
+    `,
+    },
+    gallery: [
+      "media/random/1.png",
+      "media/random/2.png",
+      "media/random/mong_1.mov",
+      "media/random/3.png",
+      "media/random/4.png",
+    ],
+  },
+  //flutter
+  {
+    slug: "flutter-practice",
+    title: {
+      ko: "Flutter",
+      en: "Flutter Practice Project",
+      tr: "Flutter Uygulama Örneği",
+      ar: "مشروع تجريبي فلاتر",
+    },
+    blurb: {
+      ko: "Flutter/Dart 로 만든 간단한 실습 프로젝트 모음",
+      en: "A collection of simple practice projects made with Flutter/Dart",
+      tr: "Flutter/Dart ile yapılmış basit uygulama örnekleri",
+      ar: "مجموعة من المشاريع التجريبية البسيطة باستخدام Flutter/Dart",
+    },
+    tags: ["Flutter", "Dart", "Study"],
+    area: "Other",
+    status: "Study",
+    thumb: "media/flutterapp/flutter3.png",
+    previewVideo: "media/flutterapp/flutter2.mov",
+
+    mainVideo: "",
+    links: { code: "https://github.com/wonseola/Flutter" },
+    body: {
+      ko: `
+Flutter/Dart로 만든 다양한 실습 프로젝트를 모아둔 포트폴리오용 예제입니다.
+- 영화 모아보기 (영화 리스트 및 상세보기)
+- 타이머 앱 (포모도로 타이머)
+- 오늘의 웹툰 (웹툰 리스트와 UI)
+  `,
+      en: `
+A collection of practice projects built with Flutter/Dart for portfolio purposes:
+- Movie Collector (movie list and detail view)
+- Timer App (Pomodoro timer)
+- Webtoon Today (webtoon list and UI)
+  `,
+      tr: `
+Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy çalışması:
+- Film Toplayıcı (film listesi ve detay görünümü)
+- Zamanlayıcı Uygulaması (Pomodoro zamanlayıcısı)
+- Bugünün Webtoon'u (webtoon listesi ve UI)
+  `,
+      ar: `
+مجموعة من المشاريع التجريبية باستخدام Flutter/Dart لأغراض المحفظة:
+- جامع الأفلام (قائمة الأفلام وعرض التفاصيل)
+- تطبيق المؤقت (مؤقت بومودورو)
+- ويب تون اليوم (قائمة الويب تون وواجهة المستخدم)
+  `,
+    },
+    gallery: [
+      "media/flutterapp/flutter1.mov",
+      "media/flutterapp/flutter2.mov",
+      "media/flutterapp/flutter3.mov",
+    ],
+  },
+  //영화모아보기
+  {
+    slug: "movie-collection",
+    title: {
+      ko: "영화 모아보기",
+      en: "Movie Collection",
+      tr: "Film Koleksiyonu",
+      ar: "مجموعة الأفلام",
+    },
+    blurb: {
+      ko: "다양한 영화 정보를 한눈에 볼 수 있는 페이지 예시입니다.",
+      en: "A sample page to view various movie information at a glance.",
+      tr: "Çeşitli film bilgilerini tek bakışta görebileceğiniz örnek sayfa.",
+      ar: "صفحة تجريبية لعرض معلومات الأفلام المختلفة بنظرة واحدة.",
+    },
+    tags: ["React", "Next.js", "SSR", "Movie Info", "study"],
+    area: "React",
+    status: "Complete",
+    thumb: "media/bom_movie/movie1.png ",
+    previewVideo: "",
+    mainVideo: "",
+    links: {
+      link: "https://nextjs-movies-theta-puce.vercel.app",
+      code: "https://github.com/wonseola/nextjs",
+    },
+    body: {
+      ko: `
+영화 모아보기 프로젝트입니다.
+- Next.js + React 기반
+- Suspense 및 동적 import 활용
+- 영화 정보, 출연진, 예고편 등 구성
+- CSS 모듈로 스타일링
+    `,
+      en: `
+This is a Movie Collection project.
+- Built with Next.js + React
+- Uses Suspense and dynamic imports
+- Displays movie details, cast, and trailers
+- Styled with CSS modules
+    `,
+      tr: `
+Bu bir Film Koleksiyonu projesidir.
+- Next.js + React ile yapıldı
+- Suspense ve dinamik import kullanımı
+- Film detayları, oyuncular ve fragmanlar gösterimi
+- CSS modülleri ile stil verilmiş
+    `,
+      ar: `
+هذا مشروع لمجموعة أفلام.
+- مبني باستخدام Next.js + React
+- يستخدم Suspense و dynamic imports
+- يعرض تفاصيل الأفلام والممثلين والمقاطع الدعائية
+- تصميم باستخدام CSS modules
+    `,
+    },
+    gallery: ["media/bom_movie/movie2.png"],
+  },
+  //bint
+  {
+    slug: "sns-clone",
+    title: {
+      ko: "SNS 클론",
+      en: "SNS Clone",
+      tr: "SNS Klon",
+      ar: "نسخة SNS",
+    },
+    blurb: {
+      ko: "TypeScript와 React, Firebase를 활용해 만든 SNS 클론 프로젝트. 로그인과 게시글 CRUD 기능을 구현.",
+      en: "A SNS clone built with TypeScript, React, and Firebase. Implements login and CRUD operations for posts.",
+      tr: "TypeScript, React ve Firebase kullanılarak yapılan SNS klon projesi. Giriş ve gönderi CRUD işlemleri içerir.",
+      ar: "نسخة SNS مبنية باستخدام TypeScript وReact وFirebase. تتضمن تسجيل الدخول وعمليات CRUD للمنشورات.",
+    },
+    tags: [
+      "React",
+      "TypeScript",
+      "Firebase",
+      "Authentication",
+      "CRUD",
+      "study",
+    ],
+    area: "React",
+    status: "Study",
+    thumb: "media/bint/bint_1.png",
+    previewVideo: "media/bint/bint_v2.mov",
+    mainVideo: "",
+    links: {
+      code: "https://github.com/wonseola/react_sns_app",
+      link: "https://bom-app-8cd7b.web.app",
+    },
+    body: {
+      ko: `
+SNS 클론 프로젝트입니다.
+- Firebase Authentication을 이용한 로그인/회원가입
+- 게시글 CRUD(Create, Read, Update, Delete) 기능
+- 사용자별 게시글 표시
+- 실시간 데이터 반영 (Firebase Firestore)
+  `,
+      en: `
+This is an SNS clone project.
+- Login/Register using Firebase Authentication
+- Create, Read, Update, Delete posts
+- Display posts by individual users
+- Real-time data updates via Firebase Firestore
+  `,
+      tr: `
+Bu bir SNS klon projesidir.
+- Firebase Authentication ile giriş/kayıt
+- Gönderi oluşturma, okuma, güncelleme, silme
+- Kullanıcıya özel gönderi gösterimi
+- Firebase Firestore ile gerçek zamanlı veri güncellemeleri
+  `,
+      ar: `
+هذا مشروع نسخ SNS.
+- تسجيل الدخول/التسجيل باستخدام Firebase Authentication
+- إنشاء/قراءة/تحديث/حذف المنشورات
+- عرض المنشورات حسب المستخدم
+- تحديث البيانات في الوقت الفعلي باستخدام Firebase Firestore
+  `,
+    },
+
+    gallery: [
+      "media/bint/bint_v2.mov",
+      "media/bint/bint_v1.mov",
+      "media/bint/bint_2.png",
+    ],
+  },
+  //senior
+  {
+    slug: "senior-cctv",
+    title: {
+      ko: "시니어 행동 감지 지능형 CCTV",
+      en: "Intelligent CCTV for Senior Behavior Detection",
+      tr: "Yaşlı Davranışlarını Algılayan Akıllı CCTV",
+      ar: "كاميرات مراقبة ذكية لاكتشاف سلوك كبار السن",
+    },
+    blurb: {
+      ko: "고령층의 낙상 및 이상행동을 실시간으로 감지하는 AI 기반 스마트 CCTV 시스템",
+      en: "An AI-powered smart CCTV system that detects falls and abnormal behaviors of the elderly in real-time.",
+      tr: "Yaşlıların düşme ve anormal davranışlarını gerçek zamanlı olarak algılayan yapay zekâ destekli akıllı CCTV sistemi.",
+      ar: "نظام كاميرات مراقبة ذكي يعمل بالذكاء الاصطناعي لاكتشاف سقوط أو سلوك غير طبيعي لكبار السن في الوقت الفعلي.",
+    },
+    tags: [
+      "AI",
+      "OpenCV",
+      "YOLO",
+      "TensorFlow",
+      "FastAPI",
+      "Computer Vision",
+      "study",
+    ],
+    area: "AI",
+    status: "Study",
+    thumb: "media/cctv/cctv_6.PNG",
+    mainVideo: "",
+    previewVideo: "media/cctv/cctv_video.mp4",
+    links: {
+      link: "",
+      code: "https://github.com/wonseola/Senior_Project",
+    },
+    body: {
+      ko: `AI-HUB의 시니어 이상행동 데이터셋을 활용하여 요양시설 내 고령층의 낙상 및 배회 등의 이상 행동을 실시간 감지하는 지능형 CCTV 시스템을 개발했습니다.
+
+이 프로젝트는 **고령층의 안전을 위한 빠른 대처 시스템**을 목표로 하며, Python과 FastAPI를 기반으로 서버를 구축하고 OpenCV, YOLO, TensorFlow를 활용하여 **낙상 감지 모델**을 학습 및 적용했습니다.  
+CCTV 카메라를 통해 수집된 영상을 실시간으로 분석하고, 이상 행동이 감지되면 **즉시 관리자나 보호자에게 알림을 전송**하도록 구현했습니다.
+
+최신 AI 기술과 영상처리 알고리즘을 결합하여 고령층의 안전을 보조하고, 사고 발생 시 빠른 대응이 가능하도록 설계되었습니다.`,
+
+      en: `Developed an AI-based intelligent CCTV system that detects abnormal behaviors such as falls and wandering among elderly individuals in real-time using the AI-HUB senior behavior dataset.
+
+The project aims to enable **rapid response for elderly safety**, building a backend with Python and FastAPI and applying OpenCV, YOLO, and TensorFlow for **real-time fall detection**.  
+Video streams from CCTV cameras are analyzed continuously, and when abnormal movements are detected, **notifications are immediately sent** to caregivers or administrators.
+
+This system integrates modern AI and computer vision algorithms to assist in elderly safety and enable timely response to accidents.`,
+
+      tr: `AI-HUB'un yaşlı davranış veri seti kullanılarak, huzurevlerinde yaşlı bireylerin düşme ve dolaşma gibi anormal davranışlarını gerçek zamanlı olarak algılayan akıllı CCTV sistemi geliştirildi.
+
+Proje, yaşlıların güvenliği için hızlı müdahale sağlamayı amaçlamaktadır. Python ve FastAPI kullanılarak geliştirilen sistem, OpenCV, YOLO ve TensorFlow ile **gerçek zamanlı düşme algılama** işlevi sunar.  
+CCTV kameralarından gelen görüntüler sürekli analiz edilir ve anormal hareketler algılandığında **bakıcılara veya yöneticilere anında bildirim gönderilir.**
+
+Bu sistem, modern yapay zekâ ve görüntü işleme algoritmalarını birleştirerek yaşlıların güvenliğini artırmayı ve kazalara hızlı tepki verilmesini sağlar.`,
+
+      ar: `تم تطوير نظام كاميرات مراقبة ذكي يعتمد على الذكاء الاصطناعي لاكتشاف السلوكيات غير الطبيعية مثل السقوط أو التجول بين كبار السن في الوقت الفعلي باستخدام مجموعة بيانات AI-HUB.
+
+يهدف المشروع إلى **تحقيق استجابة سريعة لضمان سلامة كبار السن**، حيث يعتمد على Python وFastAPI ويستخدم OpenCV وYOLO وTensorFlow للكشف عن السقوط في الوقت الفعلي.  
+تُحلل تدفقات الفيديو من الكاميرات باستمرار، وعند اكتشاف حركة غير طبيعية، يتم **إرسال إشعار فوري** إلى مقدمي الرعاية أو المسؤولين.
+
+يجمع هذا النظام بين تقنيات الذكاء الاصطناعي الحديثة وخوارزميات الرؤية الحاسوبية لتعزيز سلامة كبار السن وتمكين الاستجابة السريعة للحوادث.`,
+    },
+    gallery: [
+      "media/cctv/1.PNG",
+      "media/cctv/2.PNG",
+      "media/cctv/3.PNG",
+      "media/cctv/4.PNG",
+      "media/cctv/json_image_after.png",
+      "media/cctv/Flow_Chart_1.jpg",
+      "media/cctv/cctv_video.mp4",
+    ],
+  },
+
   //cardgame
   {
     slug: "card_game",
@@ -50,7 +474,14 @@ export const PROJECTS: Project[] = [
       tr: "Oyuncu sayısına göre otomatik kart dağıtımı yapan Raspberry Pi tabanlı bir sistem.",
       ar: "نظام يعتمد على Raspberry Pi يقوم بتوزيع البطاقات تلقائيًا بناءً على عدد اللاعبين المدخل.",
     },
-    tags: ["Raspberry Pi", "Servo Motor", "Python", "Automation", "Mechanics"],
+    tags: [
+      "Raspberry Pi",
+      "Servo Motor",
+      "Python",
+      "Automation",
+      "Mechanics",
+      "study",
+    ],
     area: "ROS/Arduino",
     status: "Complete",
     thumb: "media/cardgame/IMG_3127.jpg",
@@ -58,6 +489,7 @@ export const PROJECTS: Project[] = [
       code: "https://github.com/wonseola/GitCollabo_Auto_Card_Game/tree/Control_moter",
     },
     mainVideo: "media/cardgame/card.mp4",
+    previewVideo: "media/cardgame/card.mp4",
     body: {
       ko: `라즈베리파이와 서보 모터를 활용해 홀덤 게임용 자동 카드 분배기를 제작했습니다.  
 
@@ -121,10 +553,11 @@ Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
       tr: "Kamera ile siyah çizgileri algılayıp takip eden ROS tabanlı otonom robot projesi.",
       ar: "مشروع روبوت ذاتي القيادة يعتمد على ROS ويستخدم الكاميرا لاكتشاف الخطوط السوداء وتتبعها.",
     },
-    tags: ["ROS", "Computer Vision", "Autonomous", "Python", "OpenCV"],
+    tags: ["ROS", "Computer Vision", "Autonomous", "Python", "OpenCV", "study"],
     area: "ROS/Arduino",
     status: "Complete",
     thumb: "media/car/IMG_2335.JPG",
+    previewVideo: "media/car/car1.mp4",
     links: { code: "", link: "" },
     body: {
       ko: `ROS(Robot Operating System)를 이용해 라인트레이싱 로봇을 구현했습니다.  
@@ -189,10 +622,11 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
       tr: "Arduino projeleri ve alıştırmalarının koleksiyonu.",
       ar: "مجموعة من مشاريع وتمارين أردوينو.",
     },
-    tags: ["Arduino", "Electronics", "DIY", "Programming"],
+    tags: ["Arduino", "Electronics", "DIY", "Programming", "study"],
     area: "ROS/Arduino",
     status: "Complete",
     thumb: "media/arduino/123.gif",
+    previewVideo: "media/arduino/3.mp4",
     links: {
       code: "https://github.com/wonseola/study_arduino",
     },
@@ -258,6 +692,115 @@ Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi kon
       "media/arduino/3.mp4",
       "media/arduino/1.mp4",
       "media/arduino/2.mp4",
+    ],
+  },
+
+  //unity
+  {
+    slug: "unity-basics",
+    title: {
+      ko: "Unity Basics",
+      en: "Unity Basics",
+      tr: "Unity Temelleri",
+      ar: "أساسيات Unity",
+    },
+    blurb: {
+      ko: "Unity와 C++를 활용한 기초 실습 프로젝트입니다.",
+      en: "A basic Unity project for practicing with C++ integration.",
+      tr: "C++ entegrasyonu ile pratik yapmak için temel Unity projesi.",
+      ar: "مشروع Unity أساسي للتدرب على التكامل مع C++.",
+    },
+    tags: ["Unity", "C++", "Study"],
+    area: "Other",
+    status: "Study",
+    thumb: "media/unitystudy/3.jpeg",
+    previewVideo: "media/unitystudy/2.mp4",
+    mainVideo: "",
+    body: {
+      ko: `
+Unity와 C++를 활용한 기초 실습 프로젝트입니다.
+- 오브젝트 생성 및 간단한 조작
+- 장애물 피하기 게임 구현
+- Unity 엔진 기본 이해
+    `,
+      en: `
+Basic Unity practice project with C++ integration.
+- Creating and manipulating objects
+- Simple obstacle avoidance game
+- Understanding Unity engine fundamentals
+    `,
+      tr: `
+C++ entegrasyonu ile temel Unity uygulama projesi.
+- Nesne oluşturma ve basit kontroller
+- Engellerden kaçınma oyunu
+- Unity motorunun temellerini anlama
+    `,
+      ar: `
+مشروع تدريب أساسي على Unity مع تكامل C++.
+- إنشاء وتحرير الكائنات
+- لعبة تجنب العقبات البسيطة
+- فهم أساسيات محرك Unity
+    `,
+    },
+    gallery: [
+      // "media/unitystudy/3.jpeg",
+      "media/unitystudy/1.mp4",
+      "media/unitystudy/2.mp4",
+      "media/unitystudy/5.mp4",
+      "media/unitystudy/4.png",
+    ],
+  },
+  //mediapipe
+  {
+    slug: "mediapipe-sign-language",
+    title: {
+      ko: "Mediapipe",
+      en: "Mediapipe",
+      tr: "Mediapipe",
+      ar: "Mediapipe",
+    },
+    blurb: {
+      ko: "Mediapipe, TensorFlow, Numpy를 활용한 손 인식 실습",
+      en: "A hand gesture recognition practice project using Mediapipe, TensorFlow, and Numpy.",
+      tr: "Mediapipe, TensorFlow ve Numpy kullanarak el hareketleri tanıma deneme projesi.",
+      ar: "مشروع تدريبي للتعرف على إيماءات اليد باستخدام Mediapipe وTensorFlow وNumpy.",
+    },
+    tags: ["Python", "Mediapipe", "TensorFlow", "Numpy", "Study"],
+    area: "Other",
+    status: "Study",
+    thumb: "media/mediapipe/hand_p.jpeg",
+    previewVideo: "media/mediapipe/IMG_2952.MOV",
+    mainVideo: "",
+    body: {
+      ko: `
+Mediapipe와 TensorFlow, Numpy를 활용하여 손 인식을 연습한 프로젝트입니다.
+- 손 동작 추적 및 실습
+- 수어(Sign Language) 번역 시뮬레이션
+- ML 모델 학습 및 데이터 전처리 실습
+    `,
+      en: `
+A practice project for hand gesture recognition using Mediapipe, TensorFlow, and Numpy.
+- Hand motion tracking and experiments
+- Simulated Sign Language translation
+- ML model training and data preprocessing practice
+    `,
+      tr: `
+Mediapipe, TensorFlow ve Numpy kullanarak el hareketlerini tanıma deneme projesi.
+- El hareketlerini izleme ve deneme
+- İşaret dili çeviri simülasyonu
+- ML modeli eğitimi ve veri ön işleme denemesi
+    `,
+      ar: `
+مشروع تدريبي للتعرف على إيماءات اليد باستخدام Mediapipe وTensorFlow وNumpy.
+- تتبع حركة اليد والتجارب
+- محاكاة ترجمة لغة الإشارة
+- تدريب نموذج ML وتجربة معالجة البيانات
+    `,
+    },
+    gallery: [
+      "media/mediapipe/IMG_2952.MOV",
+      "media/mediapipe/hand_eng.png",
+      "media/mediapipe/mediapipe_hand_num.png",
     ],
   },
 ];

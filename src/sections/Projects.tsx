@@ -78,7 +78,7 @@ export default function Projects() {
   const [showAll, setShowAll] = useState(false);
   const { lang } = useLang();
 
-  type FilterValue = "All" | "Robotics" | "Embedded" | "ROS/Arduino" | "Other";
+  type FilterValue = "All" | "React" | "AI" | "ROS/Arduino" | "Other";
 
   type Filter = {
     label: string;
@@ -96,14 +96,14 @@ export default function Projects() {
       hoverColor: "#ffd966",
     },
     {
-      value: "Robotics",
-      label: "Robotics",
+      value: "React",
+      label: "React",
       color: "var(--color-accent-green)",
       hoverColor: "#d0f29e",
     },
     {
-      value: "Embedded",
-      label: "Embedded",
+      value: "AI",
+      label: "AI",
 
       color: "var(--color-accent-blue)",
       hoverColor: "#8fd7ff",
