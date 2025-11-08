@@ -5,9 +5,6 @@ type Item = { src: string; alt?: string; href?: string };
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
 
-/**
- * Masonry via CSS columns. Images stack vertically per column and wrap fluidly.
- */
 export default function Gallery({ items }: { items: Item[] }) {
   if (!items?.length) return null;
   return (

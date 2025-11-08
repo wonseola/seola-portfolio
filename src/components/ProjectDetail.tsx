@@ -9,6 +9,11 @@ import { useLang } from "../context/LangContext";
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
 
+const getBase = (src?: string) => {
+  if (!src) return undefined;
+  const trimmed = src.trim();
+  return trimmed.startsWith("http") ? trimmed : withBase(trimmed);
+};
 // Helper function to extract YouTube video ID from URL or return ID if already provided
 const getYouTubeVideoId = (input: string): string => {
   // If it's already a video ID (11 characters, alphanumeric + hyphens/underscores)
@@ -179,13 +184,13 @@ export default function ProjectDetail() {
                 playsInline
                 controls
                 preload="metadata"
-                poster={project.thumb ? withBase(project.thumb) : undefined}
-                src={withBase(project.mainVideo)}
+                poster={project.thumb ? getBase(project.thumb) : undefined}
+                src={getBase(project.mainVideo)}
               />
             ) : project.thumb ? (
               <img
                 className="h-[340px] sm:h-[420px] md:h-[500px] w-full object-contain"
-                src={withBase(project.thumb)}
+                src={getBase(project.thumb)}
                 alt={`${project.title} hero`}
               />
             ) : (
@@ -222,14 +227,14 @@ export default function ProjectDetail() {
                 return (
                   <a
                     key={idx}
-                    href={withBase(g)}
+                    href={getBase(g)}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-block break-inside-avoid"
                   >
                     {isVideo ? (
                       <video
-                        src={withBase(g)}
+                        src={getBase(g)}
                         className={commonClass}
                         muted
                         playsInline
@@ -239,7 +244,7 @@ export default function ProjectDetail() {
                       />
                     ) : isImage ? (
                       <img
-                        src={withBase(g)}
+                        src={getBase(g)}
                         className={commonClass}
                         alt={`${project.title} gallery ${idx + 1}`}
                         loading="lazy"
@@ -247,7 +252,7 @@ export default function ProjectDetail() {
                     ) : (
                       // Fallback for unknown file types - treat as image
                       <img
-                        src={withBase(g)}
+                        src={getBase(g)}
                         className={commonClass}
                         alt={`${project.title} gallery ${idx + 1}`}
                         loading="lazy"

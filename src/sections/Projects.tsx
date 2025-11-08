@@ -9,6 +9,12 @@ import { useLang } from "../context/LangContext";
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
 
+const getBase = (src?: string) => {
+  if (!src) return undefined;
+  const trimmed = src.trim();
+  return trimmed.startsWith("http") ? trimmed : withBase(trimmed);
+};
+
 function Preview({
   title,
   thumb,
@@ -43,8 +49,8 @@ function Preview({
           playsInline
           loop
           preload="none"
-          poster={thumb ? withBase(thumb) : undefined}
-          src={withBase(previewVideo)}
+          poster={thumb ? getBase(thumb) : undefined}
+          src={getBase(previewVideo)}
           aria-label={`${title} preview`}
         />
       ) : thumb ? (
@@ -56,7 +62,7 @@ function Preview({
             className={`h-44 w-full object-cover md:h-48 transition-opacity duration-300 ${
               imageLoaded ? "opacity-100" : "opacity-0"
             }`}
-            src={withBase(thumb)}
+            src={getBase(thumb)}
             alt={title}
             loading="lazy"
             onLoad={() => setImageLoaded(true)}
@@ -140,7 +146,7 @@ export default function Projects() {
         if (project.previewVideo) {
           const video = document.createElement("video");
           video.preload = "auto";
-          video.src = withBase(project.previewVideo) || "";
+          video.src = getBase(project.previewVideo) || "";
           video.muted = true;
           video.playsInline = true;
           video.load();

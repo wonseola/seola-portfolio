@@ -103,9 +103,11 @@ export const PROJECTS: Project[] = [
     area: "React",
     status: "Active",
     links: { link: "https://infocompany.co.kr" },
-    thumb: "media/infocompany/info1.png",
-    previewVideo: "media/infocompany/info_v1.mov",
-    mainVideo: "",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588125/info1_bfffon.png",
+    previewVideo: "media/video/info_v1.mov",
+    mainVideo: "media/video/info_v1.mov",
+
     body: {
       ko: `
 React를 사용하여 제작한 회사 소개 페이지입니다.
@@ -132,7 +134,10 @@ React ile yapılmış şirket tanıtım sayfası.
 - تم النشر وتشغيله
     `,
     },
-    gallery: ["media/infocompany/info1.png", "media/infocompany/info_v1.mov"],
+    gallery: [
+      "media/video/info_v1.mov",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588125/info1_bfffon.png",
+    ],
   },
   //randommong
   {
@@ -152,9 +157,10 @@ React ile yapılmış şirket tanıtım sayfası.
     tags: ["React", "TypeScript", "Firebase", "Realtime", "Study"],
     area: "React",
     status: "Complete",
-    thumb: "media/random/1.png",
-    previewVideo: "media/random/mong_1.mov",
-    mainVideo: "media/random/mong_1.mov",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588117/1_aqnum9.png",
+    previewVideo: "media/video/mong_1.mov",
+    mainVideo: "media/video/mong_1.mov",
     links: {
       link: "https://bom-random2.web.app",
       code: "https://github.com/wonseola/typescript",
@@ -198,11 +204,11 @@ Random Mong هو موقع دردشة عشوائي في الوقت الفعلي �
     `,
     },
     gallery: [
-      "media/random/1.png",
-      "media/random/2.png",
-      "media/random/mong_1.mov",
-      "media/random/3.png",
-      "media/random/4.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588117/1_aqnum9.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588115/2_b8z7dl.png",
+      "media/video/mong_1.mov",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588117/3_xkhhau.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588115/4_s9owsb.png",
     ],
   },
   //flutter
@@ -223,8 +229,9 @@ Random Mong هو موقع دردشة عشوائي في الوقت الفعلي �
     tags: ["Flutter", "Dart", "Study"],
     area: "Other",
     status: "Study",
-    thumb: "media/flutterapp/flutter3.png",
-    previewVideo: "media/flutterapp/flutter2.mov",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588103/flutter3_lfpgyn.png",
+    previewVideo: "media/video/flutter2.mov",
 
     mainVideo: "",
     links: { code: "https://github.com/wonseola/Flutter" },
@@ -255,9 +262,9 @@ Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy ç
   `,
     },
     gallery: [
-      "media/flutterapp/flutter1.mov",
-      "media/flutterapp/flutter2.mov",
-      "media/flutterapp/flutter3.mov",
+      "media/video/flutter1.mov",
+      "media/video/flutter2.mov",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588110/flutter3_tyj1ke.mov",
     ],
   },
   //영화모아보기
