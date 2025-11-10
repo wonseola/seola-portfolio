@@ -22,19 +22,19 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   //placeholder
-  {
-    slug: "card-game",
-    title: { ko: "", en: "", tr: "", ar: "" },
-    blurb: { ko: "", en: "", tr: "", ar: "" },
-    tags: [],
-    area: "Other",
-    status: "Complete",
-    thumb: "",
-    previewVideo: "",
-    mainVideo: "",
-    body: { ko: "", en: "", tr: "", ar: "" },
-    gallery: [],
-  },
+  // {
+  //   slug: "woodongseol",
+  //   title: { ko: "", en: "", tr: "", ar: "" },
+  //   blurb: { ko: "", en: "", tr: "", ar: "" },
+  //   tags: [],
+  //   area: "Other",
+  //   status: "Complete",
+  //   thumb: "",
+  //   previewVideo: "",
+  //   mainVideo: "",
+  //   body: { ko: "", en: "", tr: "", ar: "" },
+  //   gallery: [],
+  // },
   //portfolio-site
   {
     slug: "portfolio-site",
@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     },
     tags: ["React", "TypeScript", "TailwindCSS", "study"],
     area: "React",
-    status: "Active",
+    status: "Complete",
     thumb:
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588118/port_at4zcs.png",
     previewVideo: "",
@@ -84,6 +84,94 @@ export const PROJECTS: Project[] = [
 `,
     },
     gallery: [],
+  },
+  //우동설
+  {
+    slug: "woodongseol",
+    title: {
+      ko: "우리동네 설명회",
+      en: "WoodongSeol",
+      tr: "WoodongSeol",
+      ar: "WoodongSeol",
+    },
+    blurb: {
+      ko: "기업과 개인이 설명회를 등록하고 예약·결제·인증까지 진행할 수 있는 플랫폼입니다.",
+      en: "A platform where companies and individuals can host, book, and pay for seminars with authentication.",
+      tr: "Şirketlerin ve bireylerin seminer oluşturup rezervasyon ve ödeme yapabildiği bir platform.",
+      ar: "منصة تتيح للشركات والأفراد تنظيم الندوات، الحجز، والدفع مع التحقق من الهوية.",
+    },
+    tags: [
+      "React",
+      "JavaScript",
+      "Styled-Components",
+      "PortOne",
+      "AWS S3",
+      "Auth",
+      "SEO",
+    ],
+    area: "React",
+    status: "Active",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752439/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-10_%EC%98%A4%ED%9B%84_2.26.58_qt6upc.png",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762752176/12_dhqihr.mp4",
+    mainVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762752176/12_dhqihr.mp4",
+    links: {
+      code: "",
+      link: "https://woodongseol.com",
+    },
+    body: {
+      ko: `
+💡 기업과 개인이 설명회를 등록하고, 참가자는 일정 선택부터 예약·결제·본인인증까지 한 번에 처리할 수 있는 플랫폼입니다.  
+
+🧩 프론트엔드는 React와 Styled-Components로 개발했으며, 결제는 PortOne API를 사용했습니다.  
+
+🚀 AWS S3를 통해 정적 배포를 진행했고, 검색엔진 최적화(SEO)와 메타데이터 설정으로 네이버·구글 노출을 개선했습니다.  
+
+🤝 백엔드 개발자 1명과 협업하여 전체 서비스 구조와 UX를 함께 설계했습니다.
+`,
+      en: `
+💡 A platform where companies and individuals can host seminars, while participants can handle booking, payment, and verification in one flow.  
+
+🧩 Built with React and Styled-Components, using PortOne API for payment integration.  
+
+🚀 Deployed on AWS S3 with full SEO optimization for Google and Naver search visibility.  
+
+🤝 Collaborated with a backend developer on architecture and UX design.
+`,
+      tr: `
+💡 Şirketler ve bireyler için seminer oluşturma, rezervasyon, ödeme ve kimlik doğrulama özellikleri sunan bir platform.  
+
+🧩 React ve Styled-Components kullanılarak geliştirildi, ödeme entegrasyonu PortOne API ile sağlandı.  
+
+🚀 AWS S3 üzerinde dağıtıldı ve Google/Naver SEO için optimize edildi.  
+
+🤝 Bir backend geliştiriciyle iş birliği içinde tasarlandı.
+`,
+      ar: `
+💡 منصة تتيح للشركات والأفراد إنشاء الندوات، مع الحجز والدفع والتحقق في عملية واحدة.  
+
+🧩 تم تطويرها باستخدام React وStyled-Components، مع دمج واجهة برمجة تطبيقات PortOne للدفع.  
+
+🚀 تم النشر على AWS S3 مع تحسين محركات البحث لجوجل ونفر.  
+
+🤝 تم تطويرها بالتعاون مع مطور خلفية واحد.
+`,
+    },
+    gallery: [
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762752176/12_dhqihr.mp4",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752148/001_c6ed1b.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752157/004_htvx74.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752166/007_tulehx.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752161/005_n6vrta.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752171/006_vwhzx5.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752180/008_ccdyma.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752184/020_ymmtdr.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752152/010_j0enl7.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752144/002_ryddhk.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752189/003_ahhji1.jpg",
+    ],
   },
   //infocompany
   {
