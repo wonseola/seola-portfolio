@@ -211,7 +211,7 @@ export default function Projects() {
               >
                 <div className="pt-4 px-4">
                   <Preview
-                    title={p.title[lang] ?? p.title["en"]} // 여기서 string으로 변환
+                    title={p.title[lang] ?? p.title["en"]}
                     thumb={p.thumb}
                     previewVideo={p.previewVideo}
                     hovering={hoveredSlug === p.slug}
@@ -263,39 +263,41 @@ export default function Projects() {
                     p.status === "In Progress") && (
                     <div className="mt-4 flex items-center gap-4 items-center">
                       {p.links?.link && (
-                        <a
-                          href={p.links.link}
-                          target="_blank"
-                          rel="noreferrer"
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(p.links?.link, "_blank", "noreferrer");
+                          }}
                           className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
-                          onClick={(e) => e.stopPropagation()}
                         >
                           Link{" "}
                           <ExternalLink className="size-4 transition-transform" />
-                        </a>
+                        </button>
                       )}
                       {p.links?.code && (
-                        <a
-                          href={p.links.code}
-                          target="_blank"
-                          rel="noreferrer"
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(p.links?.code, "_blank", "noreferrer");
+                          }}
                           className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
-                          onClick={(e) => e.stopPropagation()}
                         >
                           Code{" "}
                           <Github className="size-4 transition-transform" />
-                        </a>
+                        </button>
                       )}
 
                       {(p.active || p.status === "Active") && (
                         <span className="ml-auto inline-flex items-center gap-2 text-sm font-medium text-emerald-400 px-2">
                           <span className="relative inline-flex h-2.5 w-2.5">
-                            {/* bright core */}
                             <span
                               className="absolute inset-0 rounded-full bg-emerald-400 opacity-100 shadow-[0_0_12px_3px_rgba(16,185,129,0.9)]"
                               aria-hidden
                             />
-                            {/* soft halo with enhanced pulse */}
                             <span
                               className="absolute inset-0 rounded-full bg-emerald-400/80 blur-[4px] animate-[pulse_1.5s_ease-in-out_infinite]"
                               aria-hidden

@@ -56,6 +56,7 @@ export default function Navbar() {
             aria-label="Seola Won"
           >
             <Brandmark className="h-6 w-6" />
+            {/* <img src="love.png" alt="Seola Won" className="h-8 w-8 " /> */}
             {/* <span className="text-subtext">이름이용?.</span> */}
           </a>
 
