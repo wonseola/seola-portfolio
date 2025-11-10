@@ -173,6 +173,7 @@ export const PROJECTS: Project[] = [
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762752189/003_ahhji1.jpg",
     ],
   },
+
   //infocompany
   {
     slug: "infocompany",
@@ -719,7 +720,76 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
       "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588060/car2_mb0j9b.mp4",
     ],
   },
+  {
+    //  피그마
+    slug: "figma-designs",
+    title: {
+      ko: "Figma UI",
+      en: "Figma UI",
+      tr: "Figma UI",
+      ar: "Figma",
+    },
+    blurb: {
+      ko: "서비스 런칭 전 UI/UX 프로토타이핑과 컴포넌트 시스템 설계",
+      en: "Prototyping and component system design for pre-launch services",
+      tr: "Lansman öncesi hizmetler için prototip oluşturma ve bileşen sistemi tasarımı",
+      ar: "تصميم النماذج الأولية ونظام المكونات للخدمات قبل الإطلاق",
+    },
+    tags: ["Figma", "UI/UX", "Design System"],
+    area: "Other",
+    status: "Complete",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754830/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-10_%EC%98%A4%ED%9B%84_2.36.17_cxtezw.png",
+    previewVideo: "",
+    mainVideo: "",
+    body: {
+      ko: "사용자 흐름 설계, 와이어프레임 제작, 프로토타입 테스트까지 진행했습니다 🎨",
+      en: "Designed user flows, wireframes, and interactive prototypes using Figma.",
+      tr: "Kullanıcı akışlarını, tel kafesleri ve etkileşimli prototipleri Figma kullanarak tasarladım 🎨",
+      ar: "صممت تدفقات المستخدم والنماذج الهيكلية والنماذج التفاعلية باستخدام Figma 🎨",
+    },
+    gallery: [
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754830/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-10_%EC%98%A4%ED%9B%84_2.36.17_cxtezw.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754825/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2025-11-10_%EC%98%A4%ED%9B%84_2.36.38_zozj1p.png",
+    ],
+  },
 
+  {
+    // IR덱 제안서
+    slug: "gov-irdeck",
+    title: {
+      ko: "정부지원사업 IR덱 및 제안서",
+      en: "Government Funding IR Deck & Proposal",
+      tr: "Hükümet Destek Programı IR Sunumu ve Teklifi",
+      ar: "عرض وملف تمويلي حكومي (IR Deck & Proposal)",
+    },
+    blurb: {
+      ko: "정부지원사업을 위한 제안서, 사업계획서, IR 자료 기획 및 디자인",
+      en: "Planned and designed proposals and IR decks for startup funding programs",
+      tr: "Devlet destek programları için teklif ve yatırım sunumu (IR deck) hazırlayıp tasarladım",
+      ar: "قمت بتخطيط وتصميم المقترحات وعروض المستثمرين (IR Deck) لبرامج التمويل الحكومية",
+    },
+    tags: ["IR Deck", "Proposal", "Branding", "Design"],
+    area: "Other",
+    status: "Complete",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754855/06_wqwmbh.png",
+    previewVideo: "",
+    mainVideo: "",
+    body: {
+      ko: "사업 개요 정리부터 시각자료 구성, 발표용 IR 슬라이드 제작까지 담당했습니다 💼",
+      en: "Handled overall planning, visual design, and pitch deck creation for funding presentations.",
+      tr: "Proje planlamasından sunum tasarımına ve IR slaytlarının hazırlanmasına kadar tüm süreci yönettim 💼",
+      ar: "تولّيت التخطيط العام وتصميم العروض وإنشاء شرائح العرض التقديمي للتمويل 💼",
+    },
+    gallery: [
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754867/05_xhmast.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754860/07_orx5mr.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754849/02_mak3vh.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754842/03_jxefob.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762754836/01_a8xdj0.png",
+    ],
+  },
   //arduino study
   {
     slug: "arduino",

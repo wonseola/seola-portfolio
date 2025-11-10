@@ -3,7 +3,7 @@ import Section from "../components/Section";
 import Container from "../components/Container";
 import { PROJECTS } from "../data/projects";
 import { Link } from "react-router-dom";
-import { Github, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { useLang } from "../context/LangContext";
 
 const withBase = (path?: string) =>
@@ -138,7 +138,7 @@ export default function Projects() {
     return items.slice(0, 6);
   }, [items, showAll]);
 
-  const hasMoreItems = items.length > 6;
+  // const hasMoreItems = items.length > 6;
 
   useEffect(() => {
     const preloadVideos = () => {
@@ -159,7 +159,7 @@ export default function Projects() {
 
   // Reset showAll when filter changes
   useEffect(() => {
-    setShowAll(false);
+    setShowAll(true);
   }, [activeFilter]);
 
   {
@@ -312,7 +312,7 @@ export default function Projects() {
           </div>
 
           {/* See More Button */}
-          {hasMoreItems && (
+          {/* {hasMoreItems && (
             <div className="mt-8 flex justify-center">
               <button
                 onClick={() => setShowAll(!showAll)}
@@ -326,7 +326,7 @@ export default function Projects() {
                 )}
               </button>
             </div>
-          )}
+          )} */}
         </Container>
       </Section>
     );
