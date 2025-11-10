@@ -53,7 +53,8 @@ export const PROJECTS: Project[] = [
     tags: ["React", "TypeScript", "TailwindCSS", "study"],
     area: "React",
     status: "Active",
-    thumb: "media/this/port.png",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588118/port_at4zcs.png",
     previewVideo: "",
     mainVideo: "",
     links: {
@@ -105,8 +106,10 @@ export const PROJECTS: Project[] = [
     links: { link: "https://infocompany.co.kr" },
     thumb:
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588125/info1_bfffon.png",
-    previewVideo: "media/video/info_v1.mov",
-    mainVideo: "media/video/info_v1.mov",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588131/info_v1_qwh23v.mov",
+    mainVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588131/info_v1_qwh23v.mov",
 
     body: {
       ko: `
@@ -135,7 +138,7 @@ React ile yapılmış şirket tanıtım sayfası.
     `,
     },
     gallery: [
-      "media/video/info_v1.mov",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588131/info_v1_qwh23v.mov",
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588125/info1_bfffon.png",
     ],
   },
@@ -159,8 +162,10 @@ React ile yapılmış şirket tanıtım sayfası.
     status: "Complete",
     thumb:
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588117/1_aqnum9.png",
-    previewVideo: "media/video/mong_1.mov",
-    mainVideo: "media/video/mong_1.mov",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588125/mong_1_l958pe.mov",
+    mainVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588125/mong_1_l958pe.mov",
     links: {
       link: "https://bom-random2.web.app",
       code: "https://github.com/wonseola/typescript",
@@ -206,7 +211,7 @@ Random Mong هو موقع دردشة عشوائي في الوقت الفعلي �
     gallery: [
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588117/1_aqnum9.png",
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588115/2_b8z7dl.png",
-      "media/video/mong_1.mov",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588125/mong_1_l958pe.mov",
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588117/3_xkhhau.png",
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588115/4_s9owsb.png",
     ],
@@ -231,7 +236,8 @@ Random Mong هو موقع دردشة عشوائي في الوقت الفعلي �
     status: "Study",
     thumb:
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588103/flutter3_lfpgyn.png",
-    previewVideo: "media/video/flutter2.mov",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588109/flutter2_ywhexr.mov",
 
     mainVideo: "",
     links: { code: "https://github.com/wonseola/Flutter" },
@@ -262,8 +268,8 @@ Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy ç
   `,
     },
     gallery: [
-      "media/video/flutter1.mov",
-      "media/video/flutter2.mov",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588109/flutter1_zdb42e.mov",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588109/flutter2_ywhexr.mov",
       "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588110/flutter3_tyj1ke.mov",
     ],
   },
@@ -285,7 +291,8 @@ Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy ç
     tags: ["React", "Next.js", "SSR", "Movie Info", "study"],
     area: "React",
     status: "Complete",
-    thumb: "media/bom_movie/movie1.png ",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588058/movie1_lqvsso.png",
     previewVideo: "",
     mainVideo: "",
     links: {
@@ -322,7 +329,9 @@ Bu bir Film Koleksiyonu projesidir.
 - تصميم باستخدام CSS modules
     `,
     },
-    gallery: ["media/bom_movie/movie2.png"],
+    gallery: [
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588057/movie2_rywcex.png",
+    ],
   },
   //bint
   {
@@ -349,8 +358,10 @@ Bu bir Film Koleksiyonu projesidir.
     ],
     area: "React",
     status: "Study",
-    thumb: "media/bint/bint_1.png",
-    previewVideo: "media/bint/bint_v2.mov",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588054/bint_1_b0zn5p.png",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588056/bint_v2_ebaafb.mov",
     mainVideo: "",
     links: {
       code: "https://github.com/wonseola/react_sns_app",
@@ -388,9 +399,9 @@ Bu bir SNS klon projesidir.
     },
 
     gallery: [
-      "media/bint/bint_v2.mov",
-      "media/bint/bint_v1.mov",
-      "media/bint/bint_2.png",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588056/bint_v2_ebaafb.mov",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588056/bint_v1_fnht8h.mov",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588054/bint_2_zhklaz.png",
     ],
   },
   //senior
@@ -419,9 +430,11 @@ Bu bir SNS klon projesidir.
     ],
     area: "AI",
     status: "Study",
-    thumb: "media/cctv/cctv_6.PNG",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588080/cctv_6_koblao.png",
     mainVideo: "",
-    previewVideo: "media/cctv/cctv_video.mp4",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588108/cctv_video_x4pymi.mp4",
     links: {
       link: "",
       code: "https://github.com/wonseola/Senior_Project",
@@ -456,13 +469,13 @@ Bu sistem, modern yapay zekâ ve görüntü işleme algoritmalarını birleştir
 يجمع هذا النظام بين تقنيات الذكاء الاصطناعي الحديثة وخوارزميات الرؤية الحاسوبية لتعزيز سلامة كبار السن وتمكين الاستجابة السريعة للحوادث.`,
     },
     gallery: [
-      "media/cctv/1.PNG",
-      "media/cctv/2.PNG",
-      "media/cctv/3.PNG",
-      "media/cctv/4.PNG",
-      "media/cctv/json_image_after.png",
-      "media/cctv/Flow_Chart_1.jpg",
-      "media/cctv/cctv_video.mp4",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588092/1_rsvhui.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588088/2_phkoo1.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588087/3_vsannh.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588085/4_deyuoq.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588084/json_image_after_lbastl.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588064/Flow_Chart_1_mm7b0t.jpg",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588108/cctv_video_x4pymi.mp4",
     ],
   },
 
@@ -491,12 +504,15 @@ Bu sistem, modern yapay zekâ ve görüntü işleme algoritmalarını birleştir
     ],
     area: "ROS/Arduino",
     status: "Complete",
-    thumb: "media/cardgame/IMG_3127.jpg",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588060/IMG_3127_owcwkv.jpg",
     links: {
       code: "https://github.com/wonseola/GitCollabo_Auto_Card_Game/tree/Control_moter",
     },
-    mainVideo: "media/cardgame/card.mp4",
-    previewVideo: "media/cardgame/card.mp4",
+    mainVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588062/card_gfdsmn.mp4",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588062/card_gfdsmn.mp4",
     body: {
       ko: `라즈베리파이와 서보 모터를 활용해 홀덤 게임용 자동 카드 분배기를 제작했습니다.  
 
@@ -535,13 +551,13 @@ Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
 ثم يستخدم إشارات GPIO وPWM لتوزيع البطاقات بالترتيب وفقًا لقواعد “Seven Poker”.`,
     },
     gallery: [
-      "media/cardgame/IMG_2578.jpg",
-      "media/cardgame/IMG_2591.jpg",
-      "media/cardgame/IMG_2594.JPG",
-      "media/cardgame/card.mp4",
-      "media/cardgame/IMG_2743.jpg",
-      "media/cardgame/IMG_2745.jpg",
-      "media/cardgame/IMG_3127.jpg",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588064/IMG_2578_pqrgpd.jpg",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588062/IMG_2591_c7lcrb.jpg",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588062/IMG_2594_yh5x07.jpg",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588062/card_gfdsmn.mp4",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588061/IMG_2743_d5lij0.jpg",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588063/IMG_2745_kyyz6v.jpg",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588060/IMG_3127_owcwkv.jpg",
     ],
   },
 
@@ -563,8 +579,10 @@ Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
     tags: ["ROS", "Computer Vision", "Autonomous", "Python", "OpenCV", "study"],
     area: "ROS/Arduino",
     status: "Complete",
-    thumb: "media/car/IMG_2335.JPG",
-    previewVideo: "media/car/car1.mp4",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588058/IMG_2335_dixslf.jpg",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588058/car1_rs87nc.mp4",
     links: { code: "", link: "" },
     body: {
       ko: `ROS(Robot Operating System)를 이용해 라인트레이싱 로봇을 구현했습니다.  
@@ -608,9 +626,9 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
 - مراقبة وتصحيح الأخطاء في الوقت الحقيقي.`,
     },
     gallery: [
-      "media/car/IMG_2346.jpg",
-      "media/car/car1.mp4",
-      "media/car/car2.mp4",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588059/IMG_2346_uthh9r.jpg",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588058/car1_rs87nc.mp4",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588060/car2_mb0j9b.mp4",
     ],
   },
 
@@ -632,8 +650,10 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
     tags: ["Arduino", "Electronics", "DIY", "Programming", "study"],
     area: "ROS/Arduino",
     status: "Complete",
-    thumb: "media/arduino/123.gif",
-    previewVideo: "media/arduino/3.mp4",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588052/123_orsdvo.gif",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588054/3_rf8ozg.mp4",
     links: {
       code: "https://github.com/wonseola/study_arduino",
     },
@@ -694,11 +714,11 @@ Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi kon
 رغم أن المشروع يتكوّن من تجارب صغيرة، إلا أنه ساعدني على ترسيخ فهمي لبرمجة Arduino والتكامل مع التقنيات البرمجية. `,
     },
     gallery: [
-      "media/arduino/33.jpeg",
-      "media/arduino/22.gif",
-      "media/arduino/3.mp4",
-      "media/arduino/1.mp4",
-      "media/arduino/2.mp4",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588053/33_fonohb.jpg",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588052/22_w2qcqn.gif",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588054/3_rf8ozg.mp4",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588053/1_qdwwaw.mp4",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588054/2_mdi9xx.mp4",
     ],
   },
 
@@ -720,8 +740,10 @@ Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi kon
     tags: ["Unity", "C++", "Study"],
     area: "Other",
     status: "Study",
-    thumb: "media/unitystudy/3.jpeg",
-    previewVideo: "media/unitystudy/2.mp4",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588122/3_qh1yeu.jpg",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588120/2_atvftn.mp4",
     mainVideo: "",
     body: {
       ko: `
@@ -750,11 +772,10 @@ C++ entegrasyonu ile temel Unity uygulama projesi.
     `,
     },
     gallery: [
-      // "media/unitystudy/3.jpeg",
-      "media/unitystudy/1.mp4",
-      "media/unitystudy/2.mp4",
-      "media/unitystudy/5.mp4",
-      "media/unitystudy/4.png",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588123/1_hsxjgl.mp4",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588120/2_atvftn.mp4",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588120/5_ifqtcd.mp4",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588120/4_m662vp.png",
     ],
   },
   //mediapipe
@@ -775,8 +796,10 @@ C++ entegrasyonu ile temel Unity uygulama projesi.
     tags: ["Python", "Mediapipe", "TensorFlow", "Numpy", "Study"],
     area: "Other",
     status: "Study",
-    thumb: "media/mediapipe/hand_p.jpeg",
-    previewVideo: "media/mediapipe/IMG_2952.MOV",
+    thumb:
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588113/hand_p_xaqqss.jpg",
+    previewVideo:
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588115/IMG_2952_snlyl9.mov",
     mainVideo: "",
     body: {
       ko: `
@@ -805,9 +828,9 @@ Mediapipe, TensorFlow ve Numpy kullanarak el hareketlerini tanıma deneme projes
     `,
     },
     gallery: [
-      "media/mediapipe/IMG_2952.MOV",
-      "media/mediapipe/hand_eng.png",
-      "media/mediapipe/mediapipe_hand_num.png",
+      "https://res.cloudinary.com/dlomu8nah/video/upload/v1762588115/IMG_2952_snlyl9.mov",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588113/hand_eng_nfqmwz.png",
+      "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588111/mediapipe_hand_num_jmgrsx.png",
     ],
   },
 ];
