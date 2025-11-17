@@ -121,43 +121,43 @@ function useIsMdUp() {
   return md;
 }
 
-function explodePage() {
-  const elements = document.querySelectorAll<HTMLElement>(
-    "p, h1, h2, h3, li, img, a, button, span"
-  );
+// function explodePage() {
+//   const elements = document.querySelectorAll<HTMLElement>(
+//     "p, h1, h2, h3, li, img, a, button, span"
+//   );
 
-  elements.forEach((el) => {
-    let count = 0;
-    const maxCount = 3;
+//   elements.forEach((el) => {
+//     let count = 0;
+//     const maxCount = 3;
 
-    const animate = () => {
-      if (count >= maxCount) {
-        el.style.transition = "transform 0.01s ease-in-out";
-        el.style.transform = "translate(0,0) rotate(0deg)";
-        return;
-      }
+//     const animate = () => {
+//       if (count >= maxCount) {
+//         el.style.transition = "transform 0.01s ease-in-out";
+//         el.style.transform = "translate(0,0) rotate(0deg)";
+//         return;
+//       }
 
-      const x = (Math.random() - 0.5) * 600;
-      const y = -(Math.random() * 200 + 50);
-      const r = (Math.random() - 0.5) * 720;
+//       const x = (Math.random() - 0.5) * 600;
+//       const y = -(Math.random() * 200 + 50);
+//       const r = (Math.random() - 0.5) * 720;
 
-      el.style.transition = "transform 0.1s ease-out";
-      el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+//       el.style.transition = "transform 0.1s ease-out";
+//       el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
 
-      setTimeout(() => {
-        const finalY = Math.random() * (window.innerHeight - 100);
-        const finalR = (Math.random() - 0.5) * 720;
-        el.style.transition = "transform 0.7s ease-in-out";
-        el.style.transform = `translate(${x}px, ${finalY}px) rotate(${finalR}deg)`;
+//       setTimeout(() => {
+//         const finalY = Math.random() * (window.innerHeight - 100);
+//         const finalR = (Math.random() - 0.5) * 720;
+//         el.style.transition = "transform 0.7s ease-in-out";
+//         el.style.transform = `translate(${x}px, ${finalY}px) rotate(${finalR}deg)`;
 
-        count++;
-        setTimeout(animate, 300);
-      }, 500);
-    };
+//         count++;
+//         setTimeout(animate, 300);
+//       }, 500);
+//     };
 
-    animate();
-  });
-}
+//     animate();
+//   });
+// }
 
 export default function About() {
   const isMdUp = useIsMdUp();
@@ -177,12 +177,12 @@ export default function About() {
               <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
                 {PROFILE.name[lang]}
               </h1>
-              <button
+              {/* <button
                 onClick={explodePage}
                 className="mt-6 px-4 py-2 text-white rounded-lg hover:bg-blue-600 transition"
               >
                 💙
-              </button>
+              </button> */}
             </div>
             <p
               className={`mt-2 text-xl lg:text-2xl text-accent-blue ${
