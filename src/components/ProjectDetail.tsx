@@ -9,10 +9,16 @@ import { useLang } from "../context/LangContext";
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
 
+const optimizeCloudinary = (url: string, width = 1200) =>
+  url.includes("res.cloudinary.com")
+    ? url.replace("/upload/", `/upload/f_auto,q_auto,w_${width}/`)
+    : url;
+
 const getBase = (src?: string) => {
   if (!src) return undefined;
   const trimmed = src.trim();
-  return trimmed.startsWith("http") ? trimmed : withBase(trimmed);
+  if (trimmed.startsWith("http")) return optimizeCloudinary(trimmed);
+  return withBase(trimmed);
 };
 // Helper function to extract YouTube video ID from URL or return ID if already provided
 const getYouTubeVideoId = (input: string): string => {
@@ -40,6 +46,8 @@ export default function ProjectDetail() {
   const project = useMemo(() => PROJECTS.find((p) => p.slug === slug), [slug]);
   const { lang } = useLang();
   const navigate = useNavigate();
+  const [heroLoaded, setHeroLoaded] = useState(false);
+  const [lightbox, setLightbox] = useState<{ src: string; type: "image" | "video" } | null>(null);
 
   const TAG_CLASSES = [
     "border-accent-blue text-accent-blue",
@@ -83,6 +91,35 @@ export default function ProjectDetail() {
   }
 
   return (
+    <>
+    {lightbox && (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+        onClick={() => setLightbox(null)}
+      >
+        {lightbox.type === "video" ? (
+          <video
+            src={lightbox.src}
+            className="max-h-[90vh] max-w-[90vw] rounded-2xl shadow-2xl"
+            controls
+            autoPlay
+            muted
+            playsInline
+            onClick={(e) => e.stopPropagation()}
+          />
+        ) : (
+          <img
+            src={lightbox.src}
+            className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        )}
+        <button
+          className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl leading-none"
+          onClick={() => setLightbox(null)}
+        >✕</button>
+      </div>
+    )}
     <Section
       id={`project-detail-${slug ?? "unknown"}`}
       className="relative py-12 md:py-20"
@@ -96,7 +133,7 @@ export default function ProjectDetail() {
               top: pos.y,
               left: pos.x,
               transform: "translate(-50%, -50%)",
-              background: `radial-gradient(600px, rgba(89,194,255,0.15), transparent 80%)`,
+              background: `radial-gradient(600px, rgba(212,77,110,0.1), transparent 80%)`,
             }}
           />
         </div>
@@ -188,11 +225,17 @@ export default function ProjectDetail() {
                 src={getBase(project.mainVideo)}
               />
             ) : project.thumb ? (
-              <img
-                className="h-[340px] sm:h-[420px] md:h-[500px] w-full object-contain"
-                src={getBase(project.thumb)}
-                alt={`${project.title} hero`}
-              />
+              <div className="relative h-[340px] sm:h-[420px] md:h-[500px]">
+                {!heroLoaded && (
+                  <div className="absolute inset-0 bg-bg animate-pulse rounded-2xl" />
+                )}
+                <img
+                  className={`h-full w-full object-contain transition-opacity duration-300 ${heroLoaded ? "opacity-100" : "opacity-0"}`}
+                  src={getBase(project.thumb)}
+                  alt={`${project.title} hero`}
+                  onLoad={() => setHeroLoaded(true)}
+                />
+              </div>
             ) : (
               <div className="flex h-[340px] items-center justify-center text-subtext">
                 No preview
@@ -224,41 +267,49 @@ export default function ProjectDetail() {
                   g.endsWith(".svg");
                 const commonClass =
                   "mb-4 w-full rounded-2xl border border-border bg-bg/50 object-cover hover:opacity-90 transition-opacity";
-                return (
-                  <a
+                return isVideo ? (
+                  <div
                     key={idx}
-                    href={getBase(g)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-block break-inside-avoid"
+                    className="group relative inline-block w-full break-inside-avoid cursor-pointer"
+                    onClick={() => setLightbox({ src: getBase(g)!, type: "video" })}
                   >
-                    {isVideo ? (
-                      <video
-                        src={getBase(g)}
-                        className={commonClass}
-                        muted
-                        playsInline
-                        autoPlay
-                        loop
-                        preload="metadata"
-                      />
-                    ) : isImage ? (
-                      <img
-                        src={getBase(g)}
-                        className={commonClass}
-                        alt={`${project.title} gallery ${idx + 1}`}
-                        loading="lazy"
-                      />
-                    ) : (
-                      // Fallback for unknown file types - treat as image
-                      <img
-                        src={getBase(g)}
-                        className={commonClass}
-                        alt={`${project.title} gallery ${idx + 1}`}
-                        loading="lazy"
-                      />
-                    )}
-                  </a>
+                    <video
+                      src={getBase(g)}
+                      className={`${commonClass} pointer-events-none`}
+                      muted
+                      playsInline
+                      preload="none"
+                      poster={project.thumb ? getBase(project.thumb) : undefined}
+                    />
+                    {/* dim overlay */}
+                    <div className="absolute inset-0 rounded-2xl bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
+                    {/* play button */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/40 bg-white/20 backdrop-blur-md shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                        <svg className="h-7 w-7 translate-x-0.5 text-white drop-shadow" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                    {/* video badge */}
+                    <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-black/50 backdrop-blur-sm px-2.5 py-1 text-[11px] font-medium text-white/90">
+                      <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                      VIDEO
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    key={idx}
+                    className="inline-block w-full break-inside-avoid cursor-zoom-in"
+                    onClick={() => setLightbox({ src: getBase(g)!, type: "image" })}
+                  >
+                    <img
+                      src={getBase(g)}
+                      className={commonClass}
+                      alt={`${project.title} gallery ${idx + 1}`}
+                      loading="lazy"
+                    />
+                  </div>
                 );
               })}
             </div>
@@ -266,5 +317,6 @@ export default function ProjectDetail() {
         </div>
       </Container>
     </Section>
+    </>
   );
 }

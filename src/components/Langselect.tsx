@@ -23,7 +23,7 @@ export default function LangSelect() {
     <div className="relative">
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-between gap-2 w-[170px] rounded-xl border border-border bg-[rgba(255,255,255,0.05)] px-3 py-1.5 text-sm text-accent-white hover:border-accent-cyan transition-colors focus:outline-none"
+        className="flex items-center justify-between gap-2 w-[170px] rounded-xl border border-border bg-panel px-3 py-1.5 text-sm text-accent-white hover:border-accent-cyan transition-colors focus:outline-none"
       >
         <span>{LANG_OPTIONS.find((l) => l.code === lang)?.label}</span>
         <ChevronDown
@@ -34,15 +34,15 @@ export default function LangSelect() {
       </button>
 
       {open && (
-        <div className="absolute left-0 top-[110%] w-full rounded-xl border border-border bg-[rgba(31,36,48,0.95)] backdrop-blur-sm shadow-lg z-50">
+        <div className="absolute left-0 top-[110%] w-full rounded-xl border border-border bg-panel backdrop-blur-sm shadow-md z-50">
           {LANG_OPTIONS.map((option) => (
             <button
               key={option.code}
               onClick={() => selectLang(option.code)}
               className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
                 lang === option.code
-                  ? "bg-accent-cyan/10 text-accent-cyan"
-                  : "text-accent-white hover:bg-[rgba(255,255,255,0.08)] hover:text-accent-cyan"
+                  ? "bg-accent-green/10 text-accent-green"
+                  : "text-accent-white hover:bg-bg hover:text-accent-green"
               }`}
             >
               {option.label}

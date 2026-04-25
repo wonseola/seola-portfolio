@@ -2,22 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Menlo + Ayu Mirage variables */
+/* Pretendard + Spring Fresh Green */
 :root {
-  --font-sans: Menlo, monospace;
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
 
-  --color-bg: #1f2430;
-  --color-panel: #232a36;
-  --color-border: #2b3240;
-  --color-text: #cbccc6;
-  --color-subtext: #9da5b4;
+  --color-bg: #fdf0f3;
+  --color-panel: #ffffff;
+  --color-border: #f0d4db;
+  --color-text: #2a1215;
+  --color-subtext: #6b4a52;
 
-  --color-accent-blue: #59c2ff;
-  --color-accent-green: #bae67e;
-  --color-accent-yellow: #ffcc66;
-  --color-accent-orange: #f28779;
-  --color-accent-purple: #d4bfff;
-  --color-accent-cyan: #95e6cb;
+  --color-accent-blue: #7b6fd4;
+  --color-accent-green: #d44d6e;
+  --color-accent-yellow: #e09020;
+  --color-accent-orange: #e0603a;
+  --color-accent-purple: #c46fd4;
+  --color-accent-cyan: #3ab5a0;
 }
 
 html,

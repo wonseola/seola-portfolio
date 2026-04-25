@@ -7,12 +7,12 @@ import { FaGithub, FaInstagram } from "react-icons/fa";
 import LangSelect from "./Langselect";
 
 const buttonColors = [
-  { border: "#59c2ff", text: "#59c2ff" }, // blue
-  { border: "#d4bfff", text: "#d4bfff" }, // purple
-  { border: "#bae67e", text: "#bae67e" }, // green
-  { border: "#ffcc66", text: "#ffcc66" }, // yellow
-  { border: "#f28779", text: "#f28779" }, // orange
-  { border: "#95e6cb", text: "#95e6cb" }, // cyan
+  { border: "#7b6fd4", text: "#7b6fd4" }, // periwinkle
+  { border: "#c46fd4", text: "#c46fd4" }, // purple
+  { border: "#d44d6e", text: "#d44d6e" }, // rose
+  { border: "#e09020", text: "#e09020" }, // amber
+  { border: "#e0603a", text: "#e0603a" }, // coral
+  { border: "#3ab5a0", text: "#3ab5a0" }, // teal
 ];
 
 export default function Navbar() {
@@ -46,7 +46,7 @@ export default function Navbar() {
   });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-[rgba(255, 252, 252, 0.6)] backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-[rgba(253,240,243,0.85)] backdrop-blur">
       <Container>
         <div className="relative flex h-16 items-center justify-between">
           {/* Left: Name */}
@@ -76,8 +76,8 @@ export default function Navbar() {
                   onMouseEnter={() => setHoveredItem(n.href)}
                   className="rounded-xl border px-3 py-1.5 text-sm transition-all duration-300 ease-out"
                   style={{
-                    borderColor: isHighlighted ? colors.border : "#2b3240",
-                    color: isHighlighted ? colors.text : "#9da5b4",
+                    borderColor: isHighlighted ? colors.border : "#f0d4db",
+                    color: isHighlighted ? colors.text : "#6b4a52",
                   }}
                 >
                   {n.label}
@@ -149,8 +149,8 @@ export default function Navbar() {
                   onMouseEnter={() => setHoveredItem(n.href)}
                   className="rounded-xl border bg-panel px-3 py-2 transition-all duration-500 ease-out"
                   style={{
-                    borderColor: isHighlighted ? colors.border : "#2b3240",
-                    color: isHighlighted ? colors.text : "#9da5b4",
+                    borderColor: isHighlighted ? colors.border : "#f0d4db",
+                    color: isHighlighted ? colors.text : "#6b4a52",
                   }}
                 >
                   {n.label}

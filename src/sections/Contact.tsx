@@ -1,47 +1,52 @@
 import React from "react";
 import Section from "../components/Section";
 import Container from "../components/Container";
-import { Mail, Phone } from "lucide-react";
 import { PROFILE } from "../data/links";
 import { useLang } from "../context/LangContext";
+import { FaGithub, FaInstagram } from "react-icons/fa";
 
 export default function Contact() {
   const { lang } = useLang();
-  const profile = PROFILE;
 
   return (
-    <Section id="contact" className="pb-16 md:pb-28">
+    <Section id="contact" className="pb-20 md:pb-32">
       <Container>
-        <h2
-          className={`text-2xl font-semibold tracking-tight max-w-2xl ${
-            lang === "ar" ? "text-right" : "text-left"
-          }`}
-        >
-          {" "}
-          {profile.contact[lang].title}
-        </h2>
-        <p
-          className={`mt-2 text-subtext max-w-2xl ${
-            lang === "ar" ? "text-right" : "text-left"
-          }`}
-        >
-          {profile.contact[lang].description}
-        </p>
+        <div className="flex flex-col items-center text-center gap-6">
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            {PROFILE.contact[lang].title}
+          </h2>
 
-        <div className="mt-8 space-y-4 text-sm text-subtext">
-          <div className="flex items-center gap-2">
-            <Mail className="size-4" />
+          <div className="flex flex-col sm:flex-row gap-3">
             <a
               href={`mailto:${PROFILE.email}`}
-              className="flex items-center gap-2 underline-offset-4 text-accent-cyan hover:text-accent-purple hover:underline transition-colors"
+              className="rounded-2xl border border-border px-5 py-2.5 text-sm text-subtext transition-all hover:border-accent-green hover:text-accent-green"
             >
               {PROFILE.email}
             </a>
-          </div>
-          <div className="flex items-center gap-2">
-            <Phone className="size-4" />
-            <a href={`tel:${PROFILE.phone}`} className="hover:underline">
+            <a
+              href={`tel:${PROFILE.phone}`}
+              className="rounded-2xl border border-border px-5 py-2.5 text-sm text-subtext transition-all hover:border-accent-green hover:text-accent-green"
+            >
               {PROFILE.phone}
+            </a>
+          </div>
+
+          <div className="flex items-center gap-4 text-subtext">
+            <a
+              href={PROFILE.social.github}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-accent-green transition-colors"
+            >
+              <FaGithub className="size-5" />
+            </a>
+            <a
+              href={PROFILE.social.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-accent-orange transition-colors"
+            >
+              <FaInstagram className="size-5" />
             </a>
           </div>
         </div>

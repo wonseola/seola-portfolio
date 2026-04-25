@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Section from "../components/Section";
 import Container from "../components/Container";
 import { PROJECTS } from "../data/projects";
@@ -9,51 +9,24 @@ import { useLang } from "../context/LangContext";
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
 
+const optimizeCloudinary = (url: string, width = 800) =>
+  url.includes("res.cloudinary.com")
+    ? url.replace("/upload/", `/upload/f_auto,q_auto,w_${width}/`)
+    : url;
+
 const getBase = (src?: string) => {
   if (!src) return undefined;
   const trimmed = src.trim();
-  return trimmed.startsWith("http") ? trimmed : withBase(trimmed);
+  if (trimmed.startsWith("http")) return optimizeCloudinary(trimmed);
+  return withBase(trimmed);
 };
 
-function Preview({
-  title,
-  thumb,
-  previewVideo,
-  hovering,
-}: {
-  title: string;
-  thumb?: string;
-  previewVideo?: string;
-  hovering: boolean;
-}) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+function Preview({ title, thumb }: { title: string; thumb?: string }) {
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    if (hovering && videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
-    } else if (!hovering && videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  }, [hovering]);
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-border bg-bg">
-      {hovering && previewVideo ? (
-        <video
-          ref={videoRef}
-          className="h-44 w-full object-cover md:h-48"
-          muted
-          playsInline
-          loop
-          preload="none"
-          poster={thumb ? getBase(thumb) : undefined}
-          src={getBase(previewVideo)}
-          aria-label={`${title} preview`}
-        />
-      ) : thumb ? (
+      {thumb ? (
         <div className="relative">
           {!imageLoaded && (
             <div className="absolute inset-0 bg-panel animate-pulse h-44 md:h-48" />
@@ -79,7 +52,6 @@ function Preview({
 }
 
 export default function Projects() {
-  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const [hoveredFilter, setHoveredFilter] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
   const { lang } = useLang();
@@ -99,32 +71,31 @@ export default function Projects() {
       value: "All",
       label: "All",
       color: "var(--color-accent-yellow)",
-      hoverColor: "#ffd966",
+      hoverColor: "#e09020",
     },
     {
       value: "React",
       label: "React",
       color: "var(--color-accent-green)",
-      hoverColor: "#d0f29e",
+      hoverColor: "#d44d6e",
     },
     {
       value: "AI",
       label: "AI",
-
       color: "var(--color-accent-blue)",
-      hoverColor: "#8fd7ff",
+      hoverColor: "#7b6fd4",
     },
     {
       value: "ROS/Arduino",
       label: "ROS/Arduino",
       color: "var(--color-accent-orange)",
-      hoverColor: "#f59d8f",
+      hoverColor: "#e0603a",
     },
     {
       value: "Other",
       label: "Other",
       color: "var(--color-accent-purple)",
-      hoverColor: "#e0c9ff",
+      hoverColor: "#c46fd4",
     },
   ];
 
@@ -139,23 +110,6 @@ export default function Projects() {
   }, [items, showAll]);
 
   // const hasMoreItems = items.length > 6;
-
-  useEffect(() => {
-    const preloadVideos = () => {
-      items.forEach((project) => {
-        if (project.previewVideo) {
-          const video = document.createElement("video");
-          video.preload = "auto";
-          video.src = getBase(project.previewVideo) || "";
-          video.muted = true;
-          video.playsInline = true;
-          video.load();
-        }
-      });
-    };
-
-    preloadVideos();
-  }, [items]);
 
   // Reset showAll when filter changes
   useEffect(() => {
@@ -189,8 +143,8 @@ export default function Projects() {
                     onMouseLeave={() => setHoveredFilter(null)}
                     className="rounded-xl border px-3 py-1.5 text-sm transition-all duration-300 ease-out"
                     style={{
-                      borderColor: isHighlighted ? filter.color : "#2b3240",
-                      color: isHighlighted ? filter.color : "#9da5b4",
+                      borderColor: isHighlighted ? filter.color : "#f0d4db",
+                      color: isHighlighted ? filter.color : "#6b4a52",
                     }}
                   >
                     {filter.label}
@@ -206,15 +160,11 @@ export default function Projects() {
                 key={p.slug}
                 to={`/projects/${p.slug}`}
                 className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-yellow hover:shadow-sm hover:-translate-y-1 cursor-pointer"
-                onMouseEnter={() => setHoveredSlug(p.slug)}
-                onMouseLeave={() => setHoveredSlug(null)}
               >
                 <div className="pt-4 px-4">
                   <Preview
                     title={p.title[lang] ?? p.title["en"]}
                     thumb={p.thumb}
-                    previewVideo={p.previewVideo}
-                    hovering={hoveredSlug === p.slug}
                   />
                 </div>
 

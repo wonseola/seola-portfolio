@@ -174,6 +174,132 @@ export const PROJECTS: Project[] = [
     ],
   },
 
+  //dangseon
+  {
+    slug: "dangseon",
+    title: {
+      ko: "당신의 선택 — 당선",
+      en: "Your Choice — Dangseon",
+      tr: "Senin Seçimin — Dangseon",
+      ar: "اختيارك — Dangseon",
+    },
+    blurb: {
+      ko: "누구나 투표를 만들고 참여할 수 있는 투표 플랫폼. Next.js 웹 + Capacitor로 iOS·Android 앱까지 출시.",
+      en: "A voting platform where anyone can create and join polls. Next.js web app + shipped to iOS & Android via Capacitor.",
+      tr: "Herkesin anket oluşturup katılabileceği bir oy platformu. Next.js web uygulaması + Capacitor ile iOS ve Android'e yayınlandı.",
+      ar: "منصة تصويت تتيح لأي شخص إنشاء استطلاعات والمشاركة فيها. تطبيق ويب Next.js ونشر على iOS وAndroid عبر Capacitor.",
+    },
+    tags: ["Next.js", "JavaScript", "TailwindCSS", "Vercel", "SEO", "Capacitor", "iOS", "Android"],
+    area: "React",
+    status: "Active",
+    active: true,
+    thumb: "dangseon.png",
+    links: { link: "https://dangseon.com" },
+    body: {
+      ko: `
+💡 누구나 투표를 만들고 링크로 공유해 쉽게 참여할 수 있는 투표 플랫폼입니다.
+
+🧩 Next.js + TailwindCSS로 웹을 개발하고, Vercel로 배포했습니다. Capacitor로 감싸 iOS·Android 앱으로도 출시했습니다.
+
+🔍 구글·네이버 서치콘솔 등록 및 메타데이터 최적화로 SEO 완성.
+
+📱 App Store와 Google Play 모두 배포 완료.
+→ [App Store에서 보기](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353)
+`,
+      en: `
+💡 A voting platform where anyone can create a poll and share it via link for easy participation.
+
+🧩 Built with Next.js + TailwindCSS, deployed on Vercel. Also wrapped with Capacitor for iOS & Android release.
+
+🔍 Fully indexed on Google and Naver with optimized metadata for SEO.
+
+📱 Live on both the App Store and Google Play.
+→ [View on App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353)
+`,
+      tr: `
+💡 Herkesin anket oluşturup bağlantı paylaşarak kolayca katılabildiği bir oy platformu.
+
+🧩 Next.js + TailwindCSS ile geliştirildi, Vercel'de dağıtıldı. Capacitor ile iOS ve Android'e de yayınlandı.
+
+🔍 Google ve Naver'da tam SEO optimizasyonu tamamlandı.
+
+📱 App Store ve Google Play'de yayında.
+→ [App Store'da görüntüle](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353)
+`,
+      ar: `
+💡 منصة تصويت يستطيع فيها أي شخص إنشاء استطلاع ومشاركته عبر رابط للمشاركة السهلة.
+
+🧩 تم تطويرها بـ Next.js + TailwindCSS ونشرها على Vercel. كما تم تغليفها بـ Capacitor للنشر على iOS وAndroid.
+
+🔍 تم التسجيل على Google وNaver مع تحسين البيانات الوصفية لمحركات البحث.
+
+📱 متاحة على App Store وGoogle Play.
+→ [عرض في App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353)
+`,
+    },
+    gallery: [],
+  },
+  //seobuds
+  {
+    slug: "seobuds",
+    title: {
+      ko: "서부디에스 홈페이지",
+      en: "SeobuDS Website",
+      tr: "SeobuDS Web Sitesi",
+      ar: "موقع SeobuDS",
+    },
+    blurb: {
+      ko: "Next.js로 제작한 회사 소개 페이지. SEO 최적화와 구글·네이버 등록까지 완료.",
+      en: "Company website built with Next.js. Fully SEO-optimized with Google and Naver indexing.",
+      tr: "Next.js ile yapılmış şirket tanıtım sitesi. Google ve Naver'da tam SEO optimizasyonu ile.",
+      ar: "موقع تعريفي للشركة مبني بـ Next.js مع تحسين كامل لمحركات البحث وتسجيل على Google وNaver.",
+    },
+    tags: ["Next.js", "TypeScript", "TailwindCSS", "Vercel", "SEO"],
+    area: "React",
+    status: "Active",
+    active: true,
+    thumb: "seobuds.png",
+    links: { link: "https://seobuds.com" },
+    body: {
+      ko: `
+💡 회사 소개 및 서비스 안내를 위한 공식 웹사이트입니다.
+
+🧩 Next.js + TypeScript + TailwindCSS로 개발하고 Vercel로 배포했습니다.
+
+🔍 구글·네이버 서치콘솔 등록 및 메타데이터 최적화로 검색엔진 노출을 완성했습니다.
+
+📱 반응형 디자인으로 모바일부터 데스크탑까지 대응합니다.
+`,
+      en: `
+💡 Official company website for introducing services and company info.
+
+🧩 Built with Next.js + TypeScript + TailwindCSS, deployed on Vercel.
+
+🔍 Fully indexed on Google and Naver Search Console with optimized metadata for SEO.
+
+📱 Fully responsive across mobile and desktop.
+`,
+      tr: `
+💡 Şirket tanıtımı ve hizmet bilgisi için resmi web sitesi.
+
+🧩 Next.js + TypeScript + TailwindCSS ile geliştirildi, Vercel üzerinde dağıtıldı.
+
+🔍 Google ve Naver Search Console'a tam indeksleme ve optimize edilmiş meta verilerle SEO tamamlandı.
+
+📱 Mobil ve masaüstü için tam duyarlı tasarım.
+`,
+      ar: `
+💡 الموقع الرسمي للشركة لتقديم الخدمات ومعلومات الشركة.
+
+🧩 مبني بـ Next.js + TypeScript + TailwindCSS ومنشور على Vercel.
+
+🔍 تم التسجيل على Google وNaver Search Console مع تحسين البيانات الوصفية لمحركات البحث.
+
+📱 تصميم متجاوب بالكامل للجوال وسطح المكتب.
+`,
+    },
+    gallery: [],
+  },
   //infocompany
   {
     slug: "infocompany",
@@ -890,12 +1016,12 @@ Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi kon
       ar: "أساسيات Unity",
     },
     blurb: {
-      ko: "Unity와 C++를 활용한 기초 실습 프로젝트입니다.",
-      en: "A basic Unity project for practicing with C++ integration.",
-      tr: "C++ entegrasyonu ile pratik yapmak için temel Unity projesi.",
-      ar: "مشروع Unity أساسي للتدرب على التكامل مع C++.",
+      ko: "Unity와 C#를 활용한 기초 실습 프로젝트입니다.",
+      en: "A basic Unity project for practicing with C#.",
+      tr: "C# ile pratik yapmak için temel Unity projesi.",
+      ar: "مشروع Unity أساسي للتدرب على C#.",
     },
-    tags: ["Unity", "C++", "Study"],
+    tags: ["Unity", "C#", "Study"],
     area: "Other",
     status: "Study",
     thumb:
@@ -905,25 +1031,25 @@ Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi kon
     mainVideo: "",
     body: {
       ko: `
-Unity와 C++를 활용한 기초 실습 프로젝트입니다.
+Unity와 C#를 활용한 기초 실습 프로젝트입니다.
 - 오브젝트 생성 및 간단한 조작
 - 장애물 피하기 게임 구현
 - Unity 엔진 기본 이해
     `,
       en: `
-Basic Unity practice project with C++ integration.
+Basic Unity practice project using C#.
 - Creating and manipulating objects
 - Simple obstacle avoidance game
 - Understanding Unity engine fundamentals
     `,
       tr: `
-C++ entegrasyonu ile temel Unity uygulama projesi.
+C# kullanılarak yapılan temel Unity uygulama projesi.
 - Nesne oluşturma ve basit kontroller
 - Engellerden kaçınma oyunu
 - Unity motorunun temellerini anlama
     `,
       ar: `
-مشروع تدريب أساسي على Unity مع تكامل C++.
+مشروع تدريب أساسي على Unity باستخدام C#.
 - إنشاء وتحرير الكائنات
 - لعبة تجنب العقبات البسيطة
 - فهم أساسيات محرك Unity

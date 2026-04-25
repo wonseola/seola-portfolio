@@ -39,18 +39,8 @@ export function useAssetPreloader(): AssetLoadingState {
       return;
     }
 
-    // Collect all critical assets to preload
-    const criticalAssets: string[] = [];
-
-    // Avatar image
-    criticalAssets.push(avatarFile);
-
-    // Project thumbnails (most important for initial view)
-    PROJECTS.forEach((project) => {
-      if (project.thumb) {
-        criticalAssets.push(withBase(project.thumb)!);
-      }
-    });
+    // Only preload the avatar — thumbnails load lazily per card
+    const criticalAssets: string[] = [avatarFile];
 
     // Set total assets
     setLoadingState((prev) => ({

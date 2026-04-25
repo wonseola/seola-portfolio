@@ -1,10 +1,10 @@
 export const THEME = {
-    bg: '#1f2430',
-    panel: '#232a36',
-    border: '#2b3240',
-    text: '#cbccc6',
-    subtext: '#9da5b4',
-    accents: ['#59c2ff', '#bae67e', '#ffcc66', '#f28779', '#d4bfff'],
+    bg: '#fdf0f3',
+    panel: '#ffffff',
+    border: '#f0d4db',
+    text: '#2a1215',
+    subtext: '#6b4a52',
+    accents: ['#7b6fd4', '#d44d6e', '#e09020', '#e0603a', '#c46fd4'],
 }
 
 

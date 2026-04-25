@@ -36,42 +36,39 @@ export const PROFILE = {
     },
   },
   titles: {
-    ko: ["프론트엔드 개발자", "크리에이티브 코더", "커피로 작동하는 개발자"],
-    en: ["Frontend Developer", "Creative Coder", "Coffee-Powered Developer"],
+    ko: ["풀스택 개발자", "크리에이티브 코더", "커피로 작동하는 개발자"],
+    en: ["Full-Stack Developer", "Creative Coder", "Coffee-Powered Developer"],
     tr: [
-      "Frontend Geliştirici",
+      "Full-Stack Geliştirici",
       "Yaratıcı Kodlayıcı",
       "Kahveyle Çalışan Geliştirici",
     ],
-    ar: ["مطور واجهات أمامية", "مبرمج مبدع", "مطورة تعمل بالقهوة ☕️"],
+    ar: ["مطورة Full-Stack", "مبرمجة مبدعة", "مطورة تعمل بالقهوة ☕️"],
   },
 
   tagline: {
-    ko: `안녕하세요! 프론트엔드 개발자 원설아입니다 :) 아이디어를 웹 위에서 반짝이는 인터랙션으로 만드는 걸 좋아해요. 예쁜 UI, 부드러운 애니메이션, 그리고 깨끗한 코드 — 그게 제가 집중하는 세 가지예요 ☕️\n\n디자인과 기술, 그리고 약간의 감성으로 이야기를 전하는 걸 즐깁니다. 코딩할 땐 집중모드지만, 쉬는 시간엔 스케치하거나, 카페 탐방을 하거나, 사이드 프로젝트로 놀고 있어요.\n\n이곳엔 제가 좋아하는 작업들과 실험들이 담겨 있어요. 재밌는 아이디어가 있다면 언제든지 함께해요!`,
-    en: `Hi! I’m Seola Won — a frontend developer who loves bringing ideas to life through delightful web interactions.  
-I focus on crafting beautiful UIs, smooth animations, and clean, maintainable code ☕️  
+    ko: `안녕하세요! 프론트엔드로 시작해서 어느새 풀스택이 된 개발자 원설아입니다 :)\nReact, Next.js, TypeScript를 주로 쓰고, Supabase · Vercel · Cloudflare로 배포까지 직접 하고 있어요. 웹으로 만든 걸 Capacitor로 앱까지 출시해본 경험도 있답니다 ☕️\n\n방통대 컴퓨터과에서 공부하면서 실무를 병행 중이에요.\n요즘엔 AI에 푹 빠져서 이것저것 실험하는 중이고요.\n\n예쁜 UI, 부드러운 인터랙션, 그리고 실제로 돌아가는 서비스 만드는 걸 제일 좋아해요. 재밌는 아이디어가 있다면 언제든지 같이 만들어요!`,
+    en: `Hi! I’m Seola Won — started as a frontend developer, and somewhere along the way became a full-stack one too.
+I mainly work with React, Next.js, and TypeScript, and handle deployments with Supabase, Vercel, and Cloudflare. I’ve even shipped a web app wrapped as a mobile app with Capacitor ☕️
 
-I enjoy telling stories through design, technology, and a touch of emotion.  
-When I’m not coding, you’ll probably find me sketching, exploring cozy cafés, or tinkering with side projects.  
+I’m studying Computer Science at Korea National Open University while working at the same time.
+Lately I’ve been deep into AI — learning, experimenting, and building things with it.
 
-This space is filled with things I love — experiments, projects, and bits of creativity.  
-If you have a fun idea, let’s build something together!`,
-    tr: `Merhaba! Ben Seola Won — fikirleri keyifli web etkileşimlerine dönüştürmeyi seven bir frontend geliştiricisiyim.  
-Güzel arayüzler, akıcı animasyonlar ve temiz kod yazmaya odaklanıyorum ☕️  
+I love crafting UIs that feel good and products that actually work. If you have a fun idea, let’s build something together!`,
+    tr: `Merhaba! Ben Seola Won — frontend geliştirici olarak başladım, sonunda full-stack biri oldum.
+Ağırlıklı olarak React, Next.js ve TypeScript kullanıyorum; Supabase, Vercel ve Cloudflare ile deployment yapıyorum. Web’de yaptığım projeyi Capacitor ile mobil uygulamaya dönüştürüp yayınladım da ☕️
 
-Tasarım, teknoloji ve biraz duygusallıkla hikayeler anlatmayı seviyorum.  
-Kod yazmadığım zamanlarda genellikle eskiz yapıyor, yeni kafeler keşfediyor ya da yan projelerle uğraşıyorum.  
+Hem çalışıyor hem de Kore Açık Üniversitesi’nde Bilgisayar Bilimleri okuyorum.
+Son zamanlarda AI’ya daldım — öğreniyorum, deneyler yapıyorum, bir şeyler üretiyorum.
 
-Burası sevdiğim işler ve denemelerle dolu bir alan.  
-Eğer aklında eğlenceli bir fikir varsa, birlikte yapalım!`,
-    ar: `مرحباً! أنا سيولا وون — مطورة واجهات أمامية أحب إحياء الأفكار من خلال تفاعلات ويب جميلة وممتعة.  
-أركز على تصميم واجهات أنيقة، وحركات سلسة، وكود نظيف يسهل قراءته ☕️  
+İyi hissettiren arayüzler ve gerçekten çalışan ürünler yapmayı seviyorum. Eğlenceli bir fikrin varsa, birlikte yapalım!`,
+    ar: `مرحباً! أنا سيولا وون — بدأت كمطورة واجهات أمامية، وفي مكان ما على الطريق أصبحت مطورة full-stack أيضاً.
+أعمل أساساً مع React وNext.js وTypeScript، وأتولى النشر بنفسي باستخدام Supabase وVercel وCloudflare. حتى أنني أطلقت تطبيقاً موبايل من خلال تغليف تطبيق ويب بـ Capacitor ☕️
 
-أستمتع بسرد القصص من خلال التصميم والتكنولوجيا ولمسة من الإحساس.  
-عندما لا أكتب الكود، ستجدني أرسم، أو أستكشف المقاهي الهادئة، أو أعمل على مشاريعي الجانبية.  
+أدرس علوم الحاسوب في الجامعة المفتوحة الكورية الوطنية بينما أعمل في نفس الوقت.
+مؤخراً انغمست في الذكاء الاصطناعي — أتعلم، أجرب، وأبني أشياء به.
 
-هذا المكان مليء بالأعمال والتجارب التي أحبها.  
-إذا كانت لديك فكرة ممتعة، فلنصنعها معاً!`,
+أحب تصميم واجهات تبدو رائعة ومنتجات تعمل فعلاً. إذا كانت لديك فكرة ممتعة، فلنبنيها معاً!`,
   },
   social: {
     github: "https://github.com/wonseola",
