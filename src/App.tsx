@@ -3,6 +3,7 @@ import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
+import Skills from "./sections/Skills";
 // import Publications from "./sections/Publications";
 // import Experience from "./sections/Experience";
 // import Education from "./sections/Education";
@@ -55,6 +56,7 @@ export default function App() {
         <About />
         <ScrollIndicator />
         <Projects />
+        <Skills />
         {/* <Experience />
         <Education /> */}
         {/* <Publications /> */}

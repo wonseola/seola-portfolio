@@ -3,7 +3,7 @@ import Section from "../components/Section";
 import Container from "../components/Container";
 import { PROJECTS } from "../data/projects";
 import { Link } from "react-router-dom";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Star } from "lucide-react";
 import { useLang } from "../context/LangContext";
 
 const withBase = (path?: string) =>
@@ -32,7 +32,9 @@ function Preview({ title, thumb }: { title: string; thumb?: string }) {
             <div className="absolute inset-0 bg-panel animate-pulse h-44 md:h-48" />
           )}
           <img
-            className={`h-44 w-full object-cover md:h-48 transition-opacity duration-300 ${
+            // 세로로 긴 폰 스크린샷은 가운데를 자르면 배경만 남는다.
+            // 위를 기준으로 잘라야 헤더/HUD 같은 식별 가능한 부분이 보인다.
+            className={`h-44 w-full object-cover object-top md:h-48 transition-opacity duration-300 ${
               imageLoaded ? "opacity-100" : "opacity-0"
             }`}
             src={getBase(thumb)}
@@ -56,7 +58,7 @@ export default function Projects() {
   const [showAll, setShowAll] = useState(false);
   const { lang } = useLang();
 
-  type FilterValue = "All" | "React" | "AI" | "ROS/Arduino" | "Other";
+  type FilterValue = "All" | "React" | "Game" | "AI" | "ROS/Arduino" | "Other";
 
   type Filter = {
     label: string;
@@ -80,6 +82,12 @@ export default function Projects() {
       hoverColor: "#d44d6e",
     },
     {
+      value: "Game",
+      label: "Game",
+      color: "var(--color-accent-cyan)",
+      hoverColor: "#3ab5a0",
+    },
+    {
       value: "AI",
       label: "AI",
       color: "var(--color-accent-blue)",
@@ -100,8 +108,14 @@ export default function Projects() {
   ];
 
   const items = useMemo(() => {
-    if (activeFilter === "All") return PROJECTS;
-    return PROJECTS.filter((p) => p.area === activeFilter);
+    const pool =
+      activeFilter === "All"
+        ? PROJECTS
+        : PROJECTS.filter((p) => p.area === activeFilter);
+    // featured를 항상 앞으로. 나머지는 원래 순서 유지.
+    return [...pool].sort(
+      (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))
+    );
   }, [activeFilter]);
 
   const displayedItems = useMemo(() => {
@@ -161,18 +175,31 @@ export default function Projects() {
                 to={`/projects/${p.slug}`}
                 className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-yellow hover:shadow-sm hover:-translate-y-1 cursor-pointer"
               >
-                <div className="pt-4 px-4">
+                <div className="relative pt-4 px-4">
                   <Preview
                     title={p.title[lang] ?? p.title["en"]}
                     thumb={p.thumb}
                   />
+                  {p.featured && (
+                    <span className="absolute right-6 top-6 inline-flex items-center gap-1 rounded-full border border-accent-yellow/60 bg-panel/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-accent-yellow backdrop-blur">
+                      <Star className="size-3 fill-current" />
+                      Featured
+                    </span>
+                  )}
                 </div>
 
                 <div className="flex flex-1 flex-col p-5">
                   {/* Title */}
-                  <h3 className="text-base font-medium text-accent-white transition-all">
-                    {p.title[lang]}
-                  </h3>
+                  <div className="flex items-baseline gap-2">
+                    <h3 className="text-base font-medium text-accent-white transition-all">
+                      {p.title[lang]}
+                    </h3>
+                    {p.period && (
+                      <span className="ml-auto shrink-0 text-[11px] text-subtext">
+                        {p.period}
+                      </span>
+                    )}
+                  </div>
 
                   <div className="flex-grow">
                     {/* Blurb */}
