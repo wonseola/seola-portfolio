@@ -2,22 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Pretendard + Spring Fresh Green */
+/* Pretendard + 웜 뉴트럴 */
 :root {
   --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-bg: #fdf0f3;
+  --color-bg: #f6f4f0;
+  --color-sunken: #efece5;
   --color-panel: #ffffff;
-  --color-border: #f0d4db;
-  --color-text: #2a1215;
-  --color-subtext: #6b4a52;
+  --color-border: #e3ded4;
+  --color-hairline: #edeae2;
+  --color-border-strong: #cac3b6;
+  --color-border-dash: #d9d3c8;
+  --color-muted: #9a9285;
+  --color-text: #23211d;
+  --color-text-hi: #3a362f;
+  --color-subtext: #625c52;
+  --color-teal-soft: #eaf2ef;
 
-  --color-accent-blue: #7b6fd4;
-  --color-accent-green: #d44d6e;
-  --color-accent-yellow: #e09020;
-  --color-accent-orange: #e0603a;
-  --color-accent-purple: #c46fd4;
-  --color-accent-cyan: #3ab5a0;
+  --color-accent-blue: #5b6bb0;
+  --color-accent-green: #a8566a;
+  --color-accent-yellow: #a67c2c;
+  --color-accent-orange: #b06040;
+  --color-accent-purple: #87609b;
+  --color-accent-cyan: #3f8a7d;
 }
 
 html,

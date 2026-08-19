@@ -30,6 +30,13 @@ export type Project = {
   active?: boolean;
   /** 카드에 ⭐ 뱃지를 달고 목록 상단에 고정 */
   featured?: boolean;
+  /**
+   * 벤토 그리드에서 차지하는 타일 크기. 클수록 눈에 먼저 들어온다.
+   *  3 → 2×2 대표작   2 → 2×1 가로 타일   1 → 1×1 기본 타일
+   *  0 → 이미지 없이 하단 칩 한 줄로만 (습작·실습용)
+   * 생략하면 1로 본다.
+   */
+  weight?: 0 | 1 | 2 | 3;
   /** "2026.06 – 현재" 같은 표기 */
   period?: string;
   /** 맡은 역할 */
@@ -63,6 +70,7 @@ export const PROJECTS: Project[] = [
   //메렌 로묘 발판 도우미
   {
     slug: "maple-step",
+    weight: 2,
     title: {
       ko: "메렌 로묘 발판 도우미",
       en: "Maple Romeo Helper",
@@ -193,6 +201,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //도토리사진관
   {
     slug: "ddphoto",
+    weight: 2,
     title: {
       ko: "도토리사진관",
       en: "Dotori Photo Studio",
@@ -214,7 +223,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
       "Canvas",
     ],
     area: "React",
-    status: "Complete",
+    status: "Active",
     featured: true,
     period: "2026",
     role: {
@@ -334,6 +343,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //타임 클론
   {
     slug: "toss-time",
+    weight: 2,
     title: {
       ko: "타임 클론",
       en: "Time Clone",
@@ -484,6 +494,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //지금화장실
   {
     slug: "nowtoilet",
+    weight: 1,
     title: {
       ko: "지금화장실",
       en: "NowToilet",
@@ -506,7 +517,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
       "Kakao Map",
     ],
     area: "React",
-    status: "Complete",
+    status: "Active",
     period: "2026",
     role: {
       ko: "기획 · 데이터 파이프라인 · 개발 (1인)",
@@ -585,6 +596,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //Life Dash
   {
     slug: "life-dash",
+    weight: 1,
     title: {
       ko: "라이프 대시",
       en: "Life Dash",
@@ -716,6 +728,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //portfolio-site
   {
     slug: "portfolio-site",
+    weight: 0,
     title: {
       ko: "개인 포트폴리오 사이트",
       en: "Personal Portfolio Site",
@@ -809,6 +822,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //우동설
   {
     slug: "woodongseol",
+    weight: 3,
     title: {
       ko: "우리동네 설명회",
       en: "WoodongSeol",
@@ -934,6 +948,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //dangseon
   {
     slug: "dangseon",
+    weight: 3,
     title: {
       ko: "당신의 선택 — 당선",
       en: "Your Choice — Dangseon",
@@ -1108,6 +1123,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //dangseon admin console
   {
     slug: "dangseon-admin",
+    weight: 2,
     title: {
       ko: "당선 어드민 콘솔 — AI 운영 파이프라인",
       en: "Dangseon Admin Console — AI Ops Pipeline",
@@ -1321,6 +1337,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //seobuds
   {
     slug: "seobuds",
+    weight: 1,
     title: {
       ko: "서부디에스 홈페이지",
       en: "SeobuDS Website",
@@ -1398,6 +1415,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //infocompany
   {
     slug: "infocompany",
+    weight: 0,
     title: {
       ko: "인포컴퍼니",
       en: "InfoCompany",
@@ -1410,7 +1428,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
       tr: "React ile yapılmış şirket tanıtım sayfası",
       ar: "صفحة تعريف الشركة مصممة بـ React",
     },
-    tags: ["React", "Web", "Firebase", "javaScript"],
+    tags: ["React", "Web", "Firebase", "JavaScript"],
     area: "React",
     status: "Active",
     links: { link: "https://infocompany.co.kr" },
@@ -1455,6 +1473,7 @@ React ile yapılmış şirket tanıtım sayfası.
   //randommong
   {
     slug: "random-mong",
+    weight: 1,
     title: {
       ko: "랜덤몽",
       en: "Random Mong",
@@ -1529,6 +1548,7 @@ Random Mong هو موقع دردشة عشوائي في الوقت الفعلي �
   //flutter
   {
     slug: "flutter-practice",
+    weight: 0,
     title: {
       ko: "Flutter",
       en: "Flutter Practice Project",
@@ -1586,6 +1606,7 @@ Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy ç
   //영화모아보기
   {
     slug: "movie-collection",
+    weight: 0,
     title: {
       ko: "영화 모아보기",
       en: "Movie Collection",
@@ -1598,7 +1619,7 @@ Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy ç
       tr: "Çeşitli film bilgilerini tek bakışta görebileceğiniz örnek sayfa.",
       ar: "صفحة تجريبية لعرض معلومات الأفلام المختلفة بنظرة واحدة.",
     },
-    tags: ["React", "Next.js", "SSR", "Movie Info", "study"],
+    tags: ["React", "Next.js", "SSR", "Movie Info", "Study"],
     area: "React",
     status: "Complete",
     thumb:
@@ -1646,6 +1667,7 @@ Bu bir Film Koleksiyonu projesidir.
   //bint
   {
     slug: "sns-clone",
+    weight: 0,
     title: {
       ko: "SNS 클론",
       en: "SNS Clone",
@@ -1664,7 +1686,7 @@ Bu bir Film Koleksiyonu projesidir.
       "Firebase",
       "Authentication",
       "CRUD",
-      "study",
+      "Study",
     ],
     area: "React",
     status: "Study",
@@ -1717,6 +1739,7 @@ Bu bir SNS klon projesidir.
   //senior
   {
     slug: "senior-cctv",
+    weight: 1,
     title: {
       ko: "시니어 행동 감지 지능형 CCTV",
       en: "Intelligent CCTV for Senior Behavior Detection",
@@ -1736,7 +1759,7 @@ Bu bir SNS klon projesidir.
       "TensorFlow",
       "FastAPI",
       "Computer Vision",
-      "study",
+      "Study",
     ],
     area: "AI",
     status: "Study",
@@ -1802,6 +1825,7 @@ Bu sistem, modern yapay zekâ ve görüntü işleme algoritmalarını birleştir
   //cardgame
   {
     slug: "card_game",
+    weight: 1,
     title: {
       ko: "라즈베리파이 오토 홀덤 카드 분배기",
       en: "Raspberry Pi Auto Hold’em Card Dealer",
@@ -1820,7 +1844,7 @@ Bu sistem, modern yapay zekâ ve görüntü işleme algoritmalarını birleştir
       "Python",
       "Automation",
       "Mechanics",
-      "study",
+      "Study",
     ],
     area: "ROS/Arduino",
     status: "Complete",
@@ -1884,6 +1908,7 @@ Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
   //ros line tracing car
   {
     slug: "line-tracing-car",
+    weight: 1,
     title: {
       ko: "ROS 라인트레이싱 로봇",
       en: "ROS Line Tracing Robot",
@@ -1896,7 +1921,7 @@ Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
       tr: "Kamera ile siyah çizgileri algılayıp takip eden ROS tabanlı otonom robot projesi.",
       ar: "مشروع روبوت ذاتي القيادة يعتمد على ROS ويستخدم الكاميرا لاكتشاف الخطوط السوداء وتتبعها.",
     },
-    tags: ["ROS", "Computer Vision", "Autonomous", "Python", "OpenCV", "study"],
+    tags: ["ROS", "Computer Vision", "Autonomous", "Python", "OpenCV", "Study"],
     area: "ROS/Arduino",
     status: "Complete",
     thumb:
@@ -1954,6 +1979,7 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
   {
     //  피그마
     slug: "figma-designs",
+    weight: 1,
     title: {
       ko: "Figma UI",
       en: "Figma UI",
@@ -1988,6 +2014,7 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
   {
     // IR덱 제안서
     slug: "gov-irdeck",
+    weight: 1,
     title: {
       ko: "정부지원사업 IR덱 및 제안서",
       en: "Government Funding IR Deck & Proposal",
@@ -2024,6 +2051,7 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
   //arduino study
   {
     slug: "arduino",
+    weight: 0,
     title: {
       ko: "Arduino Study",
       en: "Arduino Study",
@@ -2036,7 +2064,7 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
       tr: "Arduino projeleri ve alıştırmalarının koleksiyonu.",
       ar: "مجموعة من مشاريع وتمارين أردوينو.",
     },
-    tags: ["Arduino", "Electronics", "DIY", "Programming", "study"],
+    tags: ["Arduino", "Electronics", "DIY", "Programming", "Study"],
     area: "ROS/Arduino",
     status: "Complete",
     thumb:
@@ -2114,6 +2142,7 @@ Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi kon
   //unity
   {
     slug: "unity-basics",
+    weight: 0,
     title: {
       ko: "Unity Basics",
       en: "Unity Basics",
@@ -2170,6 +2199,7 @@ C# kullanılarak yapılan temel Unity uygulama projesi.
   //mediapipe
   {
     slug: "mediapipe-sign-language",
+    weight: 0,
     title: {
       ko: "Mediapipe",
       en: "Mediapipe",

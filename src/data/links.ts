@@ -36,40 +36,59 @@ export const PROFILE = {
     },
   },
   titles: {
-    ko: ["풀스택 개발자", "크리에이티브 코더", "커피로 작동하는 개발자"],
-    en: ["Full-Stack Developer", "Creative Coder", "Coffee-Powered Developer"],
+    // 직함을 스스로 붙이는 대신 "무엇을 어디까지 하는지"로 바꿨다.
+    ko: ["기획부터 배포까지", "웹으로 만들어 스토어까지", "만든 걸 직접 굴립니다"],
+    en: ["I build it and I run it", "Web, all the way to the app stores", "Shipping small products solo"],
     tr: [
-      "Full-Stack Geliştirici",
-      "Yaratıcı Kodlayıcı",
-      "Kahveyle Çalışan Geliştirici",
+      "Yapıyorum ve ayakta tutuyorum",
+      "Web'den mağazaya kadar",
+      "Küçük ürünleri tek başıma çıkarıyorum",
     ],
-    ar: ["مطورة Full-Stack", "مبرمجة مبدعة", "مطورة تعمل بالقهوة ☕️"],
+    ar: ["أبنيها وأشغّلها", "من الويب إلى متاجر التطبيقات", "أطلق منتجات صغيرة بمفردي"],
   },
 
   tagline: {
-    ko: `안녕하세요! 프론트엔드로 시작해서 어느새 풀스택이 된 개발자 원설아입니다 :)\nReact, Next.js, TypeScript를 주로 쓰고, Supabase · Vercel · Cloudflare로 배포까지 직접 하고 있어요. 웹으로 만든 걸 Capacitor로 앱까지 출시해본 경험도 있답니다 ☕️\n\n방통대 컴퓨터과에서 공부하면서 실무를 병행 중이에요.\n요즘엔 AI에 푹 빠져서 이것저것 실험하는 중이고요.\n\n예쁜 UI, 부드러운 인터랙션, 그리고 실제로 돌아가는 서비스 만드는 걸 제일 좋아해요. 재밌는 아이디어가 있다면 언제든지 같이 만들어요!`,
-    en: `Hi! I’m Seola Won — started as a frontend developer, and somewhere along the way became a full-stack one too.
-I mainly work with React, Next.js, and TypeScript, and handle deployments with Supabase, Vercel, and Cloudflare. I’ve even shipped a web app wrapped as a mobile app with Capacitor ☕️
+    ko: `안녕하세요, 원설아입니다.
+프론트엔드로 시작했는데 만든 걸 띄우려다 보니 서버도, 배포도, 운영도 하게 됐어요.
 
-I’m studying Computer Science at Korea National Open University while working at the same time.
-Lately I’ve been deep into AI — learning, experimenting, and building things with it.
+요즘은 React와 Next.js로 만들고, 데이터는 Supabase에 두고, Vercel과 Cloudflare에 올립니다.
+웹으로 만든 걸 Capacitor로 감싸 iOS·Android 스토어에 올려봤고, 토스 안에서 도는 미니앱도 만들었어요.
 
-I love crafting UIs that feel good and products that actually work. If you have a fun idea, let’s build something together!`,
-    tr: `Merhaba! Ben Seola Won — frontend geliştirici olarak başladım, sonunda full-stack biri oldum.
-Ağırlıklı olarak React, Next.js ve TypeScript kullanıyorum; Supabase, Vercel ve Cloudflare ile deployment yapıyorum. Web’de yaptığım projeyi Capacitor ile mobil uygulamaya dönüştürüp yayınladım da ☕️
+방송통신대에서 컴퓨터과학을 공부하면서 일하고 있고, 요즘은 AI를 실제 서비스 어디에 끼워 넣어야 값을 하는지 궁리하는 중이에요.
 
-Hem çalışıyor hem de Kore Açık Üniversitesi’nde Bilgisayar Bilimleri okuyorum.
-Son zamanlarda AI’ya daldım — öğreniyorum, deneyler yapıyorum, bir şeyler üretiyorum.
+만드는 것보다 굴러가게 두는 게 어렵다는 걸 배우고 있습니다.`,
 
-İyi hissettiren arayüzler ve gerçekten çalışan ürünler yapmayı seviyorum. Eğlenceli bir fikrin varsa, birlikte yapalım!`,
-    ar: `مرحباً! أنا سيولا وون — بدأت كمطورة واجهات أمامية، وفي مكان ما على الطريق أصبحت مطورة full-stack أيضاً.
-أعمل أساساً مع React وNext.js وTypeScript، وأتولى النشر بنفسي باستخدام Supabase وVercel وCloudflare. حتى أنني أطلقت تطبيقاً موبايل من خلال تغليف تطبيق ويب بـ Capacitor ☕️
+    en: `I'm Seola.
 
-أدرس علوم الحاسوب في الجامعة المفتوحة الكورية الوطنية بينما أعمل في نفس الوقت.
-مؤخراً انغمست في الذكاء الاصطناعي — أتعلم، أجرب، وأبني أشياء به.
+I started on the frontend, then kept following the work backwards — into the database, the deploy pipeline, and eventually keeping the thing alive in production.
 
-أحب تصميم واجهات تبدو رائعة ومنتجات تعمل فعلاً. إذا كانت لديك فكرة ممتعة، فلنبنيها معاً!`,
+These days that means React and Next.js, data in Supabase, shipping on Vercel and Cloudflare. I've wrapped a web app with Capacitor and taken it through both app stores, and built mini-apps that run inside Toss.
+
+I'm studying computer science at Korea National Open University alongside work. Lately I've been working out where AI actually earns its place inside a running product.
+
+Turns out keeping something alive is the harder half.`,
+
+    tr: `Ben Seola.
+
+Frontend ile başladım, sonra işin arkasını merak ettim — veritabanı, dağıtım, derken ürünü canlıda ayakta tutmak.
+
+Bugünlerde React ve Next.js ile yazıyorum, veriyi Supabase'de tutuyorum, Vercel ve Cloudflare'e çıkıyorum. Bir web uygulamasını Capacitor ile paketleyip iki mağazaya da soktum; Toss içinde çalışan mini uygulamalar da yaptım.
+
+Çalışırken bir yandan Kore Açık Üniversitesi'nde bilgisayar bilimleri okuyorum. Son zamanlarda yapay zekânın canlı bir üründe gerçekten nerede işe yaradığını çözmeye çalışıyorum.
+
+Bir şeyi yapmak değil, ayakta tutmak zormuş.`,
+
+    ar: `أنا سيولا.
+
+بدأت من الواجهات الأمامية، ثم تتبّعت العمل إلى الخلف — قاعدة البيانات، ثم النشر، ثم إبقاء المنتج حياً في التشغيل.
+
+أكتب اليوم بـ React وNext.js، وأحفظ البيانات في Supabase، وأنشر على Vercel وCloudflare. غلّفت تطبيق ويب بـ Capacitor وأطلقته في المتجرين، وبنيت تطبيقات مصغّرة تعمل داخل Toss.
+
+أدرس علوم الحاسوب في الجامعة الكورية الوطنية المفتوحة إلى جانب العمل. ومؤخراً أحاول أن أعرف أين يستحق الذكاء الاصطناعي مكانه فعلاً داخل منتج قيد التشغيل.
+
+تبيّن أن إبقاءه حياً هو النصف الأصعب.`,
   },
+
   social: {
     github: "https://github.com/wonseola",
     instagram: "https://instagram.com/won_seola",

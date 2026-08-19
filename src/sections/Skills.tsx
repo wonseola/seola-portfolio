@@ -1,34 +1,91 @@
 import React, { useMemo, useState } from "react";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import Section from "../components/Section";
 import Container from "../components/Container";
-import { CORE_STACK, SKILL_GROUPS, SKILLS_COPY } from "../data/skills";
+import { SKILL_GROUPS, SKILLS_COPY } from "../data/skills";
 import type { SkillLevel } from "../data/skills";
 import { PROJECTS } from "../data/projects";
 import { Link } from "react-router-dom";
-import { useLang } from "../context/LangContext";
+import {
+  X,
+  AppWindow,
+  Database,
+  Smartphone,
+  Cloud,
+  ShieldCheck,
+  TrendingUp,
+  Gamepad2,
+  BrainCircuit,
+  CircuitBoard,
+  PenTool,
+  type LucideIcon,
+} from "lucide-react";
+import { useLang, type Lang } from "../context/LangContext";
 
 const ACCENT_HEX: Record<string, string> = {
-  "accent-blue": "#7b6fd4",
-  "accent-green": "#d44d6e",
-  "accent-yellow": "#e09020",
-  "accent-orange": "#e0603a",
-  "accent-purple": "#c46fd4",
-  "accent-cyan": "#3ab5a0",
+  "accent-blue": "#5b6bb0",
+  "accent-green": "#a8566a",
+  "accent-yellow": "#a67c2c",
+  "accent-orange": "#b06040",
+  "accent-purple": "#87609b",
+  "accent-cyan": "#3f8a7d",
 };
 
-const LEVEL_STYLE: Record<SkillLevel, { fill: number; weight: string }> = {
-  core: { fill: 0.14, weight: "font-semibold" },
-  strong: { fill: 0.07, weight: "font-medium" },
-  working: { fill: 0, weight: "font-normal" },
+/**
+ * 숙련도를 색이 아니라 칩의 무게로 표현한다.
+ * 주력은 꽉 찬 검정, 능숙은 옅은 판, 경험은 점선 — 색을 안 써서
+ * 분류 점 색과 충돌하지 않는다.
+ */
+const LEVEL_CHIP: Record<SkillLevel, string> = {
+  core: "border border-text bg-text text-panel hover:bg-text-hi hover:border-text-hi",
+  strong: "border border-border bg-hairline text-text hover:border-border-strong",
+  working:
+    "border border-dashed border-border-dash bg-transparent text-subtext hover:border-muted hover:text-text",
 };
 
-function hexToRgba(hex: string, alpha: number) {
-  const n = parseInt(hex.slice(1), 16);
-  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
-}
+const LEVEL_ORDER: SkillLevel[] = ["core", "strong", "working"];
+
+/** 그룹 id → 아이콘. 이모지보다 선이 가늘어서 제목 옆에서 안 튄다. */
+const GROUP_ICON: Record<string, LucideIcon> = {
+  frontend: AppWindow,
+  backend: Database,
+  mobile: Smartphone,
+  infra: Cloud,
+  quality: ShieldCheck,
+  growth: TrendingUp,
+  game: Gamepad2,
+  ai: BrainCircuit,
+  hardware: CircuitBoard,
+  design: PenTool,
+};
+
+const COPY = {
+  heading: {
+    ko: "할 수 있는 것",
+    en: "What I can do",
+    tr: "Yapabildiklerim",
+    ar: "ما أستطيع فعله",
+  },
+  usedIn: {
+    ko: "이 스킬을 쓴 프로젝트",
+    en: "Projects using this",
+    tr: "Bu yeteneği kullanan projeler",
+    ar: "مشاريع تستخدم هذه المهارة",
+  },
+  noProject: {
+    ko: "특정 프로젝트에 묶이지 않고 작업 전반에 쓰고 있어요",
+    en: "Not tied to one project — it runs through all of the work",
+    tr: "Tek bir projeye bağlı değil, işin geneline yayılıyor",
+    ar: "ليست مرتبطة بمشروع بعينه، بل تمتد عبر العمل كله",
+  },
+  close: { ko: "닫기", en: "Close", tr: "Kapat", ar: "إغلاق" },
+} satisfies Record<string, Record<Lang, string>>;
+
+const countLabel = (n: number, lang: Lang) => (lang === "ko" ? `${n}개` : `${n}`);
 
 export default function Skills() {
   const { lang } = useLang();
+  const reduceMotion = Boolean(useReducedMotion());
   const [active, setActive] = useState<string | null>(null);
 
   const projectTitles = useMemo(() => {
@@ -41,207 +98,196 @@ export default function Skills() {
     if (!active) return null;
     for (const g of SKILL_GROUPS) {
       const found = g.skills.find((s) => s.name === active);
-      if (found) return { skill: found, accent: ACCENT_HEX[g.accent] };
+      if (found) return found;
     }
     return null;
   }, [active]);
 
   const linkedProjects = useMemo(
-    () =>
-      (activeSkill?.skill.used ?? []).filter((slug) => projectTitles.has(slug)),
+    () => (activeSkill?.used ?? []).filter((slug) => projectTitles.has(slug)),
     [activeSkill, projectTitles]
   );
 
+  const totalSkills = useMemo(
+    () => SKILL_GROUPS.reduce((n, g) => n + g.skills.length, 0),
+    []
+  );
+
   return (
-    <Section id="skills" className="py-12 md:py-20">
+    <Section id="skills" className="py-16 md:py-24">
       <Container>
-        {/* Heading */}
-        <div className="flex flex-col gap-2">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            {SKILLS_COPY.title[lang] ?? SKILLS_COPY.title.en}
-          </h2>
-          <p
-            className={`max-w-2xl text-sm leading-relaxed text-subtext ${
-              lang === "ar" ? "text-right" : "text-left"
-            }`}
-          >
-            {SKILLS_COPY.subtitle[lang] ?? SKILLS_COPY.subtitle.en}
-          </p>
-        </div>
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="flex flex-wrap items-end justify-between gap-8 pb-9">
+            <div className="flex flex-col gap-3.5">
+              <span className="font-mono text-[13px] font-medium tracking-[0.16em] text-accent-blue">
+                02 — SKILLS
+              </span>
+              <h2 className="text-4xl font-bold leading-[1.05] tracking-[-0.035em] text-text md:text-[52px]">
+                {COPY.heading[lang]}
+              </h2>
+              <p className="max-w-[46ch] text-[17px] leading-relaxed text-subtext">
+                {SKILLS_COPY.subtitle[lang] ?? SKILLS_COPY.subtitle.en}
+              </p>
+            </div>
 
-        {/* Core stack — the loud row */}
-        <div className="mt-8">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-subtext">
-              {SKILLS_COPY.coreLabel[lang] ?? SKILLS_COPY.coreLabel.en}
-            </span>
-            <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+            <div className="flex shrink-0 items-baseline gap-2.5">
+              <span className="text-5xl font-bold leading-none tracking-[-0.04em] text-text">
+                {totalSkills}
+              </span>
+              <span className="font-mono text-sm font-medium text-subtext">
+                SKILLS
+              </span>
+            </div>
           </div>
+        </motion.div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {CORE_STACK.map((s, i) => {
-              const hex = Object.values(ACCENT_HEX)[i % 6];
-              return (
-                <div
-                  key={s.name}
-                  className="group relative overflow-hidden rounded-2xl border border-border bg-panel p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm"
-                  style={{ borderColor: hexToRgba(hex, 0.35) }}
-                >
-                  {/* gradient wash */}
-                  <div
-                    className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-80"
-                    style={{ background: hex }}
-                    aria-hidden
-                  />
-                  <div className="relative">
-                    <p
-                      className="text-base font-semibold tracking-tight"
-                      style={{ color: hex }}
-                    >
-                      {s.name}
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-subtext">
-                      {s.note[lang] ?? s.note.en}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        {/* 카드를 버리고 프로젝트 아카이브와 같은 목록 구조로.
+            테두리·패딩이 사라지고 높이를 맞출 일도 없어서 빈 공간이 안 생긴다. */}
+        {SKILL_GROUPS.map((g, gi) => {
+          const dot = ACCENT_HEX[g.accent];
+          const openHere = g.skills.some((s) => s.name === active);
 
-        {/* Legend */}
-        <div className="mt-10 flex flex-wrap items-center gap-4 text-[11px] text-subtext">
-          {(["core", "strong", "working"] as SkillLevel[]).map((lv) => (
-            <span key={lv} className="inline-flex items-center gap-1.5">
-              <span
-                className="inline-block h-3 w-3 rounded-full border"
-                style={{
-                  borderColor: "#c46fd4",
-                  background: hexToRgba("#c46fd4", LEVEL_STYLE[lv].fill * 3),
-                }}
-                aria-hidden
-              />
-              {SKILLS_COPY.legend[lv][lang] ?? SKILLS_COPY.legend[lv].en}
-            </span>
-          ))}
-        </div>
-
-        {/* Groups */}
-        <div className="mt-4 grid gap-5 md:grid-cols-2">
-          {SKILL_GROUPS.map((g) => {
-            const hex = ACCENT_HEX[g.accent];
-            return (
-              <div
-                key={g.id}
-                className="group relative overflow-hidden rounded-3xl border border-border bg-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm md:p-6"
-                onMouseLeave={() => setActive(null)}
-              >
-                {/* corner glow */}
-                <div
-                  className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
-                  style={{ background: hex }}
-                  aria-hidden
-                />
-
-                <div className="relative flex items-start gap-3">
-                  <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border text-lg"
-                    style={{
-                      borderColor: hexToRgba(hex, 0.4),
-                      background: hexToRgba(hex, 0.08),
-                    }}
-                    aria-hidden
-                  >
-                    {g.icon}
-                  </span>
-                  <div className="min-w-0">
-                    <h3
-                      className="text-base font-semibold tracking-tight"
-                      style={{ color: hex }}
-                    >
-                      {g.label[lang] ?? g.label.en}
-                    </h3>
-                    <p className="mt-0.5 text-xs leading-relaxed text-subtext">
-                      {g.caption[lang] ?? g.caption.en}
-                    </p>
-                  </div>
-                  <span className="ml-auto shrink-0 rounded-full border border-border px-2 py-0.5 text-[10px] text-subtext">
-                    {g.skills.length}
-                  </span>
-                </div>
-
-                <div className="relative mt-4 flex flex-wrap gap-2">
-                  {g.skills.map((s) => {
-                    const st = LEVEL_STYLE[s.level];
-                    const isActive = active === s.name;
+          return (
+            <motion.div
+              key={g.id}
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.5,
+                ease: [0.22, 1, 0.36, 1],
+                delay: reduceMotion ? 0 : Math.min(gi * 0.04, 0.2),
+              }}
+              className="grid gap-3 border-t border-border py-4 md:grid-cols-[232px_minmax(0,1fr)] md:gap-8"
+            >
+              <div className="flex flex-col gap-2 self-start md:sticky md:top-6">
+                <div className="flex items-center gap-2.5">
+                  {(() => {
+                    const Icon = GROUP_ICON[g.id] ?? AppWindow;
                     return (
-                      <button
-                        key={s.name}
-                        type="button"
-                        onMouseEnter={() => setActive(s.name)}
-                        onFocus={() => setActive(s.name)}
-                        onClick={() => setActive(s.name)}
-                        aria-expanded={isActive}
-                        className={`rounded-full border px-2.5 py-1 text-[11px] leading-none transition-all duration-200 ${st.weight} ${
-                          isActive ? "-translate-y-0.5" : ""
-                        }`}
-                        style={{
-                          borderColor: hexToRgba(hex, s.level === "working" ? 0.3 : 0.55),
-                          color: hex,
-                          background: hexToRgba(hex, isActive ? 0.2 : st.fill),
-                          boxShadow: isActive
-                            ? `0 4px 14px ${hexToRgba(hex, 0.3)}`
-                            : "none",
-                        }}
+                      <Icon
+                        className="size-[18px] shrink-0"
+                        style={{ color: dot }}
+                        strokeWidth={1.75}
+                        aria-hidden
+                      />
+                    );
+                  })()}
+                  <span className="text-lg font-semibold tracking-[-0.02em] text-text">
+                    {g.label[lang] ?? g.label.en}
+                  </span>
+                  <span className="font-mono text-[13px] font-medium text-subtext">
+                    {countLabel(g.skills.length, lang)}
+                  </span>
+                </div>
+                <p className="ps-7 text-[13px] leading-relaxed text-subtext">
+                  {g.caption[lang] ?? g.caption.en}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                {/* 숙련도를 칩 모양으로만 암시하면 매번 범례를 찾아봐야 한다.
+                    줄 앞에 라벨을 직접 박아서 해석이 필요 없게 만든다. */}
+                <div className="flex flex-col gap-1.5">
+                  {LEVEL_ORDER.map((lv) => {
+                    const items = g.skills.filter((s) => s.level === lv);
+                    if (items.length === 0) return null;
+
+                    return (
+                      <div
+                        key={lv}
+                        className="grid grid-cols-[44px_minmax(0,1fr)] items-start gap-2"
                       >
-                        {s.name}
-                      </button>
+                        <span className="pt-1.5 font-mono text-[11px] font-medium tracking-wide text-muted">
+                          {SKILLS_COPY.legend[lv][lang] ??
+                            SKILLS_COPY.legend[lv].en}
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {items.map((s) => (
+                            <button
+                              key={s.name}
+                              type="button"
+                              aria-pressed={active === s.name}
+                              onClick={() =>
+                                setActive((cur) =>
+                                  cur === s.name ? null : s.name
+                                )
+                              }
+                              className={`rounded-md px-2.5 py-1.5 font-mono text-[13px] font-medium leading-none transition-colors duration-200 ${
+                                LEVEL_CHIP[s.level]
+                              } ${
+                                active === s.name
+                                  ? "ring-2 ring-accent-blue ring-offset-2 ring-offset-bg"
+                                  : ""
+                              }`}
+                            >
+                              {s.name}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     );
                   })}
                 </div>
 
-                {/* Related projects for the hovered/tapped skill */}
-                {activeSkill && g.skills.some((s) => s.name === active) ? (
-                  <div className="relative mt-4 rounded-2xl border border-border bg-bg/60 p-3">
-                    <p className="text-[10px] uppercase tracking-[0.15em] text-subtext">
-                      {lang === "ko"
-                        ? "이 스킬을 쓴 프로젝트"
-                        : lang === "tr"
-                        ? "Bu yeteneği kullanan projeler"
-                        : lang === "ar"
-                        ? "مشاريع تستخدم هذه المهارة"
-                        : "Projects using this"}
-                    </p>
-                    {linkedProjects.length ? (
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {linkedProjects.map((slug) => (
-                          <Link
-                            key={slug}
-                            to={`/projects/${slug}`}
-                            className="rounded-full border border-border bg-panel px-2.5 py-1 text-[11px] text-subtext transition-colors hover:border-accent-purple hover:text-accent-purple"
+                <AnimatePresence initial={false}>
+                  {openHere && (
+                    <motion.div
+                      initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-col gap-2.5 rounded-2xl border border-border bg-panel p-5">
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="font-mono text-xs font-medium tracking-[0.1em] text-subtext">
+                            {COPY.usedIn[lang]} — {active}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setActive(null)}
+                            className="inline-flex items-center gap-1 font-mono text-xs font-medium text-subtext transition-colors hover:text-text"
                           >
-                            {projectTitles.get(slug)}
-                          </Link>
-                        ))}
+                            {COPY.close[lang]} <X className="size-3" />
+                          </button>
+                        </div>
+
+                        {linkedProjects.length ? (
+                          <div className="flex flex-wrap gap-2">
+                            {linkedProjects.map((slug) => (
+                              <Link
+                                key={slug}
+                                to={`/projects/${slug}`}
+                                className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg px-3 py-2 text-sm font-medium text-text transition-colors hover:border-accent-blue hover:text-accent-blue"
+                              >
+                                <span
+                                  className="size-1.5 shrink-0 rounded-full"
+                                  style={{ backgroundColor: dot }}
+                                  aria-hidden
+                                />
+                                {projectTitles.get(slug)}
+                              </Link>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-[13px] leading-relaxed text-subtext">
+                            {COPY.noProject[lang]}
+                          </p>
+                        )}
                       </div>
-                    ) : (
-                      <p className="mt-2 text-[11px] text-subtext">
-                        {lang === "ko"
-                          ? "특정 프로젝트에 묶이지 않고 작업 전반에 쓰고 있어요"
-                          : lang === "tr"
-                          ? "Tek bir projeye bağlı değil, işin geneline yayılıyor"
-                          : lang === "ar"
-                          ? "ليست مرتبطة بمشروع بعينه، بل تمتد عبر العمل كله"
-                          : "Not tied to one project — it runs through all of the work"}
-                      </p>
-                    )}
-                  </div>
-                ) : null}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            );
-          })}
-        </div>
+            </motion.div>
+          );
+        })}
       </Container>
     </Section>
   );

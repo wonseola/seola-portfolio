@@ -6,15 +6,6 @@ import { Menu, X } from "lucide-react";
 import { FaGithub, FaInstagram } from "react-icons/fa";
 import LangSelect from "./Langselect";
 
-const buttonColors = [
-  { border: "#7b6fd4", text: "#7b6fd4" }, // periwinkle
-  { border: "#c46fd4", text: "#c46fd4" }, // purple
-  { border: "#d44d6e", text: "#d44d6e" }, // rose
-  { border: "#e09020", text: "#e09020" }, // amber
-  { border: "#e0603a", text: "#e0603a" }, // coral
-  { border: "#3ab5a0", text: "#3ab5a0" }, // teal
-];
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -36,24 +27,27 @@ export default function Navbar() {
   const sectionIds = nav.map((item) => item.href.replace("#", ""));
   const activeSection = useScrollSpy(sectionIds, 200);
 
-  const navWithAccents = nav.map((item, idx) => {
-    const colorIndex = idx % buttonColors.length;
-    return {
-      ...item,
-      colorIndex,
-      isActive: activeSection === item.href.replace("#", "") && !hoveredItem,
-      isHovered: hoveredItem === item.href,
-    };
-  });
+  const navWithAccents = nav.map((item) => ({
+    ...item,
+    isActive: activeSection === item.href.replace("#", "") && !hoveredItem,
+    isHovered: hoveredItem === item.href,
+  }));
+
+  // 활성/호버는 꽉 찬 검정 칩, 나머지는 배경 없는 모노 텍스트.
+  // 본문 스택 칩과 같은 규칙이라 화면 전체가 한 언어로 읽힌다.
+  const itemClass = (on: boolean) =>
+    `rounded-lg px-3 py-2 font-mono text-[13px] font-medium leading-none transition-colors duration-200 ${
+      on ? "bg-text text-panel" : "text-subtext hover:bg-hairline hover:text-text"
+    }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-[rgba(253,240,243,0.85)] backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-[rgba(246,244,240,0.85)] backdrop-blur">
       <Container>
         <div className="relative flex h-16 items-center justify-between">
           {/* Left: Name */}
           <a
             href="#top"
-            className="group flex items-center gap-2 text-subtext transition-colors hover:text-accent-cyan"
+            className="group flex items-center gap-2 text-subtext transition-colors hover:text-accent-blue"
             aria-label="Seola Won"
           >
             <Brandmark className="h-6 w-6" />
@@ -66,25 +60,16 @@ export default function Navbar() {
             className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-4 md:flex"
             onMouseLeave={() => setHoveredItem(null)}
           >
-            {navWithAccents.map((n) => {
-              const isHighlighted = n.isHovered || n.isActive;
-              const colors = buttonColors[n.colorIndex];
-
-              return (
-                <a
-                  key={n.href}
-                  href={n.href}
-                  onMouseEnter={() => setHoveredItem(n.href)}
-                  className="rounded-xl border px-3 py-1.5 text-sm transition-all duration-300 ease-out"
-                  style={{
-                    borderColor: isHighlighted ? colors.border : "#f0d4db",
-                    color: isHighlighted ? colors.text : "#6b4a52",
-                  }}
-                >
-                  {n.label}
-                </a>
-              );
-            })}
+            {navWithAccents.map((n) => (
+              <a
+                key={n.href}
+                href={n.href}
+                onMouseEnter={() => setHoveredItem(n.href)}
+                className={itemClass(n.isHovered || n.isActive)}
+              >
+                {n.label}
+              </a>
+            ))}
           </nav>
 
           {/* 언어전환 + 소셜 */}
@@ -95,7 +80,7 @@ export default function Navbar() {
               href="https://github.com/wonseola"
               target="_blank"
               rel="noreferrer"
-              className="text-subtext hover:text-accent-purple transition-colors"
+              className="text-subtext hover:text-text transition-colors"
             >
               <FaGithub className="size-5" />
             </a>
@@ -111,7 +96,7 @@ export default function Navbar() {
               href="https://www.instagram.com/won_seola"
               target="_blank"
               rel="noreferrer"
-              className="text-subtext hover:text-accent-orange transition-colors"
+              className="text-subtext hover:text-text transition-colors"
             >
               <FaInstagram className="size-5" />
             </a>
@@ -124,7 +109,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setOpen((o) => !o)}
-              className="rounded-xl border border-border p-2 transition-colors hover:border-accent-purple"
+              className="rounded-xl border border-border p-2 transition-colors hover:border-border-strong"
               aria-label="Toggle menu"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -138,26 +123,17 @@ export default function Navbar() {
             className="grid gap-2 pb-4 md:hidden"
             onMouseLeave={() => setHoveredItem(null)}
           >
-            {navWithAccents.map((n) => {
-              const isHighlighted = n.isHovered || n.isActive;
-              const colors = buttonColors[n.colorIndex];
-
-              return (
-                <a
-                  key={n.href}
-                  href={n.href}
-                  onClick={() => setOpen(false)}
-                  onMouseEnter={() => setHoveredItem(n.href)}
-                  className="rounded-xl border bg-panel px-3 py-2 transition-all duration-500 ease-out"
-                  style={{
-                    borderColor: isHighlighted ? colors.border : "#f0d4db",
-                    color: isHighlighted ? colors.text : "#6b4a52",
-                  }}
-                >
-                  {n.label}
-                </a>
-              );
-            })}
+            {navWithAccents.map((n) => (
+              <a
+                key={n.href}
+                href={n.href}
+                onClick={() => setOpen(false)}
+                onMouseEnter={() => setHoveredItem(n.href)}
+                className={itemClass(n.isHovered || n.isActive)}
+              >
+                {n.label}
+              </a>
+            ))}
           </div>
         )}
       </Container>

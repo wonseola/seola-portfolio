@@ -21,72 +21,12 @@ export type SkillGroup = {
     | "accent-orange"
     | "accent-purple"
     | "accent-cyan";
-  icon: string;
   skills: Skill[];
 };
-
-/** 상단에 크게 노출되는 대표 스택 */
-export const CORE_STACK: { name: string; note: LocalizedString }[] = [
-  {
-    name: "React 19",
-    note: {
-      ko: "모든 프로덕트의 기본기",
-      en: "the base of everything I ship",
-      tr: "her ürünün temeli",
-      ar: "أساس كل ما أطوره",
-    },
-  },
-  {
-    name: "Next.js 16",
-    note: {
-      ko: "App Router · RSC · SEO",
-      en: "App Router · RSC · SEO",
-      tr: "App Router · RSC · SEO",
-      ar: "App Router · RSC · SEO",
-    },
-  },
-  {
-    name: "TypeScript",
-    note: {
-      ko: "타입으로 설계를 강제",
-      en: "types as the design contract",
-      tr: "tasarımı tiplerle zorlamak",
-      ar: "الأنواع كعقد للتصميم",
-    },
-  },
-  {
-    name: "Supabase",
-    note: {
-      ko: "Auth · Postgres · RLS · Realtime",
-      en: "Auth · Postgres · RLS · Realtime",
-      tr: "Auth · Postgres · RLS · Realtime",
-      ar: "Auth · Postgres · RLS · Realtime",
-    },
-  },
-  {
-    name: "Capacitor",
-    note: {
-      ko: "웹을 스토어까지",
-      en: "web all the way to the stores",
-      tr: "web'den mağazalara",
-      ar: "من الويب إلى المتاجر",
-    },
-  },
-  {
-    name: "Vercel · Cloudflare",
-    note: {
-      ko: "배포와 운영까지 직접",
-      en: "I ship and run it myself",
-      tr: "dağıtımı ve işletmeyi kendim yaparım",
-      ar: "أنشر وأشغّل بنفسي",
-    },
-  },
-];
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     id: "frontend",
-    icon: "🎨",
     accent: "accent-green",
     label: {
       ko: "프론트엔드",
@@ -115,7 +55,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "backend",
-    icon: "🗄️",
     accent: "accent-blue",
     label: {
       ko: "백엔드 · 데이터",
@@ -145,7 +84,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "mobile",
-    icon: "📱",
     accent: "accent-purple",
     label: {
       ko: "모바일 · 앱 출시",
@@ -170,7 +108,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "infra",
-    icon: "🚀",
     accent: "accent-orange",
     label: {
       ko: "인프라 · 배포",
@@ -197,7 +134,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "quality",
-    icon: "🧪",
     accent: "accent-cyan",
     label: {
       ko: "품질 · 관측",
@@ -223,7 +159,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "growth",
-    icon: "📈",
     accent: "accent-yellow",
     label: {
       ko: "그로스 · 수익화",
@@ -249,7 +184,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "game",
-    icon: "🎮",
     accent: "accent-purple",
     label: {
       ko: "게임 · 인터랙션",
@@ -274,7 +208,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "ai",
-    icon: "🤖",
     accent: "accent-blue",
     label: {
       ko: "AI · 컴퓨터비전",
@@ -306,7 +239,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "hardware",
-    icon: "🔧",
     accent: "accent-orange",
     label: {
       ko: "하드웨어 · 로보틱스",
@@ -330,7 +262,6 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
   {
     id: "design",
-    icon: "🖌️",
     accent: "accent-green",
     label: {
       ko: "디자인 · 기획",
@@ -366,12 +297,6 @@ export const SKILLS_COPY = {
     en: "Only what I've actually shipped with. Tap a tag to see the projects that use it.",
     tr: "Sadece gerçekten kullandıklarım. Bir etikete dokunduğunda onu kullanan projeler altta çıkar.",
     ar: "فقط ما استخدمته فعلياً. اضغط على أي وسم لتظهر أسفله المشاريع التي تستخدمه.",
-  },
-  coreLabel: {
-    ko: "주력 스택",
-    en: "Core stack",
-    tr: "Ana yığın",
-    ar: "التقنيات الأساسية",
   },
   legend: {
     core: { ko: "주력", en: "Core", tr: "Ana", ar: "أساسي" },

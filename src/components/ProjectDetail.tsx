@@ -43,12 +43,12 @@ const getYouTubeVideoId = (input: string): string => {
 };
 
 const METRIC_COLORS = [
-  "#d44d6e",
-  "#7b6fd4",
-  "#e09020",
-  "#3ab5a0",
-  "#c46fd4",
-  "#e0603a",
+  "#a8566a",
+  "#5b6bb0",
+  "#a67c2c",
+  "#3f8a7d",
+  "#87609b",
+  "#b06040",
 ];
 
 export default function ProjectDetail() {
