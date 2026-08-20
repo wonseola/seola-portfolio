@@ -19,8 +19,7 @@ import { THEME } from "./data/theme";
 // import Publications from "./sections/Publications";
 
 export default function App() {
-  const { isLoading, progress, loadedAssets, totalAssets } =
-    useAssetPreloader();
+  const { isLoading } = useAssetPreloader();
 
   // Preload additional assets once the initial load is complete
   useEffect(() => {
@@ -32,11 +31,7 @@ export default function App() {
   // Show loading screen while assets are loading
   if (isLoading) {
     return (
-      <LoadingScreen
-        progress={progress}
-        loadedAssets={loadedAssets}
-        totalAssets={totalAssets}
-      />
+      <LoadingScreen />
     );
   }
 

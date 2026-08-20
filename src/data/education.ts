@@ -28,7 +28,7 @@ export const EDUCATION: Education[] = [
         details: [
             "Concentration: Distributed Systems & Software Design, and Cybersecurity",
             "Activities and Societies: Undergraduate Research, GT iOS Club, GT Mechanical Keyboards",
-            "Coursework: Data Structures \& Algorithms, Digital System Design, Circuit Analysis,  Prototyping Intelligent Devices, Embedded Systems Design, Fundamentals of Machine Learning, Network Security, Cybersecurity",
+            "Coursework: Data Structures & Algorithms, Digital System Design, Circuit Analysis,  Prototyping Intelligent Devices, Embedded Systems Design, Fundamentals of Machine Learning, Network Security, Cybersecurity",
         ],
         logoKey: "gt",
         logoSize: 72,

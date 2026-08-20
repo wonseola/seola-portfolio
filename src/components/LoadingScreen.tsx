@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { THEME } from "../data/theme";
 
-interface LoadingScreenProps {
-  progress: number;
-  loadedAssets: number;
-  totalAssets: number;
-}
-
 const LOADING_TIPS = [
   "Does anyone actually read these?",
   "Loading pixels with extra care...",
@@ -46,11 +40,7 @@ function useCyclingTips(tips: string[], interval: number = 2500) {
   return { currentTip, isAnimating };
 }
 
-export default function LoadingScreen({
-  progress,
-  loadedAssets,
-  totalAssets,
-}: LoadingScreenProps) {
+export default function LoadingScreen() {
   const { currentTip, isAnimating } = useCyclingTips(LOADING_TIPS, 2500);
 
   return (

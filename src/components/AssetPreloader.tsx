@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import { PROJECTS } from "../data/projects";
 import avatarFile from "../assets/a.jpeg";
-
-const withBase = (path?: string) =>
-  path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
 
 interface AssetLoadingState {
   isLoading: boolean;
@@ -51,7 +47,7 @@ export function useAssetPreloader(): AssetLoadingState {
     let loadedCount = 0;
 
     const loadAsset = (src: string): Promise<void> => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         if (src.endsWith(".mp4")) {
           // For videos, just check if they exist (don't fully preload due to size)
           const video = document.createElement("video");
