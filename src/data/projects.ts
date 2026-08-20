@@ -1,5 +1,5 @@
 export type LocalizedString = {
-  [langCode: string]: string; // ex: 'en', 'ko', 'tr', 'ar'
+  [langCode: string]: string; // ex: 'en', 'ko', 'ja', 'ar'
 };
 
 /** 상세 페이지 상단에 크게 박히는 숫자 칩 */
@@ -16,6 +16,9 @@ export type StackGroup = {
 
 export type Project = {
   slug: string;
+  /** public/logo/ 안의 정사각 로고·파비콘 파일명 (예: "dangseon.png").
+      없으면 data/projectIcons.ts의 lucide 아이콘으로 떨어진다. */
+  logo?: string;
   title: LocalizedString;
   blurb: LocalizedString;
   tags: string[];
@@ -55,32 +58,33 @@ export const PROJECTS: Project[] = [
   //placeholder
   // {
   //   slug: "woodongseol",
-  //   title: { ko: "", en: "", tr: "", ar: "" },
-  //   blurb: { ko: "", en: "", tr: "", ar: "" },
+  //   title: { ko: "", en: "", ja: "", ar: "" },
+  //   blurb: { ko: "", en: "", ja: "", ar: "" },
   //   tags: [],
   //   area: "Other",
   //   status: "Complete",
   //   thumb: "",
   //   previewVideo: "",
   //   mainVideo: "",
-  //   body: { ko: "", en: "", tr: "", ar: "" },
+  //   body: { ko: "", en: "", ja: "", ar: "" },
   //   gallery: [],
   // },
 
   //메렌 로묘 발판 도우미
   {
     slug: "maple-step",
+    logo: "maple-step.png",
     weight: 2,
     title: {
       ko: "메렌 로묘 발판 도우미",
       en: "Maple Romeo Helper",
-      tr: "Maple Romeo Yardımcısı",
+      ja: "Maple Romeo ヘルパー",
       ar: "مساعد Maple Romeo",
     },
     blurb: {
       ko: "메이플랜드 로미오·줄리엣 파퀘의 발판 단계를 4명이 같은 화면에서 맞추는 실시간 도우미. 방 코드 4자리만 공유하면 끝.",
       en: "A realtime helper that lets a 4-player MapleLand party sync their platform picks on one shared board. Share a 4-digit room code and go.",
-      tr: "MapleLand parti görevindeki platform aşamasını 4 kişinin aynı ekranda eşitlemesini sağlayan gerçek zamanlı yardımcı. 4 haneli oda kodu yeter.",
+      ja: "MapleLandのロミオとジュリエットPQの足場ステージを、4人が同じ画面で同期できるリアルタイム補助ツール。4桁のルームコードを共有するだけです。",
       ar: "أداة فورية تتيح لفريق من 4 لاعبين مزامنة اختياراتهم على لوحة مشتركة. شارك رمز الغرفة المكوّن من 4 أرقام فقط.",
     },
     tags: [
@@ -98,46 +102,46 @@ export const PROJECTS: Project[] = [
     featured: true,
     period: "2026",
     role: {
-      ko: "기획 · 디자인 · 개발 · 배포 · 운영 (1인)",
-      en: "Planning · Design · Development · Deploy · Ops (solo)",
-      tr: "Planlama · Tasarım · Geliştirme · Dağıtım · İşletme (tek kişi)",
-      ar: "التخطيط والتصميم والتطوير والنشر والتشغيل (منفرد)",
+      ko: "기획 · 디자인 · 개발 · 배포 · 운영",
+      en: "Planning · Design · Development · Deploy · Ops",
+      ja: "企画 · デザイン · 開発 · デプロイ · 運用",
+      ar: "التخطيط والتصميم والتطوير والنشر والتشغيل",
     },
-    thumb: "media/maple-04-board.jpg",
+    thumb: "media/maple-04-board.webp",
     links: { link: "https://maple-help.xyz" },
     metrics: [
       {
         value: "4",
-        label: { ko: "명 실시간 동시 접속", en: "realtime players", tr: "eşzamanlı oyuncu", ar: "لاعبون متزامنون" },
+        label: { ko: "명 실시간 동시 접속", en: "realtime players", ja: "リアルタイム参加者", ar: "لاعبون متزامنون" },
       },
       {
         value: "10",
-        label: { ko: "층 발판 보드", en: "floor board", tr: "katlı platform tahtası", ar: "طوابق في اللوحة" },
+        label: { ko: "층 발판 보드", en: "floor board", ja: "階分の足場ボード", ar: "طوابق في اللوحة" },
       },
       {
         value: "#0000",
-        label: { ko: "4자리 방 코드로 입장", en: "4-digit room code", tr: "4 haneli oda kodu", ar: "رمز غرفة من 4 أرقام" },
+        label: { ko: "4자리 방 코드로 입장", en: "4-digit room code", ja: "4桁のルームコード", ar: "رمز غرفة من 4 أرقام" },
       },
       {
         value: "FREE",
-        label: { ko: "무료 팬메이드", en: "free fan-made tool", tr: "ücretsiz hayran yapımı", ar: "أداة مجانية" },
+        label: { ko: "무료 팬메이드", en: "free fan-made tool", ja: "無料ファンメイド", ar: "أداة مجانية" },
       },
     ],
     stack: [
       {
-        group: { ko: "프론트엔드", en: "Frontend", tr: "Frontend", ar: "الواجهة الأمامية" },
+        group: { ko: "프론트엔드", en: "Frontend", ja: "フロントエンド", ar: "الواجهة الأمامية" },
         items: ["Next.js 16 (App Router)", "React 19", "TypeScript", "TailwindCSS v4", "Turbopack"],
       },
       {
-        group: { ko: "실시간 · 데이터", en: "Realtime & Data", tr: "Gerçek Zamanlı & Veri", ar: "الزمن الحقيقي والبيانات" },
+        group: { ko: "실시간 · 데이터", en: "Realtime & Data", ja: "リアルタイム・データ", ar: "الزمن الحقيقي والبيانات" },
         items: ["Supabase Realtime Channel", "Supabase Postgres", "Drizzle ORM", "Route Handlers"],
       },
       {
-        group: { ko: "인프라 · 운영", en: "Infra & Ops", tr: "Altyapı & İşletme", ar: "البنية والتشغيل" },
+        group: { ko: "인프라 · 운영", en: "Infra & Ops", ja: "インフラ・運用", ar: "البنية والتشغيل" },
         items: ["Cloudflare (vinext · D1 · Wrangler)", "인라인 콘텐츠 에디터", "관리자 페이지"],
       },
       {
-        group: { ko: "그로스", en: "Growth", tr: "Büyüme", ar: "النمو" },
+        group: { ko: "그로스", en: "Growth", ja: "グロース", ar: "النمو" },
         items: ["JSON-LD 구조화 데이터", "sitemap · robots · manifest", "OG 이미지", "Google AdSense", "카카오 애드핏"],
       },
     ],
@@ -166,18 +170,18 @@ That stage goes fastest when all four players step on different numbers (1–4),
 🔍 SEO was part of the design from day one. JSON-LD structured data (WebSite / Organization / WebApplication) tells search engines this is a free web game utility, and sitemap, robots, manifest, and OG images are all generated in code. **I deliberately left out features the site doesn't actually have** — Google either ignores or penalizes those.
 
 💰 Running costs are covered by Google AdSense and a responsive Kakao AdFit banner.`,
-      tr: `💡 MapleLand'deki "Romeo ve Juliet" parti görevinin **platform aşaması** için gerçek zamanlı bir yardımcı.
-Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; ancak parti sohbeti savaş ve ödül konuşmalarıyla dolduğu için "kim hangisine bastı?" sorusu sürekli tekrarlanır. Bu araç tam olarak o karışıklığı ortadan kaldırmak için var.
+      ja: `💡 MapleLand「ロミオとジュリエット」パーティークエストの**足場ステージ**向けリアルタイム補助ツールです。
+このステージは4人がそれぞれ違う番号（1〜4）を踏むと早く終わりますが、実際のプレイ中はパーティーチャットが戦闘や報酬の話で流れて、「誰が何番を踏んだっけ？」を何度も確認することになります。その混乱だけをなくすために作りました。
 
-🔗 **Sadece 4 haneli oda kodunu paylaş.** Oda sahibi odayı açtığında 10 katlı tahta ve eşya sırası, katılan herkeste gerçek zamanlı olarak birebir aynı görünür. Takma ad isteğe bağlı — giriş ya da kayıt hiç yok.
+🔗 **4桁のルームコードを共有するだけ。** ホストが部屋を開くと、10階分の足場ボードとアイテム順が参加者全員にリアルタイムで同じように表示されます。ニックネームは任意で、ログインや会員登録はありません。
 
-⚡ Seçimler Supabase Realtime kanalı üzerinden senkronize edilir. Her oyuncu kendi platformunu işaretler, dolu olanlar otomatik atlanır. Tahta belirli bir doluluğa ulaşınca **yalnızca oda sahibine** sıfırlama düğmesi çıkar ve anında silmez: **10 saniyelik geri sayım** verir, böylece ekrana bakan kimse şaşırmaz.
+⚡ Supabase Realtimeチャンネルで足場の選択状態を同期しました。各階で自分が踏んだマスを押すと、すでに選ばれたマスは自動でスキップされます。ボードが一定以上埋まると**ホストだけに**リセットボタンが表示され、すぐ消すのではなく**10秒のカウントダウン**を挟むようにしました。
 
-📄 Sadece araç değil, yanında **rehber içeriği** de işletiyorum: giriş koşulları, tüm aşama sırası, platform ipuçları, sık yapılan hatalar ve ödül bilgisi ile SSS. Bu metinler kodda değil, yönetim panelindeki **satır içi editör** ile düzenleniyor — yazım hatası için yeniden dağıtım gerekmiyor.
+📄 ツールだけでなく、**攻略コンテンツも一緒に運用**しています。入場条件、全体の進行順、足場のコツ、よくあるミス、報酬情報、FAQを用意し、これらの文章はコードではなく管理画面の**インラインエディタ**で直せます。誤字ひとつのために再デプロイしたくなかったからです。
 
-🔍 SEO ilk günden tasarımın parçasıydı. JSON-LD yapılandırılmış veri (WebSite / Organization / WebApplication) arama motorlarına bunun ücretsiz bir web oyun aracı olduğunu anlatıyor; sitemap, robots, manifest ve OG görselleri kodda üretiliyor. **Sitede gerçekten olmayan özellikleri bilinçli olarak eklemedim.**
+🔍 SEOは最初から設計に入れました。JSON-LD構造化データ（WebSite / Organization / WebApplication）で検索エンジンに「無料のWebゲーム補助ツール」と理解させ、sitemap、robots、manifest、OG画像もコードで生成します。**実際に提供していない機能は構造化データに入れていません。**
 
-💰 İşletme maliyetleri Google AdSense ve duyarlı Kakao AdFit banner ile karşılanıyor.`,
+💰 運用費はGoogle AdSenseとKakao AdFitのレスポンシブバナーでまかなっています。`,
       ar: `💡 أداة فورية لمرحلة **المنصات** في مهمة "روميو وجولييت" الجماعية داخل MapleLand.
 تنتهي هذه المرحلة أسرع عندما يقف كل من اللاعبين الأربعة على رقم مختلف (1–4)، لكن محادثة الفريق تمتلئ عملياً بالحديث عن القتال والمكافآت فيتكرر السؤال: "من أخذ أي رقم؟" وُجدت هذه الأداة لإزالة هذا الالتباس تحديداً.
 
@@ -192,26 +196,27 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 💰 تُغطى تكاليف التشغيل عبر Google AdSense ولافتة Kakao AdFit المتجاوبة.`,
     },
     gallery: [
-      "media/maple-04-board.jpg",
-      "media/maple-02-room.jpg",
-      "media/maple-01-home.jpg",
+      "media/maple-04-board.webp",
+      "media/maple-02-room.webp",
+      "media/maple-01-home.webp",
     ],
   },
 
   //도토리사진관
   {
     slug: "ddphoto",
+    logo: "ddphoto.png",
     weight: 2,
     title: {
       ko: "도토리사진관",
       en: "Dotori Photo Studio",
-      tr: "Dotori Fotoğraf Stüdyosu",
+      ja: "どんぐり写真館",
       ar: "استوديو دوتوري للصور",
     },
     blurb: {
       ko: "토스 앱 안에서 돌아가는 네컷사진 편집기. 사진 고르고 · 보정하고 · 스티커로 꾸며서 한 장으로 저장.",
       en: "A photo-booth style editor running inside the Toss app. Pick, adjust, decorate with stickers, export as one sheet.",
-      tr: "Toss uygulaması içinde çalışan fotoğraf kabini editörü. Seç, düzenle, çıkartmalarla süsle, tek sayfa olarak kaydet.",
+      ja: "Tossアプリ内で動くフォトブース風エディタ。写真を選び、調整し、ステッカーで飾って1枚のシートとして保存できます。",
       ar: "محرر صور بأسلوب كشك التصوير يعمل داخل تطبيق Toss. اختر، عدّل، زيّن بالملصقات، واحفظ كورقة واحدة.",
     },
     tags: [
@@ -227,37 +232,37 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     featured: true,
     period: "2026",
     role: {
-      ko: "기획 · 디자인 · 개발 · 심사 제출 (1인)",
-      en: "Planning · Design · Development · Store submission (solo)",
-      tr: "Planlama · Tasarım · Geliştirme · Mağaza başvurusu (tek kişi)",
-      ar: "التخطيط والتصميم والتطوير وتقديم المراجعة (منفرد)",
+      ko: "기획 · 디자인 · 개발 · 심사 제출",
+      en: "Planning · Design · Development · Store submission",
+      ja: "企画 · デザイン · 開発 · 審査提出",
+      ar: "التخطيط والتصميم والتطوير وتقديم المراجعة",
     },
-    thumb: "media/ddphoto-05-composite.jpg",
+    thumb: "media/ddphoto-05-composite.webp",
     metrics: [
       {
         value: "300+",
-        label: { ko: "스티커 에셋", en: "sticker assets", tr: "çıkartma varlığı", ar: "ملصق" },
+        label: { ko: "스티커 에셋", en: "sticker assets", ja: "ステッカー素材", ar: "ملصق" },
       },
       {
         value: "6",
-        label: { ko: "스티커 카테고리", en: "sticker categories", tr: "çıkartma kategorisi", ar: "فئات ملصقات" },
+        label: { ko: "스티커 카테고리", en: "sticker categories", ja: "ステッカーカテゴリ", ar: "فئات ملصقات" },
       },
       {
         value: "4",
-        label: { ko: "단계 편집 플로우", en: "step editing flow", tr: "adımlı düzenleme akışı", ar: "خطوات في مسار التحرير" },
+        label: { ko: "단계 편집 플로우", en: "step editing flow", ja: "段階の編集フロー", ar: "خطوات في مسار التحرير" },
       },
       {
         value: "0",
-        label: { ko: "서버 업로드 (기기 내 처리)", en: "server uploads (on-device)", tr: "sunucu yüklemesi (cihazda)", ar: "رفع للخادم (على الجهاز)" },
+        label: { ko: "서버 업로드 (기기 내 처리)", en: "server uploads (on-device)", ja: "サーバーアップロード（端末内処理）", ar: "رفع للخادم (على الجهاز)" },
       },
     ],
     stack: [
       {
-        group: { ko: "앱", en: "App", tr: "Uygulama", ar: "التطبيق" },
+        group: { ko: "앱", en: "App", ja: "アプリ", ar: "التطبيق" },
         items: ["React 19", "TypeScript", "Vite 6", "Apps in Toss Web Framework (Granite)", "Phosphor Icons"],
       },
       {
-        group: { ko: "에셋 파이프라인", en: "Asset pipeline", tr: "Varlık hattı", ar: "خط الأصول" },
+        group: { ko: "에셋 파이프라인", en: "Asset pipeline", ja: "アセットパイプライン", ar: "خط الأصول" },
         items: ["Supabase Storage", "Supabase Postgres", "동기화 스크립트 (pull · push · relabel)", "로컬 카탈로그 폴백"],
       },
     ],
@@ -296,23 +301,23 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 📸 Photo permission is requested as read-only, and compositing happens entirely on the device.
 
 🚀 Submitted for review on the Apps in Toss console, including the brand icon URL and the portrait/landscape screenshot assets the review process requires.`,
-      tr: `💡 Toss uygulamasının içinde doğrudan açılan bir **fotoğraf kabini editörü** — ayrı kurulum yok, mini uygulama olarak çalışıyor.
+      ja: `💡 Tossアプリの中でそのまま開く**フォトブース風エディタ**です。別アプリのインストールなしで、ミニアプリとして動きます。
 
-🧩 Düzenleme akışı dört adım:
-- **Düzeni seç** — sayfada kaç kare olacak
-- **Yerleştir ve ayarla** — galeriden fotoğraf al, her karede yakınlaştır ve kaydır
-- **Süsle** — çıkartma ve metin ekle
-- **Dışa aktar** — hepsini tek bir görsele düzleştir
+🧩 編集フローは4段階です。
+- **レイアウト選択** — 何カットの写真にするか選ぶ
+- **写真を配置・調整** — ギャラリーから読み込み、各フレーム内で拡大・移動
+- **デコレーション** — ステッカーとテキストを重ねる
+- **保存** — すべてを1枚の画像に合成して書き出す
 
-🎨 **300'den fazla çıkartmayı** kendim derleyip söz, yüz aksesuarı, vurgu, obje ve karalama olarak ayırdım; "son kullanılanlar" ile birlikte altı sekme halinde gösteriliyor.
+🎨 **300点以上のステッカー**を自分で整理し、文言、顔まわり小物、ポイント、アイテム、落書きに分類しました。最近使ったものタブも加えて、6つのタブで表示しています。
 
-☁️ Başlangıçta tüm çıkartmalar uygulamayla paketleniyordu; bu da tek bir çıkartma eklemek için yeniden incelemeye girmek demekti. Bu yüzden **orijinalleri Supabase Storage/DB'ye taşıdım** ve uygulama katalogu çalışma anında çekiyor. Önemlisi: **DB isteği başarısız olursa veya boş dönerse, kodda tanımlı yerel kataloğa geri düşüyor** — bağlantı kötüyken editör boş ekran olmuyor.
+☁️ 最初はステッカーをすべてアプリに同梱していましたが、それだとステッカーを1つ追加するたびに審査が必要になります。そこで**原本をSupabase Storage/DBへ移し**、アプリは起動時にカタログを取得する形に変えました。重要なのは、**DBリクエストが失敗したり空で返った場合は、コード内のローカルカタログへ自動フォールバック**することです。通信が不安定でも編集画面が空になりません。
 
-🔐 Service role anahtarı yalnızca toplu yükleme için kullanılıyor ve bilinçli olarak \`VITE_\` ya da \`NEXT_PUBLIC_\` öneki taşımıyor, böylece **pakete asla girmiyor**.
+🔐 service roleキーはStorageへの一括アップロードだけに使い、\`VITE_\`や\`NEXT_PUBLIC_\`の接頭辞を付けないことで**バンドルに絶対入らないように**分離しました。カテゴリ再分類やカタログ同期もすべてスクリプト化しています。
 
-📸 Fotoğraf izni yalnızca okuma olarak isteniyor ve birleştirme tamamen cihazda yapılıyor.
+📸 写真権限は読み取り専用で要求し、合成処理は端末内で完結します。
 
-🚀 Apps in Toss konsolunda inceleme için gönderildi; marka ikonu URL'si ve gereken dikey/yatay ekran görüntüsü varlıkları da hazırlandı.`,
+🚀 Apps in Tossコンソールへの審査提出まで完了しました。審査要件に合わせて、ブランドアイコンURLと縦横スクリーンショット素材も用意しました。`,
       ar: `💡 **محرر صور بأسلوب كشك التصوير** يُفتح مباشرة داخل تطبيق Toss — دون تثبيت منفصل، فهو يعمل كتطبيق مصغّر.
 
 🧩 يتكوّن مسار التحرير من أربع خطوات:
@@ -332,28 +337,29 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 🚀 قُدّم للمراجعة على وحدة تحكم Apps in Toss، مع رابط أيقونة العلامة وأصول لقطات الشاشة الرأسية والأفقية المطلوبة.`,
     },
     gallery: [
-      "media/ddphoto-05-composite.jpg",
-      "media/ddphoto-01-count.jpg",
-      "media/ddphoto-02-adjust.jpg",
-      "media/ddphoto-03-decorate.jpg",
-      "media/ddphoto-04-stickers.jpg",
+      "media/ddphoto-05-composite.webp",
+      "media/ddphoto-01-count.webp",
+      "media/ddphoto-02-adjust.webp",
+      "media/ddphoto-03-decorate.webp",
+      "media/ddphoto-04-stickers.webp",
     ],
   },
 
   //타임 클론
   {
     slug: "toss-time",
+    logo: "toss-time.svg",
     weight: 2,
     title: {
       ko: "타임 클론",
       en: "Time Clone",
-      tr: "Time Clone",
+      ja: "Time Clone",
       ar: "Time Clone",
     },
     blurb: {
       ko: "과거의 나(클론)와 함께 푸는 격자 턴제 퍼즐. 54스테이지 · 6개 언어 · 스킨 뽑기까지 붙인 앱인토스 미니게임.",
       en: "A grid-based turn puzzle you solve together with your past self. 54 stages, 6 languages, and a skin gacha — built as a Toss mini game.",
-      tr: "Geçmişteki kendinle birlikte çözdüğün ızgara tabanlı sıra bazlı bulmaca. 54 bölüm, 6 dil ve kostüm çekilişi.",
+      ja: "過去の自分（クローン）と一緒に解くグリッド型ターン制パズル。54ステージ、6言語、スキンガチャまで入れたTossミニゲームです。",
       ar: "لغز شبكي بالأدوار تحلّه بالتعاون مع نسختك السابقة. 54 مرحلة و6 لغات ونظام سحب للأشكال.",
     },
     tags: [
@@ -369,41 +375,41 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     featured: true,
     period: "2026",
     role: {
-      ko: "게임 기획 · 엔진 설계 · 레벨 디자인 · 개발 (1인)",
-      en: "Game design · Engine architecture · Level design · Development (solo)",
-      tr: "Oyun tasarımı · Motor mimarisi · Bölüm tasarımı · Geliştirme (tek kişi)",
-      ar: "تصميم اللعبة وبنية المحرك وتصميم المراحل والتطوير (منفرد)",
+      ko: "게임 기획 · 엔진 설계 · 레벨 디자인 · 개발",
+      en: "Game design · Engine architecture · Level design · Development",
+      ja: "ゲーム企画 · エンジン設計 · レベルデザイン · 開発",
+      ar: "تصميم اللعبة وبنية المحرك وتصميم المراحل والتطوير",
     },
-    thumb: "media/tosstime-01-home.jpg",
+    thumb: "media/tosstime-01-home.webp",
     metrics: [
       {
         value: "54",
-        label: { ko: "스테이지 (튜토리얼 6 + 본편 48)", en: "stages (6 tutorial + 48 main)", tr: "bölüm (6 + 48)", ar: "مرحلة (6 + 48)" },
+        label: { ko: "스테이지 (튜토리얼 6 + 본편 48)", en: "stages (6 tutorial + 48 main)", ja: "ステージ（6 + 48）", ar: "مرحلة (6 + 48)" },
       },
       {
         value: "6",
-        label: { ko: "지원 언어", en: "languages", tr: "dil", ar: "لغات" },
+        label: { ko: "지원 언어", en: "languages", ja: "対応言語", ar: "لغات" },
       },
       {
         value: "50",
-        label: { ko: "수집 스킨 · 12등급", en: "collectible skins · 12 tiers", tr: "kostüm · 12 kademe", ar: "شكل · 12 فئة" },
+        label: { ko: "수집 스킨 · 12등급", en: "collectible skins · 12 tiers", ja: "収集スキン · 12等級", ar: "شكل · 12 فئة" },
       },
       {
         value: "62→54",
-        label: { ko: "검증으로 걸러낸 레벨", en: "levels after verification", tr: "doğrulama sonrası bölüm", ar: "مراحل بعد التحقق" },
+        label: { ko: "검증으로 걸러낸 레벨", en: "levels after verification", ja: "検証後に残したレベル", ar: "مراحل بعد التحقق" },
       },
     ],
     stack: [
       {
-        group: { ko: "게임 코어", en: "Game core", tr: "Oyun çekirdeği", ar: "نواة اللعبة" },
+        group: { ko: "게임 코어", en: "Game core", ja: "ゲームコア", ar: "نواة اللعبة" },
         items: ["순수 함수 엔진 (React 비의존)", "useReducer 상태 + 언두 스택", "ASCII 맵 레벨 정의", "자동 검증 스크립트"],
       },
       {
-        group: { ko: "앱", en: "App", tr: "Uygulama", ar: "التطبيق" },
+        group: { ko: "앱", en: "App", ja: "アプリ", ar: "التطبيق" },
         items: ["React 19", "TypeScript", "Vite 8", "순수 CSS (3D·셰이더 없음)", "i18n 6개 언어"],
       },
       {
-        group: { ko: "플랫폼 · 수익화", en: "Platform & Monetization", tr: "Platform & Gelir", ar: "المنصة والدخل" },
+        group: { ko: "플랫폼 · 수익화", en: "Platform & Monetization", ja: "プラットフォーム・収益化", ar: "المنصة والدخل" },
         items: ["Apps in Toss", "어댑터 패턴 스토리지 / 광고", "코인 · 확률 공개 뽑기", "전면 · 보상형 광고"],
       },
     ],
@@ -444,24 +450,24 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 🌍 Six languages — Korean, English, Japanese, French, Spanish, Arabic — with automatic detection from the browser locale.
 
 🎁 There's a coin-based skin gacha, and **the per-tier odds are published right on screen**. Ads are wrapped behind an adapter so swapping the SDK touches only two files, and the "+1 clone" button only appears once you've used every clone and gone over par — no early-game spam.`,
-      tr: `💡 **Hareketlerin kaydedilir ve sonraki turda bunu birebir tekrarlayan bir klon olarak oynatılır.** Her ızgarayı, o klon bir düğmeye basarken senin açılan kapıdan geçmenle çözersin.
+      ja: `💡 **自分の移動記録が次の回でクローンになり、まったく同じように再生されます。** そのクローンがスイッチを踏んでいる間に、自分が開いた扉を通るように解くグリッド型ターン制パズルです。
 
-🧠 **Motoru React'ten tamamen ayırmak bu projenin özü.** Oyun mantığı arayüzü hiç bilmeyen saf fonksiyonlardan oluşuyor, yani tarayıcı olmadan Node'da çalışıyor. **Otomatik bölüm doğrulamasını** mümkün kılan da bu.
+🧠 **エンジンをReactから完全に分離したことが、このプロジェクトの核です。** ゲームロジックはUIを一切知らない純粋関数なので、ブラウザなしでNode上でもそのまま動きます。これにより**レベル検証の自動化**が可能になりました。
 
-🔍 \`verify\` betiği her bölümün çözümünü gerçek motorda oynatıp geçilebilirliği ve par değerini doğruluyor; ayrıca gözle neredeyse görünmeyen tasarım hatalarını statik olarak yakalıyor:
-- Kapının, grubundaki **tek** düğmenin hemen yanında olması → düğmeye basan kişi aynı turda geçer, klon anlamsızlaşır
-- Tüm bulmaca öğelerini yok sayarak çıkışa yürünebilmesi → bulmaca süs olur
-- Haritaları farklı görünen ama **çözüm girdileri birebir aynı** bölüm çiftleri → oyuncu için aynı bölüm
+🔍 \`verify\`スクリプトは各レベルの正解ルートを実際のエンジンで再生し、クリア可否とparを確認します。目視ではほぼ見えない設計ミスも静的に検出します。
+- 扉が同じグループの**唯一の**スイッチのすぐ隣にある → スイッチを踏んだ本人が同じターンで通れてしまい、クローンの意味がなくなる
+- パズル要素をすべて無視して出口まで歩ける → パズルが飾りになる
+- マップは違って見えるのに**解答入力が完全に同じ**ステージペア → プレイヤーには同じ面に感じられる
 
-👉 Bu doğrulama bölüm sayısını **62'den 54'e** indirdi. Dört bölüm, sırf kapı düğmenin yanında diye klonsuz çözülüyordu; üç çiftte ise harita belirgin şekilde değişmesine rağmen çözüm tuşları tek karakter bile farklı değildi. **Elle inceleme bunları asla bulamazdı.**
+👉 この検証で、**62個あったレベルを54個に整理**しました。4つのステージは扉がスイッチの隣にあるだけでクローンなしに突破でき、3組は見た目を変えたのに解答キー入力が1文字も違いませんでした。**手作業のレビューでは見つけられなかったものです。**
 
-⚖️ Dokümanda olmayan kuralları ben belirleyip yazıya döktüm. Örneğin **bekleme (wait) eylemi ekledim**; o olmadan klonu öne süremezsin ve "aynı anda iki yerde" bulmacaları hiç kurulamaz. **Engellenen hamleler bilinçli olarak tur harcamıyor**: duvara toslamak zamanı ilerletirse tahmin edilebilirlik kaybolur.
+⚖️ 仕様書にないルールは自分で決めて文書化しました。たとえば**待機（wait）アクション**を追加しました。これがないとクローンを先に送れず、「同時に2か所にいる」タイプのパズルが成立しません。**塞がれた移動ではターンを消費しない**のも意図的です。壁にぶつかるだけで時間が進むと、予測が難しくなるからです。
 
-🎨 Sanat yönü yumuşak pastel, ama tek katı kural var: **bu bir bulmaca oyunu, tahtadaki bilgi her zaman net olmalı.** Ölçütüm şuydu: "gözlerini yarı kapatınca hangi karenin tehlikeli olduğunu hâlâ görebiliyor musun?"
+🎨 トーンはやわらかいパステルにしつつ、ひとつだけ硬いルールを置きました。**パズルゲームなので、盤面の情報は必ず明確であること。** 判断基準は「目を半分閉じても危険なマスが分かるか？」です。
 
-🌍 Altı dil — Korece, İngilizce, Japonca, Fransızca, İspanyolca, Arapça — tarayıcı diline göre otomatik seçimle.
+🌍 韓国語、英語、日本語、フランス語、スペイン語、アラビア語の6言語に対応し、ブラウザ言語を検知して自動選択します。
 
-🎁 Coin ile kostüm çekilişi var ve **kademe olasılıkları doğrudan ekranda yayımlanıyor**. Reklamlar bir adaptörün arkasında, SDK değişimi yalnızca iki dosyaya dokunuyor.`,
+🎁 コインでスキンを引く収集要素も入れ、**等級別の確率は画面上でそのまま公開**しています。広告はアダプターパターンで包み、SDK差し替え時に触る場所を2ファイルに絞りました。`,
       ar: `💡 **تُسجَّل حركتك، وفي الجولة التالية تُعاد كنسخة (كلون) تكرّرها تماماً.** تحلّ كل شبكة بجعل تلك النسخة تقف على مفتاح بينما تمرّ أنت من الباب الذي يفتحه.
 
 🧠 **فصل المحرك عن React بالكامل هو جوهر هذا المشروع.** منطق اللعبة دوال خالصة لا تعرف شيئاً عن الواجهة، فيعمل في Node دون متصفح. وهذا ما جعل **التحقق الآلي من المراحل** ممكناً.
@@ -482,29 +488,30 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 🎁 يوجد نظام سحب للأشكال بالعملات، و**تُنشر احتمالات كل فئة على الشاشة مباشرة**. أما الإعلانات فمغلّفة خلف محوّل يجعل تبديل الـ SDK يمسّ ملفين فقط.`,
     },
     gallery: [
-      "media/tosstime-02-play.jpg",
-      "media/tosstime-06-board.jpg",
-      "media/tosstime-01-home.jpg",
-      "media/tosstime-03-gacha.jpg",
-      "media/tosstime-04-bag.jpg",
-      "media/tosstime-05-records.jpg",
+      "media/tosstime-02-play.webp",
+      "media/tosstime-06-board.webp",
+      "media/tosstime-01-home.webp",
+      "media/tosstime-03-gacha.webp",
+      "media/tosstime-04-bag.webp",
+      "media/tosstime-05-records.webp",
     ],
   },
 
   //지금화장실
   {
     slug: "nowtoilet",
+    logo: "nowtoilet.svg",
     weight: 1,
     title: {
       ko: "지금화장실",
       en: "NowToilet",
-      tr: "NowToilet",
+      ja: "NowToilet",
       ar: "NowToilet",
     },
     blurb: {
       ko: "지금 내 주변에서 실제로 열려 있는 개방화장실을 찾아주는 앱인토스 미니앱. 공공데이터 5만여 건을 직접 정제했어요.",
       en: "A Toss mini app that finds public restrooms actually open near you right now — built on 50k+ rows of public data I cleaned myself.",
-      tr: "Şu anda çevrende gerçekten açık olan umumi tuvaletleri bulan Toss mini uygulaması. 50 binden fazla kamu verisi satırını kendim temizledim.",
+      ja: "今いる場所の近くで、実際に今開いている公衆トイレを探せるTossミニアプリ。5万件以上の公共データを自分で整備しました。",
       ar: "تطبيق Toss مصغّر يعثر على دورات المياه العامة المفتوحة فعلاً بجوارك الآن، مبني على أكثر من 50 ألف سجل من البيانات العامة نظّفتها بنفسي.",
     },
     tags: [
@@ -520,33 +527,33 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     status: "Active",
     period: "2026",
     role: {
-      ko: "기획 · 데이터 파이프라인 · 개발 (1인)",
-      en: "Planning · Data pipeline · Development (solo)",
-      tr: "Planlama · Veri hattı · Geliştirme (tek kişi)",
-      ar: "التخطيط وخط البيانات والتطوير (منفرد)",
+      ko: "기획 · 데이터 파이프라인 · 개발",
+      en: "Planning · Data pipeline · Development",
+      ja: "企画 · データパイプライン · 開発",
+      ar: "التخطيط وخط البيانات والتطوير",
     },
-    thumb: "media/toilet-01-list.jpg",
+    thumb: "media/toilet-01-list.webp",
     metrics: [
       {
         value: "50K+",
-        label: { ko: "공공데이터 화장실", en: "restrooms from open data", tr: "açık veriden tuvalet", ar: "دورة مياه من البيانات المفتوحة" },
+        label: { ko: "공공데이터 화장실", en: "restrooms from open data", ja: "公共データのトイレ", ar: "دورة مياه من البيانات المفتوحة" },
       },
       {
         value: "5",
-        label: { ko: "필터 (24시간 · 기저귀 · 장애인 · 비상벨)", en: "filters", tr: "filtre", ar: "مرشحات" },
+        label: { ko: "필터 (24시간 · 기저귀 · 장애인 · 비상벨)", en: "filters", ja: "フィルター", ar: "مرشحات" },
       },
       {
         value: "3",
-        label: { ko: "단계 바텀시트 스냅 (직접 구현)", en: "hand-built sheet snap points", tr: "elle yapılan yapışma noktası", ar: "نقاط التصاق مبنية يدوياً" },
+        label: { ko: "단계 바텀시트 스냅 (직접 구현)", en: "hand-built sheet snap points", ja: "手作りのシートスナップ", ar: "نقاط التصاق مبنية يدوياً" },
       },
     ],
     stack: [
       {
-        group: { ko: "앱", en: "App", tr: "Uygulama", ar: "التطبيق" },
+        group: { ko: "앱", en: "App", ja: "アプリ", ar: "التطبيق" },
         items: ["React 19", "TypeScript", "Vite 6", "Apps in Toss Web Framework", "Kakao Map SDK", "Lucide Icons"],
       },
       {
-        group: { ko: "데이터", en: "Data", tr: "Veri", ar: "البيانات" },
+        group: { ko: "데이터", en: "Data", ja: "データ", ar: "البيانات" },
         items: ["행정안전부 공중화장실정보 API", "카카오 지오코딩", "Supabase Postgres", "배치 동기화 스크립트"],
       },
     ],
@@ -567,14 +574,14 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 - **Never an empty screen.** If the network or DB is unreliable it falls back to sample data, and the data source plus an "actual availability may differ on site" notice stays visible.
 - **Users fill the gaps.** Star reviews and error reports let people correct what open data misses — like a place listed as open that is actually closed.
 - **Built for store review.** The service role key is sync-script only, and since shipping a test ad ID in the bundle gets you rejected, the app renders no ad at all when the value is absent.`,
-      tr: `Acil durumda **şu anda açık olan** tuvaletleri en yakından başlayarak bulan bir Toss mini uygulaması.
+      ja: `急いでいるときに、**今開いている**トイレを近い順に探せるTossミニアプリです。
 
-- **Asıl iş veriydi.** Kore'nin umumi tuvalet veri seti Şubat 2025'te koordinat vermeyi bıraktı, elde yalnızca adres kaldı. Adresleri Kakao ile koordinata çeviren toplu iş hattı kurdum; 50 binden fazla satırı tek seferde değil, bölge ve satır sayısına göre dilimleyerek işliyorum.
-- **Çalışma saatleri son derece tutarsız biçimlerde geliyor.** Bu metinleri ayrıştırıp "şu anda açık mı" kararını veren özel bir mantık yazdım. 24 saat, bebek bakım, engelli ve acil zil filtreleri de aynı katmanda.
-- **Alt sayfa kütüphanesiz, elle yapıldı.** peek / half / full üç yapışma noktası işaretçi sürüklemesiyle çalışıyor; full durumunda kaydırma tamamen tarayıcıya bırakılıyor, böylece yerel ivmeli kaydırma korunuyor.
-- **Asla boş ekran yok.** Ağ veya veritabanı güvenilmezse örnek veriye geri düşüyor; veri kaynağı ve "sahadaki durum farklı olabilir" uyarısı görünür kalıyor.
-- **Boşlukları kullanıcılar dolduruyor.** Yıldızlı yorumlar ve hata bildirimleri, açık verinin kaçırdıklarını düzeltmeye yarıyor.
-- **Mağaza incelemesine hazır.** Service role anahtarı yalnızca senkronizasyon betiğinde; pakette test reklam kimliği göndermek ret sebebi olduğu için değer yoksa hiç reklam çizilmiyor.`,
+- **一番大きな仕事はデータでした。** 韓国の公衆トイレ公共データは2025年2月から座標提供が止まり、住所だけが残りました。住所をKakaoジオコーディングで座標に変換するバッチパイプラインを別途作り、5万件以上を地域や件数単位で分割して処理できるようにしました。
+- **開放時間の形式がばらばら。** 文字列を解析して「今開いているか」を判定する専用ロジックを置きました。24時間、ベビーベッド、バリアフリー、非常ベルのフィルターも同じ層につなげています。
+- **ボトムシートはライブラリなしで自作。** peek / half / full の3段階スナップをポインタードラッグで実装し、full状態ではスクロールを完全にブラウザへ戻してネイティブの慣性スクロールを活かしました。
+- **空画面にしない。** ネットワークやDBが不安定な場合はサンプルデータへフォールバックし、データ出典と「現地状況と異なる場合があります」という注意書きを常に表示します。
+- **ユーザーが埋める情報。** 星評価レビューとエラー報告を入れ、公共データが取りこぼす「実際には閉まっている」などの情報を利用者が補完できるようにしました。
+- **審査対策。** service roleキーは同期スクリプト専用で、テスト広告IDがバンドルに入るとリジェクトされるため、値がない場合は広告自体を描画しません。`,
       ar: `تطبيق Toss مصغّر يعثر على دورات المياه **المفتوحة الآن** مرتّبة من الأقرب، عند الحاجة الملحّة.
 
 - **العمل الحقيقي كان في البيانات.** توقّفت بيانات دورات المياه العامة في كوريا عن توفير الإحداثيات في فبراير 2025، ولم يبقَ سوى العناوين. بنيت خط معالجة دفعي يحوّل العناوين إلى إحداثيات عبر Kakao، قابلاً للتقسيم حسب المنطقة وعدد السجلات بدل تشغيل أكثر من 50 ألف سجل دفعة واحدة.
@@ -585,11 +592,11 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 - **جاهز لمراجعة المتجر.** مفتاح service role في سكربت المزامنة فقط، ولأن شحن معرّف إعلان تجريبي يعني الرفض، لا يُعرض أي إعلان عند غياب القيمة.`,
     },
     gallery: [
-      "media/toilet-01-list.jpg",
-      "media/toilet-02-filters.jpg",
-      "media/toilet-03-detail.jpg",
-      "media/toilet-05-review.jpg",
-      "media/toilet-06-report.jpg",
+      "media/toilet-01-list.webp",
+      "media/toilet-02-filters.webp",
+      "media/toilet-03-detail.webp",
+      "media/toilet-05-review.webp",
+      "media/toilet-06-report.webp",
     ],
   },
 
@@ -600,13 +607,13 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     title: {
       ko: "라이프 대시",
       en: "Life Dash",
-      tr: "Life Dash",
+      ja: "Life Dash",
       ar: "Life Dash",
     },
     blurb: {
       ko: "떨어지는 똥을 피하며 아기부터 유령까지 인생 12단계를 살아내는 원버튼 생존 아케이드. Phaser로 만드는 중.",
       en: "A one-button survival arcade where you dodge falling poop through 12 stages of life — from baby to ghost. Built with Phaser.",
-              tr: "Düşen kakalardan kaçarak bebeklikten hayalete kadar 12 yaşam evresini atlatmaya çalıştığın tek tuşlu hayatta kalma oyunu.",
+      ja: "落ちてくるうんちを避けながら、赤ちゃんから幽霊まで人生12段階を生き抜くワンボタン生存アーケード。Phaserで制作中です。",
       ar: "لعبة أركيد بزر واحد تتفادى فيها السقوط عبر 12 مرحلة من الحياة — من الرضاعة إلى الشبح.",
     },
     tags: ["Phaser 3", "TypeScript", "Vite", "Vitest", "Game Design", "Pixel Art"],
@@ -614,41 +621,41 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     status: "In Progress",
     period: "2026",
     role: {
-      ko: "게임 기획(GDD) · 개발 · 밸런싱 · 에셋 파이프라인 (1인)",
-      en: "Game design (GDD) · Development · Balancing · Asset pipeline (solo)",
-      tr: "Oyun tasarımı (GDD) · Geliştirme · Denge · Varlık hattı (tek kişi)",
-      ar: "تصميم اللعبة (GDD) والتطوير والموازنة وخط الأصول (منفرد)",
+      ko: "게임 기획(GDD) · 개발 · 밸런싱 · 에셋 파이프라인",
+      en: "Game design (GDD) · Development · Balancing · Asset pipeline",
+      ja: "ゲーム企画（GDD）· 開発 · バランス調整 · アセットパイプライン",
+      ar: "تصميم اللعبة (GDD) والتطوير والموازنة وخط الأصول",
     },
-    thumb: "media/gamelife-02-play.jpg",
+    thumb: "media/gamelife-02-play.webp",
     metrics: [
       {
         value: "12",
-        label: { ko: "인생 스테이지 (기획)", en: "life stages (designed)", tr: "yaşam evresi (tasarım)", ar: "مرحلة حياة (مصمّمة)" },
+        label: { ko: "인생 스테이지 (기획)", en: "life stages (designed)", ja: "人生ステージ（設計）", ar: "مرحلة حياة (مصمّمة)" },
       },
       {
         value: "9",
-        label: { ko: "능력 카드 (데이터로만 정의)", en: "ability cards (data-defined)", tr: "yetenek kartı", ar: "بطاقة قدرة" },
+        label: { ko: "능력 카드 (데이터로만 정의)", en: "ability cards (data-defined)", ja: "能力カード", ar: "بطاقة قدرة" },
       },
       {
         value: "15s",
-        label: { ko: "마다 능력 3택 1", en: "between each 3-card pick", tr: "her 3 kart seçimi arası", ar: "بين كل اختيار من 3 بطاقات" },
+        label: { ko: "마다 능력 3택 1", en: "between each 3-card pick", ja: "ごとに3択能力選択", ar: "بين كل اختيار من 3 بطاقات" },
       },
       {
         value: "270×480",
-        label: { ko: "논리 해상도 고정", en: "fixed logical resolution", tr: "sabit mantıksal çözünürlük", ar: "دقة منطقية ثابتة" },
+        label: { ko: "논리 해상도 고정", en: "fixed logical resolution", ja: "固定論理解像度", ar: "دقة منطقية ثابتة" },
       },
     ],
     stack: [
       {
-        group: { ko: "게임", en: "Game", tr: "Oyun", ar: "اللعبة" },
+        group: { ko: "게임", en: "Game", ja: "ゲーム", ar: "اللعبة" },
         items: ["Phaser 3.90", "TypeScript", "Vite 7", "Vitest", "DOM 기반 HUD"],
       },
       {
-        group: { ko: "설계", en: "Architecture", tr: "Mimari", ar: "البنية" },
+        group: { ko: "설계", en: "Architecture", ja: "設計", ar: "البنية" },
         items: ["Phaser 비의존 순수 시스템", "JSON 데이터 주도 밸런싱", "결정론적 RNG", "스폰 디렉터 · 난이도 커브"],
       },
       {
-        group: { ko: "에셋 · 테스트", en: "Assets & Testing", tr: "Varlıklar & Test", ar: "الأصول والاختبار" },
+        group: { ko: "에셋 · 테스트", en: "Assets & Testing", ja: "アセット・テスト", ar: "الأصول والاختبار" },
         items: ["Python 재양자화 파이프라인", "Cloudflare Quick Tunnel 실기기 테스트"],
       },
     ],
@@ -689,22 +696,24 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 🔗 On-device testing runs through a Cloudflare Quick Tunnel. HMR survives across the tunnel, so I can tweak a number while holding the phone and see it instantly.
 
 📌 Stage 1, "First Steps — Baby," is currently playable and in balancing.`,
-      tr: `💡 Tek parmakla bir karakteri hareket ettirip gökten düşen kakalardan kaçıyorsun. **Bu oyunun kimliği, bilinçli olarak çocuksu bu fikrin üzerine 12 yaşam evresini bindirmek** — gülerek başlıyorsun, son evrelerde sessizleşiyorsun.
+      ja: `💡 指一本でキャラクターを動かし、空から落ちてくるものを避けるゲームです。**あえて子どもっぽい題材に人生12段階を重ねたことが、このゲームの個性**です。笑って始まり、後半では少し静かになる落差を狙っています。
 
-📐 Kod yazmadan önce tasarım dokümanına üç ilke çaktım:
-- **Ölüm her zaman oyuncunun hatası olmalı.** Ekran dışından ani ölüm yok; her düşen nesnenin önce iniş gölgesi var
-- **Şaka kaka; duygu değil.** Anlık oynanışta komik ol, bölüm sonu ara sahnesinde asla
-- **60 saniyede tamamlanan bir duygu yayı.**
+📐 コードを書く前に、企画書へ3つの原則を固定しました。
+- **死は必ずプレイヤーの責任であること。** 画面外から突然の即死要素は出さず、すべての落下物に着地予告の影を付ける
+- **ネタはネタ、感情は真剣に。** プレイ中はコミカルにしても、ステージクリア演出では茶化さない
+- **60秒以内に完結する感情。** 1ステージが短編アニメのように感じられること
 
-🧪 **\`src/systems\` klasörü Phaser'ı hiç import etmiyor.** Saf mantık olduğu için denge değişmezlerini birim testleriyle sabitleyebiliyorum — örneğin "kumarbaz yeteneği üç kez üst üste binse bile minimum tepki penceresi 0.85 saniyenin altına düşmez" testle zorunlu kılınıyor.
+🧪 **\`src/systems\`フォルダはPhaserをimportしない純粋ロジックです。** そのため、バランスの不変条件をユニットテストで固定できます。たとえば「ギャンブラー能力を3重複しても最小反応時間0.85秒を下回らない」ことをテストで強制しています。能力の組み合わせが増えてもゲームが静かに壊れないための安全装置です。
 
-🎚️ **Tüm sayılar JSON'da, kodda değil.** Hız, can, zorluk eğrisi, hedefler ve desen ağırlıkları veri dosyalarında ve kaydedince anında yenileniyor. Dokuz yetenek yalnızca \`{target, op, value}\` değiştiricileriyle ifade ediliyor, yani **yeni yetenek eklemek hiç kod değişikliği gerektirmiyor.**
+🎚️ **数値はすべてJSONにあり、コードには置いていません。** 移動速度、ライフ、難易度カーブ、目標値、パターン重みはデータファイルにあり、保存するとすぐホットリロードされます。9種類の能力も\`{target, op, value}\`モディファイアだけで表現し、**新しい能力を追加してもコード修正が不要**です。
 
-📱 Dikey alan 480 mantıksal piksele **sabit**; çünkü bu yükseklik doğrudan tepki süresi demek. Yalnızca genişlik 225–360 arasında esniyor ve fazladan genişliğe **orantılı olarak doğma yoğunluğunu** artırıyorum. Ölçek yalnızca **tam sayı**: kesirli ölçek pikselleri titretiyor.
+📱 縦方向は480論理ピクセルで**固定**しました。この高さ自体が反応時間になるため、端末ごとに変わってはいけないからです。横幅だけ画面比率に合わせて225〜360の間で変化し、広がった分だけ**スポーン密度を比例して上げる**ことで、体感難易度をそろえました。スケールはデバイスピクセル基準で**整数のみ**使います。
 
-🖼️ Kaynak sanat, gerçek piksel ızgarası olmayan "piksel gibi görünen" yüksek çözünürlüklü görsellerdi. Bu yüzden onları mantıksal ızgaraya **yeniden nicemleyen bir Python aracı** yazdım.
+🖼️ 元のアートは「ピクセルアート風」に見える高解像度画像で、実際のピクセルグリッドがありませんでした。そこで**論理解像度グリッドへ再量子化するPythonツール**を作り、新しいアートが来たら1コマンドでゲーム解像度へ変換できるようにしました。
 
-📌 1. bölüm "İlk Adımlar — Bebek" şu anda oynanabilir ve denge çalışması sürüyor.`,
+🔗 実機テストはCloudflare Quick Tunnelで行いました。トンネル越しでもHMRが生きているので、スマホを持ったまま数値を変えるとすぐ反映されます。
+
+📌 現在は1ステージ「First Steps — Baby」がプレイ可能で、バランス調整中です。`,
       ar: `💡 تحرّك شخصية بإصبع واحد وتتفادى ما يسقط من السماء. **هوية هذه اللعبة هي إسقاط 12 مرحلة من حياة الإنسان على فكرة طفولية متعمّدة** — تبدأ ضاحكاً ثم تصمت في المراحل المتأخرة.
 
 📐 ثبّتُ ثلاثة مبادئ في مستند التصميم قبل كتابة أي شيفرة:
@@ -722,7 +731,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 
 📌 المرحلة الأولى "الخطوات الأولى — الرضيع" قابلة للعب حالياً وقيد الموازنة.`,
     },
-    gallery: ["media/gamelife-02-play.jpg", "media/gamelife-01-title.jpg"],
+    gallery: ["media/gamelife-02-play.webp", "media/gamelife-01-title.webp"],
   },
 
   //portfolio-site
@@ -732,13 +741,13 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     title: {
       ko: "개인 포트폴리오 사이트",
       en: "Personal Portfolio Site",
-      tr: "Kişisel Portföy Sitesi",
+      ja: "個人ポートフォリオサイト",
       ar: "موقع محفظة شخصية",
     },
     blurb: {
       ko: "다국어 지원과 반응형 UI를 적용한 개인 포트폴리오 사이트입니다.",
       en: "Personal portfolio site with multi-language support and responsive UI.",
-      tr: "Çoklu dil desteği ve duyarlı UI ile kişisel portföy sitesi.",
+      ja: "多言語対応とレスポンシブUIを備えた個人ポートフォリオサイトです。",
       ar: "موقع محفظة شخصية مع دعم لغات متعددة وتصميم واجهة متجاوبة.",
     },
     tags: ["React", "TypeScript", "TailwindCSS", "Framer Motion", "i18n", "RTL"],
@@ -746,10 +755,10 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     status: "Active",
     active: true,
     role: {
-      ko: "전부 혼자 (기획 · 디자인 · 개발 · 배포)",
-      en: "Everything solo (planning · design · development · deploy)",
-      tr: "Hepsi tek başıma (planlama · tasarım · geliştirme · dağıtım)",
-      ar: "كل شيء بمفردي (تخطيط وتصميم وتطوير ونشر)",
+      ko: "기획 · 디자인 · 개발 · 배포",
+      en: "Planning · Design · Development · Deploy",
+      ja: "企画 · デザイン · 開発 · デプロイ",
+      ar: "تخطيط · تصميم · تطوير · نشر",
     },
     thumb:
       "https://res.cloudinary.com/dlomu8nah/image/upload/v1762588118/port_at4zcs.png",
@@ -757,32 +766,32 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     mainVideo: "",
     links: {
       code: "https://github.com/wonseola/seola-portfolio",
-      link: "https://wonseola.netlify.app",
+      link: "https://wonseola.xyz",
     },
     metrics: [
       {
         value: "4",
-        label: { ko: "지원 언어 (RTL 포함)", en: "languages (incl. RTL)", tr: "dil (RTL dahil)", ar: "لغات (تشمل RTL)" },
+        label: { ko: "지원 언어 (RTL 포함)", en: "languages (incl. RTL)", ja: "対応言語（RTL含む）", ar: "لغات (تشمل RTL)" },
       },
       {
         value: "0",
-        label: { ko: "런타임 의존 CMS (전부 타입 데이터)", en: "runtime CMS (all typed data)", tr: "çalışma zamanı CMS", ar: "نظام محتوى وقت التشغيل" },
+        label: { ko: "런타임 의존 CMS (전부 타입 데이터)", en: "runtime CMS (all typed data)", ja: "ランタイムCMS依存", ar: "نظام محتوى وقت التشغيل" },
       },
     ],
     stack: [
       {
-        group: { ko: "프론트엔드", en: "Frontend", tr: "Frontend", ar: "الواجهة الأمامية" },
+        group: { ko: "프론트엔드", en: "Frontend", ja: "フロントエンド", ar: "الواجهة الأمامية" },
         items: ["React 19", "TypeScript", "Vite", "TailwindCSS", "Framer Motion", "React Router"],
       },
       {
-        group: { ko: "구조", en: "Architecture", tr: "Mimari", ar: "البنية" },
+        group: { ko: "구조", en: "Architecture", ja: "構造", ar: "البنية" },
         items: ["타입 안전 다국어 데이터", "에셋 프리로더", "Cloudinary 자동 최적화"],
       },
     ],
     body: {
       ko: `💡 지금 보고 계신 사이트예요 :) 이력서를 PDF로 돌리는 대신, **프로젝트를 실제로 만져볼 수 있는 형태**로 두고 싶어서 만들었습니다.
 
-🌍 **한국어 · 영어 · 터키어 · 아랍어 4개 언어**를 지원합니다. 단순 번역이 아니라 아랍어에서는 정렬 방향까지 바꿔서 RTL로 읽히도록 했어요. 모든 콘텐츠는 언어 코드를 키로 갖는 타입 안전한 데이터로 관리해서, **언어를 빼먹으면 타입 에러가 납니다.**
+🌍 **한국어 · 영어 · 일본어 · 아랍어 4개 언어**를 지원합니다. 단순 번역이 아니라 아랍어에서는 정렬 방향까지 바꿔서 RTL로 읽히도록 했어요. 모든 콘텐츠는 언어 코드를 키로 갖는 타입 안전한 데이터로 관리해서, **언어를 빼먹으면 타입 에러가 납니다.**
 
 ⚡ 첫 화면 체감 속도에 신경 썼습니다. 로딩 스크린에서 핵심 에셋을 미리 받고, Cloudinary 이미지는 URL을 가로채 f_auto·q_auto·리사이즈 파라미터를 자동으로 붙여 내려받습니다. 이미지와 영상은 전부 lazy 로딩 + 페이드인이라 레이아웃이 튀지 않아요.
 
@@ -791,22 +800,22 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 🦖 콘솔을 열어보시면 뭔가 있을지도 몰라요.`,
       en: `💡 The site you're looking at right now :) I built it because I'd rather hand someone **projects they can actually click through** than a PDF résumé.
 
-🌍 It supports **four languages — Korean, English, Turkish, and Arabic.** Not just translated strings: Arabic flips the text alignment so it reads properly right-to-left. All content is stored as type-safe data keyed by language code, which means **forgetting a locale is a type error**, not a silent blank.
+🌍 It supports **four languages — Korean, English, Japanese, and Arabic.** Not just translated strings: Arabic flips the text alignment so it reads properly right-to-left. All content is stored as type-safe data keyed by language code, which means **forgetting a locale is a type error**, not a silent blank.
 
 ⚡ I cared about perceived load time. Critical assets are prefetched behind the loading screen, and Cloudinary image URLs are intercepted to append f_auto, q_auto, and resize parameters automatically. Every image and video lazy-loads with a fade-in so the layout never jumps.
 
 🎨 The interactions stay on the restrained side: a glow that trails the cursor, a glitch transition on the status line, a typing effect, and a lightbox for project galleries. On mobile the glitch scramble is disabled in favor of a plain fade — better for battery and readability.
 
 🦖 There might be something waiting in the console.`,
-      tr: `💡 Şu anda baktığınız site :) PDF özgeçmiş yerine **gerçekten tıklanabilir projeler** sunmak istediğim için yaptım.
+      ja: `💡 今見ているこのサイトです :) PDFの履歴書だけではなく、**実際にクリックして触れるプロジェクト**として見せたくて作りました。
 
-🌍 **Dört dili destekliyor — Korece, İngilizce, Türkçe ve Arapça.** Sadece çeviri değil: Arapçada metin hizalaması da sağdan sola dönüyor. Tüm içerik dil koduyla anahtarlanan tip güvenli veri olarak tutuluyor, yani **bir dili unutmak sessiz bir boşluk değil, tip hatası.**
+🌍 **韓国語、英語、日本語、アラビア語の4言語**に対応しています。単なる翻訳だけでなく、アラビア語ではテキストの向きも変えてRTLで読めるようにしました。すべてのコンテンツは言語コードをキーにした型付きデータで管理しています。
 
-⚡ Algılanan yüklenme süresine önem verdim. Kritik varlıklar yükleme ekranının arkasında önden çekiliyor; Cloudinary görsel URL'lerine f_auto, q_auto ve yeniden boyutlandırma parametreleri otomatik ekleniyor. Tüm görsel ve videolar solma efektiyle tembel yükleniyor, düzen zıplamıyor.
+⚡ 初回表示の体感速度にも気を配りました。ローディング画面の裏で重要なアセットを先読みし、Cloudinary画像URLにはf_auto、q_auto、リサイズパラメータを自動で付けます。画像と動画はすべてlazy loading + fade-inなので、レイアウトが跳ねません。
 
-🎨 Etkileşimler ölçülü: imleci izleyen bir parıltı, durum satırında glitch geçişi, yazma efekti ve galeri için lightbox. Mobilde glitch kapalı, yerine sade bir solma var.
+🎨 インタラクションは控えめに入れています。カーソルを追うグロー、ステータスメッセージのグリッチ遷移、タイピング効果、プロジェクトギャラリーのライトボックスくらいです。モバイルではグリッチのスクランブルを切り、読みやすさとバッテリーを優先してフェードだけ残しました。
 
-🦖 Konsolda sizi bekleyen bir şey olabilir.`,
+🦖 コンソールを開くと、何かあるかもしれません。`,
       ar: `💡 الموقع الذي تنظر إليه الآن :) بنيته لأنني أفضّل تقديم **مشاريع يمكن تصفّحها فعلاً** بدل سيرة ذاتية بصيغة PDF.
 
 🌍 يدعم **أربع لغات — الكورية والإنجليزية والتركية والعربية.** وليس مجرد ترجمة: في العربية يتغيّر اتجاه المحاذاة ليُقرأ من اليمين إلى اليسار. يُخزَّن المحتوى كله كبيانات آمنة الأنواع مفهرسة برمز اللغة، ما يعني أن **نسيان لغة ما يصبح خطأً في الأنواع** لا فراغاً صامتاً.
@@ -822,17 +831,18 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //우동설
   {
     slug: "woodongseol",
+    logo: "woodongseol.png",
     weight: 3,
     title: {
       ko: "우리동네 설명회",
       en: "WoodongSeol",
-      tr: "WoodongSeol",
+      ja: "WoodongSeol",
       ar: "WoodongSeol",
     },
     blurb: {
       ko: "기업과 개인이 설명회를 등록하고 예약·결제·인증까지 진행할 수 있는 플랫폼입니다.",
       en: "A platform where companies and individuals can host, book, and pay for seminars with authentication.",
-      tr: "Şirketlerin ve bireylerin seminer oluşturup rezervasyon ve ödeme yapabildiği bir platform.",
+      ja: "企業や個人が説明会を登録し、予約・決済・本人認証まで進められるプラットフォームです。",
       ar: "منصة تتيح للشركات والأفراد تنظيم الندوات، الحجز، والدفع مع التحقق من الهوية.",
     },
     tags: [
@@ -847,10 +857,11 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     area: "React",
     status: "Active",
     featured: true,
+    period: "2025",
     role: {
       ko: "프론트엔드 전담 · 백엔드 1명과 협업",
       en: "Sole frontend developer · paired with one backend developer",
-      tr: "Tek frontend geliştirici · bir backend geliştiriciyle birlikte",
+      ja: "フロントエンド専任 · バックエンド開発者1名と協業",
       ar: "مطوّرة الواجهة الأمامية الوحيدة · بالتعاون مع مطوّر خلفية",
     },
     metrics: [
@@ -859,26 +870,26 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
         label: {
           ko: "연결 플로우 (예약 · 결제 · 인증 · 관리)",
           en: "connected flows (booking · payment · auth · admin)",
-          tr: "bağlı akış",
+          ja: "連携フロー",
           ar: "مسارات مترابطة",
         },
       },
       {
         value: "2",
-        label: { ko: "검색엔진 노출 (구글 · 네이버)", en: "search engines indexed", tr: "arama motoru", ar: "محركات بحث" },
+        label: { ko: "검색엔진 노출 (구글 · 네이버)", en: "search engines indexed", ja: "検索エンジン掲載", ar: "محركات بحث" },
       },
       {
         value: "PortOne",
-        label: { ko: "실결제 연동", en: "live payment integration", tr: "canlı ödeme entegrasyonu", ar: "تكامل دفع حقيقي" },
+        label: { ko: "실결제 연동", en: "live payment integration", ja: "実決済連携", ar: "تكامل دفع حقيقي" },
       },
     ],
     stack: [
       {
-        group: { ko: "프론트엔드", en: "Frontend", tr: "Frontend", ar: "الواجهة الأمامية" },
+        group: { ko: "프론트엔드", en: "Frontend", ja: "フロントエンド", ar: "الواجهة الأمامية" },
         items: ["React", "JavaScript", "Styled-Components"],
       },
       {
-        group: { ko: "연동 · 배포", en: "Integrations & Deploy", tr: "Entegrasyon & Dağıtım", ar: "التكاملات والنشر" },
+        group: { ko: "연동 · 배포", en: "Integrations & Deploy", ja: "連携・デプロイ", ar: "التكاملات والنشر" },
         items: ["PortOne 결제 API", "본인인증", "AWS S3 정적 배포", "SEO · 메타데이터"],
       },
     ],
@@ -894,40 +905,208 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     },
     body: {
       ko: `
-💡 기업과 개인이 설명회를 등록하고, 참가자는 일정 선택부터 예약·결제·본인인증까지 한 번에 처리할 수 있는 플랫폼입니다.  
+💡 기업이 설명회를 열고 참가자가 신청까지 한 번에 끝내는 플랫폼입니다. **개인 회원과 기업 회원이 구조부터 분리**돼 있고, 제가 프론트엔드를 전담했어요.
 
-🧩 프론트엔드는 React와 Styled-Components로 개발했으며, 결제는 PortOne API를 사용했습니다.  
+**기업이 쓰는 기능**
 
-🚀 AWS S3를 통해 정적 배포를 진행했고, 검색엔진 최적화(SEO)와 메타데이터 설정으로 네이버·구글 노출을 개선했습니다.  
+- **기업 등록 · 사업자 인증** - 국세청 사업자등록정보 진위확인 API로 사업자번호 · 대표자명 · 개업일자를 검증한 뒤에야 기업 계정이 열립니다
+- **설명회 등록** - Quill 에디터로 본문을 쓰고, 임시저장했다가 이어서 작성할 수 있어요
+- **신청자 관리** - 회차별 신청 명단을 보고 **엑셀로 내보냅니다**. 현장에서 명단이 필요하다는 요청이 실제로 있었어요
+- **사전질문 · 문의 응대** - 참가자가 미리 남긴 질문에 답을 달아둡니다
+- **통계** - 설명회별 조회수와 취소 건수를 봅니다
 
-🤝 백엔드 개발자 1명과 협업하여 전체 서비스 구조와 UX를 함께 설계했습니다.
+**참가자가 쓰는 기능**
+
+- 관심 분야를 등록해두면 맞는 설명회가 열릴 때 알림을 받습니다
+- 찜해둔 설명회를 모아 보고, 신청 · 취소를 직접 합니다
+- 궁금한 건 사전질문으로 남겨두면 기업이 답을 달아줍니다
+- 커뮤니티에서 후기와 질문을 주고받습니다
+
+🔐 **인증은 붙이는 게 아니라 막는 장치로 설계했습니다.** 사업자 인증을 통과하지 못하면 설명회를 올릴 수 없어요. 아무나 설명회를 등록하면 참가자가 헛걸음하게 되니까, 기업 생성 단계에서 한 번 걸러냅니다.
+
+💰 **결제는 광고 상품에 붙어 있습니다.** 설명회를 더 노출시키고 싶은 기업이 배너 · 라인 · 검색 등 지면을 삽니다. 상품은 세 갈래예요.
+
+- **일일권** - 고른 기간만큼 일수로 계산
+- **기간권** - 묶음 단위
+- **구독** - 정기 결제
+
+PortOne으로 붙였는데, **결제를 클라이언트에서 끝내지 않습니다.** 먼저 서버에 결제를 사전 등록하고, 끝난 뒤 서버가 다시 검증하는 순서예요. 금액을 프론트에서 만들면 위조할 수 있어서입니다.
+
+🔗 **로그인은 카카오 · 네이버 소셜과 이메일을 함께 씁니다.** 소셜에서 돌아올 때 어떤 유형(개인/기업)으로 가입하려던 건지를 들고 다녀야 해서, 인가 요청 전에 세션에 담아두고 콜백에서 꺼내 씁니다.
+
+📱 **모바일은 반응형이 아니라 화면을 따로 만들었습니다.** 기업이 쓰는 신청자 관리나 결제 화면은 표와 단계가 많아서, 같은 마크업을 좁은 폭에 밀어 넣으면 쓸 수가 없었어요. \`isMobile\`로 기기를 판별해 전용 화면으로 보냅니다.
+
+**관리자 화면**
+
+- **기업 승인 · 반려** - 사업자 인증을 통과해도 관리자가 한 번 더 봅니다
+- **게시글 승인 대기** - 커뮤니티 글을 걸러서 공개합니다
+- **신고 처리** - 신고된 글과 댓글을 확인하고 조치합니다
+- **회원 · 매니저 관리**, **특성화고 등록**, **입시 일정 관리**
+
+**설명회 말고도 들어간 것**
+
+- **커뮤니티** - 후기와 질문을 글·댓글·대댓글·좋아요로 주고받고, 신고 기능이 붙어 있습니다
+- **특성화고 정보** - 지역과 관심 분야로 학교를 찾습니다
+- **입시 일정 캘린더** - 챙겨야 할 일정을 달력으로 봅니다
+
+🔍 **S3 정적 배포라 SSR이 없어서, 크롤러용 페이지를 따로 만들었습니다.** SPA는 첫 HTML이 비어 있어 검색엔진이 읽을 게 없습니다. 그래서 홈 · 커뮤니티 · 교육 세 경로에 제목과 설명이 들어간 정적 HTML을 두고, **사람이 열면 스크립트가 실제 화면으로 넘기고 크롤러는 그대로 읽게** 했어요. 서버 없이 할 수 있는 선에서의 타협이었습니다.
+
+🚀 AWS S3 정적 배포. 메타데이터를 페이지마다 넣어 구글 · 네이버 노출을 잡았습니다.
+
+🤝 백엔드 개발자 1명과 협업했고, 서비스 구조와 UX는 같이 설계했습니다.
 `,
       en: `
-💡 A platform where companies and individuals can host seminars, while participants can handle booking, payment, and verification in one flow.  
+💡 A platform where companies run seminars and attendees sign up in one flow. **Individual and company accounts are separated at the structural level**, and I owned the frontend.
 
-🧩 Built with React and Styled-Components, using PortOne API for payment integration.  
+**What companies get**
 
-🚀 Deployed on AWS S3 with full SEO optimization for Google and Naver search visibility.  
+- **Company registration with business verification** - the account only opens after the national tax service API validates the business number, owner name, and start date
+- **Seminar authoring** - a Quill editor with drafts you can come back to
+- **Applicant management** - per-session rosters, **exported to Excel**, because staff actually needed the list on site
+- **Pre-questions and inquiries** - answer what attendees asked before the event
+- **Stats** - views and cancellations per seminar
 
-🤝 Collaborated with a backend developer on architecture and UX design.
+**What attendees get**
+
+- Register your interests and get notified when a matching seminar opens
+- Keep a saved list, and sign up or cancel yourself
+- Leave pre-questions for the company to answer before the event
+- Trade reviews and questions in the community
+
+🔐 **Verification is a gate, not a badge.** You cannot publish a seminar until business verification passes. If anyone could post one, attendees would show up to nothing — so the check sits at company creation.
+
+💰 **Payment rides on ad products.** A company that wants more visibility buys placements: banner, line, search. Three shapes:
+
+- **Day pass** - priced by the number of days selected
+- **Duration pass** - fixed bundles
+- **Subscription** - recurring
+
+Built on PortOne, and **the payment never completes on the client.** The server registers it first, then verifies it afterward — an amount computed in the browser can be forged.
+
+🔗 **Login is Kakao and Naver social plus email.** The account type you picked has to survive the round trip to the provider, so it's stashed in session before the authorize call and read back in the callback.
+
+📱 **Mobile is a separate set of screens, not a breakpoint.** Applicant tables and the payment steps have too much structure to squeeze into a narrow column, so \`isMobile\` decides which set of views you get.
+
+**Admin**
+
+- **Approve or reject companies** - business verification passes first, then a human looks again
+- **Post moderation queue** - community posts are reviewed before they go public
+- **Reports** - review and act on reported posts and comments
+- **Member and manager management**, **school registry**, **admissions calendar**
+
+**Beyond seminars**
+
+- **Community** - posts, comments, replies, likes, and reporting
+- **Vocational school directory** - browse by region and interest
+- **Admissions calendar** - the dates you have to keep track of
+
+🔍 **Static hosting on S3 means no SSR, so crawlers get their own pages.** An SPA ships an empty first HTML — there is nothing for a search engine to read. So three routes (home, community, education) have static HTML carrying a real title and description, and **a script forwards human visitors to the app while crawlers read what they were served.** It was the compromise available without a server.
+
+🚀 Static deploy on AWS S3, with per-page metadata for Google and Naver visibility.
+
+🤝 Worked with one backend developer; we designed the service structure and UX together.
 `,
-      tr: `
-💡 Şirketler ve bireyler için seminer oluşturma, rezervasyon, ödeme ve kimlik doğrulama özellikleri sunan bir platform.  
+      ja: `
+💡 企業が説明会を開き、参加者が申し込みまで一度に終えられるプラットフォームです。**個人会員と企業会員は構造から分かれて**おり、フロントエンドを担当しました。
 
-🧩 React ve Styled-Components kullanılarak geliştirildi, ödeme entegrasyonu PortOne API ile sağlandı.  
+**企業向けの機能**
 
-🚀 AWS S3 üzerinde dağıtıldı ve Google/Naver SEO için optimize edildi.  
+- **企業登録・事業者認証** - 国税庁の事業者登録情報真偽確認APIで事業者番号・代表者名・開業日を検証してから企業アカウントが開きます
+- **説明会の作成** - Quillエディタで本文を書き、下書き保存して続きから書けます
+- **申込者管理** - 回次ごとの名簿を確認し、**Excelに書き出します**
+- **事前質問・問い合わせ対応** - 参加者が事前に残した質問に回答します
+- **統計** - 説明会ごとの閲覧数とキャンセル件数
 
-🤝 Bir backend geliştiriciyle iş birliği içinde tasarlandı.
+**参加者向けの機能**
+
+- 関心分野を登録しておくと、合う説明会が開かれたときに通知が届きます
+- 気になる説明会をまとめて見て、申し込み・キャンセルを自分で行います
+- 気になることは事前質問として残しておくと企業が回答します
+- コミュニティで感想や質問をやり取りします
+
+🔐 **認証は飾りではなく門として設計しました。** 事業者認証を通らなければ説明会を掲載できません。誰でも掲載できると参加者が無駄足になるため、企業作成の段階でふるいにかけます。
+
+💰 **決済は広告商品に紐づいています。** 露出を増やしたい企業がバナー・ライン・検索などの枠を購入します。商品は三種類です。
+
+- **日割券** - 選んだ期間の日数で計算
+- **期間券** - まとめ単位
+- **サブスク** - 定期課金
+
+PortOneで実装し、**決済をクライアントで完結させません。** 先にサーバーへ事前登録し、完了後にサーバーが再検証します。金額をフロントで作ると偽造できるからです。
+
+🔗 **ログインはカカオ・ネイバーのソーシャルとメールです。** どの種別で登録しようとしていたかを往復のあいだ保持する必要があるため、認可リクエスト前にセッションへ入れ、コールバックで取り出します。
+
+📱 **モバイルはレスポンシブではなく画面を別に作りました。** 申込者管理や決済は表と手順が多く、同じマークアップを狭い幅に押し込むと使えなくなるため、\`isMobile\`で振り分けます。
+
+**管理者画面**
+
+- **企業の承認・却下** - 事業者認証を通っても管理者がもう一度確認します
+- **投稿の承認待ち** - コミュニティ投稿を確認してから公開します
+- **通報対応** - 通報された投稿とコメントを確認して処置します
+- **会員・マネージャー管理**、**特性化高校の登録**、**入試日程の管理**
+
+**説明会以外に入っているもの**
+
+- **コミュニティ** - 感想や質問を投稿・コメント・返信・いいねでやり取りし、通報機能もあります
+- **特性化高校情報** - 地域と関心分野で学校を探します
+- **入試日程カレンダー** - 押さえるべき日程をカレンダーで確認します
+
+🔍 **S3の静的デプロイでSSRがないため、クローラー用のページを別に作りました。** SPAは最初のHTMLが空で、検索エンジンに読むものがありません。そこでホーム・コミュニティ・教育の3経路にタイトルと説明を持つ静的HTMLを置き、**人が開いた場合はスクリプトが実画面へ送り、クローラーはそのまま読む**ようにしました。
+
+🚀 AWS S3で静的デプロイ。ページごとのメタデータでGoogle・Naverの露出を確保しました。
+
+🤝 バックエンド開発者1名と協業し、サービス構造とUXを一緒に設計しました。
 `,
       ar: `
-💡 منصة تتيح للشركات والأفراد إنشاء الندوات، مع الحجز والدفع والتحقق في عملية واحدة.  
+💡 منصة تنظّم فيها الشركات ندواتها ويكمل المشاركون التسجيل في مسار واحد. **حسابات الأفراد والشركات منفصلة بنيوياً**، وقد توليت الواجهة الأمامية.
 
-🧩 تم تطويرها باستخدام React وStyled-Components، مع دمج واجهة برمجة تطبيقات PortOne للدفع.  
+**ما تحصل عليه الشركات**
 
-🚀 تم النشر على AWS S3 مع تحسين محركات البحث لجوجل ونفر.  
+- **تسجيل الشركة والتحقق من السجل التجاري** - لا يُفتح الحساب إلا بعد التحقق من رقم السجل واسم المالك وتاريخ البدء عبر واجهة هيئة الضرائب
+- **إنشاء الندوات** - محرر Quill مع حفظ المسودات
+- **إدارة المتقدمين** - قوائم لكل جلسة مع **تصدير إلى Excel**
+- **الأسئلة المسبقة والاستفسارات** - الرد على ما يطرحه المشاركون قبل الفعالية
+- **إحصاءات** - المشاهدات والإلغاءات لكل ندوة
 
-🤝 تم تطويرها بالتعاون مع مطور خلفية واحد.
+**ما يحصل عليه المشاركون**
+
+- سجّل اهتماماتك لتصلك إشعارات عند فتح ندوة مناسبة
+- احفظ الندوات في قائمة، وسجّل أو ألغِ بنفسك
+- اترك أسئلة مسبقة تجيب عنها الشركة قبل الفعالية
+- تبادل الانطباعات والأسئلة في المجتمع
+
+🔐 **التحقق بوابة لا شارة.** لا يمكن نشر ندوة قبل اجتياز التحقق من السجل التجاري، وإلا حضر الناس إلى لا شيء.
+
+💰 **الدفع مرتبط بالمنتجات الإعلانية.** تشتري الشركة مساحات: بانر، سطر، بحث. وثلاثة أشكال:
+
+- **تذكرة يومية** - تُحسب بعدد الأيام
+- **تذكرة مدة** - باقات ثابتة
+- **اشتراك** - دفع دوري
+
+بُني على PortOne، و**لا تكتمل عملية الدفع على العميل**: يسجلها الخادم أولاً ثم يتحقق منها بعد الانتهاء، لأن مبلغاً يُحسب في المتصفح قابل للتزوير.
+
+🔗 **تسجيل الدخول عبر كاكاو ونيفر إضافة إلى البريد.** يُحفظ نوع الحساب في الجلسة قبل طلب التفويض ويُقرأ في الاستدعاء الراجع.
+
+📱 **نسخة الجوال شاشات مستقلة لا نقطة توقف.** جداول المتقدمين وخطوات الدفع أكثر تعقيداً من أن تُحشر في عمود ضيق، فيتكفّل \`isMobile\` بالتوجيه.
+
+**لوحة الإدارة**
+
+- **قبول الشركات أو رفضها** - يمر التحقق من السجل أولاً، ثم يراجع مشرف بشري
+- **قائمة انتظار المنشورات** - تُراجع منشورات المجتمع قبل نشرها
+- **البلاغات** - مراجعة المنشورات والتعليقات المبلّغ عنها واتخاذ إجراء
+- **إدارة الأعضاء والمديرين**، **سجل المدارس**، **تقويم القبول**
+
+**ما وراء الندوات**
+
+- **المجتمع** - منشورات وتعليقات وردود وإعجابات وإبلاغ
+- **دليل المدارس المهنية** - التصفح حسب المنطقة والاهتمام
+- **تقويم القبول** - المواعيد التي يجب تتبعها
+
+🔍 **الاستضافة الثابتة على S3 تعني غياب العرض من الخادم، فصُنعت صفحات خاصة بالزواحف.** يبدأ تطبيق الصفحة الواحدة بـ HTML فارغ لا تجد فيه محركات البحث ما تقرأه. لذلك تحمل ثلاثة مسارات (الرئيسية، المجتمع، التعليم) صفحات ثابتة بعنوان ووصف حقيقيين، و**يحوّل سكربت الزائر البشري إلى التطبيق بينما تقرأ الزواحف ما وصلها**.
+
+🚀 نشر ثابت على AWS S3، مع بيانات وصفية لكل صفحة لظهور أفضل في جوجل ونيفر.
+
+🤝 تعاونت مع مطوّر خلفية واحد على بنية الخدمة وتجربة المستخدم.
 `,
     },
     gallery: [
@@ -948,18 +1127,19 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //dangseon
   {
     slug: "dangseon",
+    logo: "dangseon.png",
     weight: 3,
     title: {
-      ko: "당신의 선택 — 당선",
-      en: "Your Choice — Dangseon",
-      tr: "Senin Seçimin — Dangseon",
-      ar: "اختيارك — Dangseon",
+      ko: "당신의 선택 - 당선",
+      en: "Your Choice - Dangseon",
+      ja: "あなたの選択 - Dangseon",
+      ar: "اختيارك - Dangseon",
     },
     blurb: {
-      ko: "누구나 투표를 만들고 참여할 수 있는 투표 플랫폼. Next.js 웹 + Capacitor로 iOS·Android 앱까지 출시.",
-      en: "A voting platform where anyone can create and join polls. Next.js web app + shipped to iOS & Android via Capacitor.",
-      tr: "Herkesin anket oluşturup katılabileceği bir oy platformu. Next.js web uygulaması + Capacitor ile iOS ve Android'e yayınlandı.",
-      ar: "منصة تصويت تتيح لأي شخص إنشاء استطلاعات والمشاركة فيها. تطبيق ويب Next.js ونشر على iOS وAndroid عبر Capacitor.",
+      ko: "실시간 투표와 커뮤니티로 사람들의 선택을 모으는 웹·앱 서비스. Next.js 웹 + Capacitor로 iOS·Android 앱까지 출시.",
+      en: "A web and app service that gathers people's choices through realtime polls and community. Next.js web app + shipped to iOS & Android via Capacitor.",
+      ja: "リアルタイム投票とコミュニティで人々の選択を集めるWeb・アプリサービス。Next.jsのWebに加え、CapacitorでiOS・Androidアプリまで公開しました。",
+      ar: "خدمة ويب وتطبيق تجمع خيارات الناس عبر التصويت الفوري والمجتمع. تطبيق ويب Next.js ونشر على iOS وAndroid عبر Capacitor.",
     },
     tags: [
       "Next.js 16",
@@ -979,66 +1159,66 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     status: "Active",
     active: true,
     featured: true,
-    period: "2025 – 현재",
+    period: "2026 – 현재",
     role: {
-      ko: "기획 · 디자인 · 웹/앱 개발 · 배포 · 운영 (1인)",
-      en: "Planning · Design · Web & app development · Deploy · Live ops (solo)",
-      tr: "Planlama · Tasarım · Web/uygulama geliştirme · Dağıtım · İşletme (tek kişi)",
-      ar: "التخطيط والتصميم وتطوير الويب والتطبيق والنشر والتشغيل (منفرد)",
+      ko: "기획 · 디자인 · 웹/앱 개발 · 배포 · 운영",
+      en: "Planning · Design · Web & app development · Deploy · Live ops",
+      ja: "企画 · デザイン · Web/アプリ開発 · デプロイ · 運用",
+      ar: "التخطيط والتصميم وتطوير الويب والتطبيق والنشر والتشغيل",
     },
-    thumb: "media/dangseon-01-home.jpg",
+    thumb: "media/dangseon-00-web.webp",
     links: { link: "https://dangseon.com" },
     metrics: [
       {
         value: "3",
-        label: { ko: "출시 플랫폼 (웹 · iOS · Android)", en: "shipped platforms", tr: "yayın platformu", ar: "منصات منشورة" },
+        label: { ko: "출시 플랫폼 (웹 · iOS · Android)", en: "shipped platforms", ja: "公開プラットフォーム", ar: "منصات منشورة" },
       },
       {
         value: "7",
         label: {
           ko: "서비스 축 (투표 · 숏픽 · 토너먼트 · 커뮤니티 · 인사이트 · 이벤트 · 랭킹)",
           en: "product pillars",
-          tr: "ürün ekseni",
+          ja: "サービス軸",
           ar: "محاور المنتج",
         },
       },
       {
         value: "RLS",
-        label: { ko: "DB 레벨 권한 제어", en: "row-level security", tr: "satır düzeyi güvenlik", ar: "أمان على مستوى الصف" },
+        label: { ko: "DB 레벨 권한 제어", en: "row-level security", ja: "DBレベル権限制御", ar: "أمان على مستوى الصف" },
       },
       {
         value: "24/7",
-        label: { ko: "Sentry · Analytics 관측", en: "monitored with Sentry", tr: "Sentry ile izleniyor", ar: "مراقبة عبر Sentry" },
+        label: { ko: "Sentry · Analytics 관측", en: "monitored with Sentry", ja: "Sentryで監視", ar: "مراقبة عبر Sentry" },
       },
     ],
     stack: [
       {
-        group: { ko: "웹", en: "Web", tr: "Web", ar: "الويب" },
+        group: { ko: "웹", en: "Web", ja: "Web", ar: "الويب" },
         items: ["Next.js 16 App Router", "React 19", "React Compiler", "TailwindCSS v4", "Recharts", "Lottie"],
       },
       {
-        group: { ko: "백엔드 · 데이터", en: "Backend & Data", tr: "Backend & Veri", ar: "الخلفية والبيانات" },
+        group: { ko: "백엔드 · 데이터", en: "Backend & Data", ja: "バックエンド・データ", ar: "الخلفية والبيانات" },
         items: ["Supabase Auth", "PostgreSQL + RLS", "Supabase Realtime", "Route Handlers", "Webhooks"],
       },
       {
-        group: { ko: "모바일", en: "Mobile", tr: "Mobil", ar: "الموبايل" },
+        group: { ko: "모바일", en: "Mobile", ja: "モバイル", ar: "الموبايل" },
         items: ["Capacitor 8", "Android (com.dangseon.app)", "iOS (com.dangseon.ios)", "FCM 푸시 알림"],
       },
       {
-        group: { ko: "운영 · 관측", en: "Ops & Observability", tr: "İşletme & Gözlem", ar: "التشغيل والمراقبة" },
+        group: { ko: "운영 · 관측", en: "Ops & Observability", ja: "運用・観測", ar: "التشغيل والمراقبة" },
         items: ["Vercel", "Sentry", "Vercel Analytics · Speed Insights", "Google Analytics", "어드민 대시보드"],
       },
     ],
     body: {
-      ko: `누구나 투표를 만들고 링크로 공유하는 서비스로 시작해, 지금은 **숏픽 · 토너먼트 · 커뮤니티 · AI 인사이트 · 포인트/등급 · 이벤트**까지 붙었습니다. 웹 · iOS · Android 모두 출시해 운영 중이에요.
+      ko: `운영에서 투표를 올리면 사람들이 참여하고 의견을 나누는 커뮤니티입니다. 투표 하나로 시작해 지금은 **숏픽 · 토너먼트 · 커뮤니티 · AI 인사이트 · 포인트/등급 · 이벤트**까지 붙었습니다. 웹 · iOS · Android 모두 출시해 운영 중이에요.
 
 **서비스에 들어간 것들**
-- **숏픽** — 세로로 넘기면서 바로 투표하는 쇼츠형 피드
-- **픽 토너먼트** — 이상형 월드컵 방식의 대진과 완주 통계
-- **투표 인사이트** — 마감된 투표를 AI가 읽을거리로 바꿔 커뮤니티에 발행 (어드민 콘솔 프로젝트에서 자세히)
-- **포인트 · 등급** — 출석·참여·작성으로 SEED부터 FOREST까지 6단계
-- **이벤트 · 쿠폰** — 출석체크, 선착순 기프티콘, 포인트 랜덤박스
-- **추천인 파트너** — 추천 실적 정산과 전자 서명 약정서
+- **숏픽** - 세로로 넘기면서 바로 투표하는 쇼츠형 피드
+- **픽 토너먼트** - 이상형 월드컵 방식의 대진과 완주 통계
+- **투표 인사이트** - 마감된 투표를 AI가 읽을거리로 바꿔 커뮤니티에 발행 (어드민 콘솔 프로젝트에서 자세히)
+- **포인트 · 등급** - 출석·참여·작성으로 SEED부터 FOREST까지 6단계
+- **이벤트 · 쿠폰** - 출석체크, 선착순 기프티콘, 포인트 랜덤박스
+- **추천인 파트너** - 추천 실적 정산과 전자 서명 약정서
 - **알림함 · 공지 모달 · 게스트 모드 · 투표 제안**
 
 **만들면서 신경 쓴 것**
@@ -1048,96 +1228,98 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 - **실시간 · 푸시.** 참여·좋아요·댓글은 Supabase Realtime으로 즉시 반영되고, 푸시는 FCM + firebase-admin으로 서버에서 발송합니다. 결과 카드는 html-to-image로 이미지화해 공유할 수 있어요.
 - **관측.** Sentry로 에러를, Vercel Analytics · Speed Insights · GA로 흐름을 봅니다. 가입 전환은 프로필 설정이 끝나는 시점으로 맞췄어요.
 
-📱 [App Store에서 보기](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · Google Play 동시 배포`,
-      en: `Started as a place to create a poll and share it by link; it now carries **short picks, tournaments, community boards, AI insights, points/tiers, and events**. Shipped and running on web, iOS, and Android.
+[App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · [Google Play](https://play.google.com/store/apps/details?id=com.dangseon.app) · [웹으로 바로가기](https://dangseon.com)`,
+      en: `A community built around polls: we publish them, and people vote and talk about the results. It started with a single poll and now carries it now carries **short picks, tournaments, community boards, AI insights, points/tiers, and events**. Shipped and running on web, iOS, and Android.
 
 **What's in the service**
-- **Short picks** — a vertical shorts-style feed you vote in directly
-- **Pick tournaments** — bracket-style matchups with completion stats
-- **Poll insights** — closed polls turned into readable articles by AI and published to the community (see the admin console project)
-- **Points & tiers** — six levels from SEED to FOREST, earned by attendance, participation, and posting
-- **Events & coupons** — attendance check-ins, first-come gift cards, point random boxes
-- **Referral partners** — payout settlement and e-signed agreements
+- **Short picks** - a vertical shorts-style feed you vote in directly
+- **Pick tournaments** - bracket-style matchups with completion stats
+- **Poll insights** - closed polls turned into readable articles by AI and published to the community (see the admin console project)
+- **Points & tiers** - six levels from SEED to FOREST, earned by attendance, participation, and posting
+- **Events & coupons** - attendance check-ins, first-come gift cards, point random boxes
+- **Referral partners** - payout settlement and e-signed agreements
 - **Notification inbox, announcement modals, guest mode, poll suggestions**
 
 **What I cared about building it**
 - **One web codebase, three platforms.** Next.js 16 + React 19 on Vercel, wrapped with Capacitor 8 for the stores. The app loads dangseon.com, so **deploying the web updates the apps too**.
-- **Authorization lives in the database, not the app.** Supabase RLS pins down who can read and write what at the table level — so a forgotten conditional in client code can't leak data.
-- **Working around the app build.** Capacitor needs a static export, but server Route Handlers block that. The build script **hides the API routes, exports, and restores them on exit** — on success and failure alike, so the working tree never ends up dirty.
+- **Authorization lives in the database, not the app.** Supabase RLS pins down who can read and write what at the table level - so a forgotten conditional in client code can't leak data.
+- **Working around the app build.** Capacitor needs a static export, but server Route Handlers block that. The build script **hides the API routes, exports, and restores them on exit** - on success and failure alike, so the working tree never ends up dirty.
 - **Realtime & push.** Votes, likes, and comments propagate instantly over Supabase Realtime; push goes out server-side via FCM + firebase-admin. Result cards render to images with html-to-image for sharing.
 - **Observability.** Sentry for errors; Vercel Analytics, Speed Insights, and GA for flow. Signup conversion is measured when profile setup completes, not before.
 
-📱 [View on App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · also on Google Play`,
-      tr: `Anket oluşturup bağlantıyla paylaşmakla başladı; bugün **kısa seçimler, turnuvalar, topluluk panoları, AI içgörüleri, puan/seviye ve etkinlikler** içeriyor. Web, iOS ve Android'de yayında.
+[App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · [Google Play](https://play.google.com/store/apps/details?id=com.dangseon.app) · [Open the web app](https://dangseon.com)`,
+      ja: `運営が投票を出し、ユーザーが参加して意見を交わすコミュニティです。ひとつの投票から始まり、今は今は**ショートピック、トーナメント、コミュニティ、AIインサイト、ポイント/等級、イベント**まで広がりました。Web、iOS、Androidで公開・運用中です。
 
-**Serviste neler var**
-- **Kısa seçimler** — dikey kaydırmalı, doğrudan oy verilen akış
-- **Seçim turnuvaları** — eşleşmeli turnuva ve tamamlama istatistikleri
-- **Anket içgörüleri** — kapanan anketleri AI'ın okunur yazıya çevirip toplulukta yayımlaması (yönetim konsolu projesine bakın)
-- **Puan ve seviye** — katılım ve paylaşımla SEED'den FOREST'a altı kademe
-- **Etkinlik ve kuponlar** — yoklama, sınırlı sayıda hediye çeki, puan kutuları
-- **Referans ortakları** — hakediş mutabakatı ve e-imzalı sözleşme
-- **Bildirim kutusu, duyuru modalları, misafir modu, anket önerileri**
+**サービスに入っているもの**
+- **ショートピック** - 縦にめくりながらすぐ投票できるショート動画風フィード
+- **ピックトーナメント** - 理想型ワールドカップ形式の対戦と完走統計
+- **投票インサイト** - 終了した投票をAIが読み物に変換してコミュニティへ公開（詳しくは管理コンソールプロジェクト）
+- **ポイント・等級** - 出席、参加、投稿でSEEDからFORESTまで6段階
+- **イベント・クーポン** - 出席チェック、先着ギフト券、ポイントランダムボックス
+- **紹介パートナー** - 紹介実績の精算と電子署名契約書
+- **通知ボックス、告知モーダル、ゲストモード、投票提案**
 
-**Yaparken önemsediklerim**
-- **Tek web kod tabanı, üç platform.** Vercel'de Next.js 16 + React 19, mağazalar için Capacitor 8 ile paketlendi. Uygulama dangseon.com'u yüklediği için **web'i dağıtmak uygulamaları da güncelliyor**.
-- **Yetkilendirme uygulamada değil veritabanında.** Supabase RLS ile kimin neyi okuyup yazacağı tablo düzeyinde sabitlendi; istemcide unutulan bir koşul veri sızdıramıyor.
-- **Uygulama derlemesini aşmak.** Capacitor statik export istiyor ama sunucu Route Handler'ları buna engel. Derleme betiği **API rotalarını gizliyor, export alıyor ve çıkışta geri koyuyor** — başarıda da hatada da, çalışma ağacı kirlenmiyor.
-- **Gerçek zaman ve push.** Oylar, beğeniler, yorumlar Supabase Realtime ile anında yayılıyor; push sunucudan FCM + firebase-admin ile gidiyor.
-- **Gözlemlenebilirlik.** Hatalar Sentry'de; akış Vercel Analytics, Speed Insights ve GA'da.
+**作るときに重視したこと**
+- **ひとつのWebコードベースで3プラットフォーム。** Next.js 16 + React 19をVercelに載せ、Capacitor 8で包んでストア公開しました。アプリはdangseon.comを読み込む構造なので、**Webをデプロイするとアプリ側も最新**になります。
+- **権限はアプリではなくDBで。** Supabase RLSで「誰が何を読めて書けるか」をテーブルポリシーに固定しました。クライアント側の条件分岐を忘れてもデータが漏れないようにするためです。
+- **アプリビルドの迂回。** Capacitorは静的exportが必要ですが、サーバーRoute Handlerがあるとそのままではビルドできません。ビルドスクリプトが**APIルートを一時的に隠し、export後に終了時復元**するようにしました。成功しても失敗しても作業ツリーが汚れません。
+- **リアルタイム・プッシュ。** 投票、いいね、コメントはSupabase Realtimeで即時反映し、プッシュはFCM + firebase-adminでサーバーから送ります。結果カードはhtml-to-imageで画像化して共有できます。
+- **観測。** エラーはSentry、利用の流れはVercel Analytics、Speed Insights、GAで見ています。登録コンバージョンはプロフィール設定が完了した時点に合わせました。
 
-📱 [App Store'da görüntüle](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · Google Play'de de yayında`,
-      ar: `بدأت كمكان لإنشاء استطلاع ومشاركته عبر رابط، وتضم اليوم **اختيارات سريعة وبطولات ولوحات مجتمع ورؤى بالذكاء الاصطناعي ونقاطاً ومستويات وفعاليات**. منشورة وتعمل على الويب وiOS وAndroid.
+[App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · [Google Play](https://play.google.com/store/apps/details?id=com.dangseon.app) · [Webで開く](https://dangseon.com)`,
+      ar: `مجتمع يقوم على الاستطلاعات: ننشرها، ويصوّت الناس ويتحدثون عن النتائج. بدأت باستطلاع واحد، وتضم اليوم وتضم اليوم **اختيارات سريعة وبطولات ولوحات مجتمع ورؤى بالذكاء الاصطناعي ونقاطاً ومستويات وفعاليات**. منشورة وتعمل على الويب وiOS وAndroid.
 
 **ما تحتويه الخدمة**
-- **الاختيارات السريعة** — تدفّق رأسي على غرار الفيديوهات القصيرة تصوّت فيه مباشرة
-- **بطولات الاختيار** — مواجهات على شكل أقواس مع إحصاءات الإكمال
-- **رؤى الاستطلاعات** — تحويل الاستطلاعات المنتهية إلى مقالات يكتبها الذكاء الاصطناعي وتُنشر في المجتمع (انظر مشروع لوحة الإدارة)
-- **النقاط والمستويات** — ست مراتب من SEED إلى FOREST عبر الحضور والمشاركة والنشر
-- **الفعاليات والقسائم** — تسجيل الحضور وبطاقات هدايا لأول المشاركين وصناديق نقاط عشوائية
-- **شركاء الإحالة** — تسوية المستحقات واتفاقيات موقّعة إلكترونياً
+- **الاختيارات السريعة** - تدفّق رأسي على غرار الفيديوهات القصيرة تصوّت فيه مباشرة
+- **بطولات الاختيار** - مواجهات على شكل أقواس مع إحصاءات الإكمال
+- **رؤى الاستطلاعات** - تحويل الاستطلاعات المنتهية إلى مقالات يكتبها الذكاء الاصطناعي وتُنشر في المجتمع (انظر مشروع لوحة الإدارة)
+- **النقاط والمستويات** - ست مراتب من SEED إلى FOREST عبر الحضور والمشاركة والنشر
+- **الفعاليات والقسائم** - تسجيل الحضور وبطاقات هدايا لأول المشاركين وصناديق نقاط عشوائية
+- **شركاء الإحالة** - تسوية المستحقات واتفاقيات موقّعة إلكترونياً
 - **صندوق الإشعارات ونوافذ الإعلانات ووضع الضيف واقتراح الاستطلاعات**
 
 **ما اهتممت به أثناء البناء**
 - **قاعدة شيفرة ويب واحدة لثلاث منصات.** Next.js 16 و React 19 على Vercel، مغلّفة بـ Capacitor 8 للمتاجر. ولأن التطبيق يحمّل dangseon.com فإن **نشر الويب يحدّث التطبيقات أيضاً**.
 - **الصلاحيات في قاعدة البيانات لا في التطبيق.** تثبّت سياسات Supabase RLS من يقرأ ومن يكتب ماذا على مستوى الجدول، فلا يتسبب شرط منسي في العميل بتسريب البيانات.
-- **الالتفاف حول بناء التطبيق.** يتطلب Capacitor تصديراً ثابتاً بينما تمنعه Route Handlers على الخادم. لذا **يخفي سكربت البناء مسارات الـ API ثم يصدّر ويستعيدها عند الخروج** — في النجاح والفشل معاً، فلا تتّسخ شجرة العمل.
+- **الالتفاف حول بناء التطبيق.** يتطلب Capacitor تصديراً ثابتاً بينما تمنعه Route Handlers على الخادم. لذا **يخفي سكربت البناء مسارات الـ API ثم يصدّر ويستعيدها عند الخروج** - في النجاح والفشل معاً، فلا تتّسخ شجرة العمل.
 - **الزمن الحقيقي والإشعارات.** تنتشر الأصوات والإعجابات والتعليقات فوراً عبر Supabase Realtime، وتُرسل الإشعارات من الخادم عبر FCM و firebase-admin.
 - **المراقبة.** Sentry للأخطاء، و Vercel Analytics و Speed Insights و GA لتتبّع الاستخدام.
 
-📱 [عرض في App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · ومتاح على Google Play`,
+[App Store](https://apps.apple.com/kr/app/%EB%8B%B9%EC%8B%A0%EC%9D%98-%EC%84%A0%ED%83%9D-dangseon/id6762179353) · [Google Play](https://play.google.com/store/apps/details?id=com.dangseon.app) · [افتح نسخة الويب](https://dangseon.com)`,
     },
     gallery: [
-      "media/dangseon-01-home.jpg",
-      "media/dangseon-02-vote-detail.jpg",
-      "media/dangseon-08-shortpick.jpg",
-      "media/dangseon-06-worldcup.jpg",
-      "media/dangseon-05-insight-detail.jpg",
-      "media/dangseon-04-insight-list.jpg",
-      "media/dangseon-03-community.jpg",
-      "media/dangseon-09-rank.jpg",
-      "media/dangseon-10-events.jpg",
+      "media/dangseon-01-home.webp",
+      "media/dangseon-02-vote-detail.webp",
+      "media/dangseon-08-shortpick.webp",
+      "media/dangseon-06-worldcup.webp",
+      "media/dangseon-05-insight-detail.webp",
+      "media/dangseon-04-insight-list.webp",
+      "media/dangseon-03-community.webp",
+      "media/dangseon-09-rank.webp",
+      "media/dangseon-10-events.webp",
     ],
   },
 
   //dangseon admin console
   {
     slug: "dangseon-admin",
+    logo: "dangseon.png",
     weight: 2,
     title: {
-      ko: "당선 어드민 콘솔 — AI 운영 파이프라인",
-      en: "Dangseon Admin Console — AI Ops Pipeline",
-      tr: "Dangseon Yönetim Konsolu — AI Operasyon Hattı",
-      ar: "لوحة إدارة Dangseon — خط تشغيل بالذكاء الاصطناعي",
+      ko: "당선 어드민 콘솔 - AI 운영 파이프라인",
+      en: "Dangseon Admin Console - AI Ops Pipeline",
+      ja: "Dangseon管理コンソール - AI運用パイプライン",
+      ar: "لوحة إدارة Dangseon - خط تشغيل بالذكاء الاصطناعي",
     },
     blurb: {
-      ko: "투표 서비스를 혼자 운영하려고 만든 관리자 콘솔. 뉴스에서 투표 초안을 만들고, 마감된 투표를 읽을거리로 바꾸는 AI 파이프라인 두 개가 크론으로 돌아갑니다.",
-      en: "The admin console I built to run the voting service solo. Two AI pipelines run on cron: one drafts polls from the news, the other turns closed polls into readable articles.",
-      tr: "Oylama servisini tek başıma işletmek için yaptığım yönetim konsolu. Cron ile çalışan iki AI hattı: biri haberlerden anket taslağı üretiyor, diğeri kapanan anketleri okunur yazıya çeviriyor.",
-      ar: "لوحة الإدارة التي بنيتها لتشغيل خدمة التصويت منفرداً. خطّان بالذكاء الاصطناعي يعملان عبر cron: أحدهما يصوغ استطلاعات من الأخبار، والآخر يحوّل الاستطلاعات المنتهية إلى مقالات.",
+      ko: "투표 서비스 운영을 위해 만든 관리자 콘솔. 뉴스에서 투표 초안을 만들고, 마감된 투표를 읽을거리로 바꾸는 AI 파이프라인 두 개가 크론으로 돌아갑니다.",
+      en: "The admin console I built to run the voting service. Two AI pipelines run on cron: one drafts polls from the news, the other turns closed polls into readable articles.",
+      ja: "投票サービスの運用のために作った管理コンソール。ニュースから投票草案を作るAIと、終了した投票を読み物に変えるAIの2つのパイプラインがcronで動きます。",
+      ar: "لوحة الإدارة التي بنيتها لتشغيل خدمة التصويت. خطّان بالذكاء الاصطناعي يعملان عبر cron: أحدهما يصوغ استطلاعات من الأخبار، والآخر يحوّل الاستطلاعات المنتهية إلى مقالات.",
     },
     tags: [
       "Next.js 16",
+      "AI",
       "OpenAI Responses API",
       "JSON Schema",
       "이미지 생성",
@@ -1151,73 +1333,73 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     status: "Active",
     active: true,
     featured: true,
-    period: "2025 – 현재",
+    period: "2026 – 현재",
     role: {
-      ko: "설계 · 개발 · 운영 (1인)",
-      en: "Design · Development · Operations (solo)",
-      tr: "Tasarım · Geliştirme · İşletme (tek kişi)",
-      ar: "التصميم والتطوير والتشغيل (منفرد)",
+      ko: "설계 · 개발 · 운영",
+      en: "Design · Development · Operations",
+      ja: "設計 · 開発 · 運用",
+      ar: "التصميم والتطوير والتشغيل",
     },
     links: { link: "https://dangseon.com" },
-    thumb: "media/dangseon-admin-01-aipolls.jpg",
+    thumb: "media/dangseon-admin-01-aipolls.webp",
     galleryLayout: "wide",
     gallery: [
-      "media/dangseon-admin-01-aipolls.jpg",
-      "media/dangseon-admin-02-insight.jpg",
-      "media/dangseon-admin-03-coupons.jpg",
-      "media/dangseon-admin-04-events.jpg",
-      "media/dangseon-admin-05-overview.jpg",
+      "media/dangseon-admin-01-aipolls.webp",
+      "media/dangseon-admin-02-insight.webp",
+      "media/dangseon-admin-03-coupons.webp",
+      "media/dangseon-admin-04-events.webp",
+      "media/dangseon-admin-05-overview.webp",
     ],
     metrics: [
       {
         value: "20+",
-        label: { ko: "운영 화면", en: "admin screens", tr: "yönetim ekranı", ar: "شاشات إدارية" },
+        label: { ko: "운영 화면", en: "admin screens", ja: "運用画面", ar: "شاشات إدارية" },
       },
       {
         value: "2",
         label: {
           ko: "AI 파이프라인 (투표 초안 · 결과 인사이트)",
           en: "AI pipelines",
-          tr: "AI hattı",
+          ja: "AIパイプライン",
           ar: "خطوط ذكاء اصطناعي",
         },
       },
       {
         value: "3",
-        label: { ko: "Vercel Cron 자동 실행", en: "scheduled cron jobs", tr: "zamanlanmış cron işi", ar: "مهام cron مجدولة" },
+        label: { ko: "Vercel Cron 자동 실행", en: "scheduled cron jobs", ja: "定期cronジョブ", ar: "مهام cron مجدولة" },
       },
       {
         value: "2단계",
         label: {
           ko: "관리자 인증 (middleware + admins 테이블)",
           en: "layers of admin auth",
-          tr: "katmanlı yönetici doğrulaması",
+          ja: "管理者認証レイヤー",
           ar: "طبقتا تحقّق للمشرف",
         },
       },
     ],
     stack: [
       {
-        group: { ko: "콘솔", en: "Console", tr: "Konsol", ar: "اللوحة" },
+        group: { ko: "콘솔", en: "Console", ja: "コンソール", ar: "اللوحة" },
         items: ["Next.js 16 App Router", "React 19", "TailwindCSS v4", "Recharts", "Phosphor Icons"],
       },
       {
-        group: { ko: "AI", en: "AI", tr: "AI", ar: "الذكاء الاصطناعي" },
+        group: { ko: "AI", en: "AI", ja: "AI", ar: "الذكاء الاصطناعي" },
         items: ["OpenAI Responses API", "JSON Schema strict 모드", "이미지 생성 모델", "RSS 수집·정규화", "프롬프트 가드레일"],
       },
       {
-        group: { ko: "자동화 · 연동", en: "Automation & Integrations", tr: "Otomasyon & Entegrasyon", ar: "الأتمتة والتكاملات" },
+        group: { ko: "자동화 · 연동", en: "Automation & Integrations", ja: "自動化・連携", ar: "الأتمتة والتكاملات" },
         items: ["Vercel Cron", "Slack Webhook", "FCM 예약 발송", "기프티쇼 API", "Supabase Storage"],
       },
       {
-        group: { ko: "보안", en: "Security", tr: "Güvenlik", ar: "الأمان" },
+        group: { ko: "보안", en: "Security", ja: "セキュリティ", ar: "الأمان" },
         items: ["middleware + admins 테이블", "CRON_SECRET Bearer", "service role 서버 전용", "Supabase RLS"],
       },
     ],
     body: {
-      ko: `[당신의 선택](https://dangseon.com)을 혼자 운영하려고 만든 관리자 콘솔입니다. 투표 등록부터 신고 처리, 알림 발송, 정산까지 20개가 넘는 화면이 하나의 사이드바 아래 묶여 있어요.
+      ko: `[당신의 선택](https://dangseon.com) 운영을 위해 만든 관리자 콘솔입니다. 투표 등록부터 신고 처리, 알림 발송, 정산까지 20개가 넘는 화면이 하나의 사이드바 아래 묶여 있어요.
 
-**AI 파이프라인 ① — 뉴스에서 투표 초안 만들기**
+**AI 파이프라인 ① - 뉴스에서 투표 초안 만들기**
 - 구글 뉴스 RSS 5개에서 기사 후보를 모아 중복을 걷어냅니다.
 - OpenAI Responses API에 **JSON Schema strict 모드**로 요청해서 제목 · 설명 · 선택지 · 카테고리 · 푸시 문구 · 이미지 프롬프트를 한 번에 구조화해 받아요. 형식이 어긋난 응답이 애초에 나오지 않게 하려는 선택입니다.
 - 최근 3일 초안 제목을 프롬프트에 같이 넣어 **같은 주제가 반복되지 않게** 막았어요.
@@ -1225,7 +1407,7 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 - 생성이 끝나면 **Slack으로 알림**이 가고, 운영자가 어드민에서 확인하고 승인해야 실제 투표로 발행됩니다. **AI가 바로 게시하지 않는 구조**예요.
 - 오전 8시 · 오후 2시(KST)에 Vercel Cron으로 자동 실행됩니다.
 
-**AI 파이프라인 ② — 마감된 투표를 읽을거리로**
+**AI 파이프라인 ② - 마감된 투표를 읽을거리로**
 - 마감된 투표의 응답을 **연령 · 성별 · 지역**으로 집계합니다. 1,000건씩 페이지네이션해서 전체를 훑어요.
 - 이 통계를 근거로 AI가 제목 · 요약 · 본문 · 핵심 포인트를 써서 커뮤니티 인사이트 글로 발행합니다.
 - 프롬프트에 **"데이터에 없는 외부 통계는 절대 넣지 않는다", "표본 20명 미만 구간은 단정하지 않는다", "특정 입장을 지지하지 않는다"** 같은 규칙을 박아뒀어요. 숫자를 지어내거나 한쪽으로 기우는 글이 나오는 게 가장 큰 리스크라서요.
@@ -1237,27 +1419,27 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 - 배너 · 공지 · 푸시 발송과 예약
 - 이벤트 · 쿠폰 · 기프티쇼 연동 (비즈머니 잔액과 상품 조회)
 - 추천인 파트너 정산과 전자 서명 약정서
-- Overview 대시보드 — 지표를 **count 쿼리로만** 집계해서 전체 row를 내려받지 않습니다.
+- Overview 대시보드 - 지표를 **count 쿼리로만** 집계해서 전체 row를 내려받지 않습니다.
 
 **권한과 안전장치**
 - 관리자 판별은 **middleware와 \`admins\` 테이블 두 곳**에서 확인합니다.
 - 크론 엔드포인트는 \`CRON_SECRET\` Bearer 토큰으로 막았어요.
 - service role 키 · OpenAI 키 · Slack 웹훅은 전부 서버 Route Handler 안에서만 씁니다.
 - 푸시는 **밤에 울리지 않게** 07~22시 밖이면 다음 날 아침으로 자동으로 밀립니다.`,
-      en: `The admin console I built to run [Dangseon](https://dangseon.com) on my own — over 20 screens under one sidebar, from creating polls to handling reports, sending notifications, and settling partner payouts.
+      en: `The admin console I built to run [Dangseon](https://dangseon.com) - over 20 screens under one sidebar, from creating polls to handling reports, sending notifications, and settling partner payouts.
 
-**AI pipeline ① — drafting polls from the news**
+**AI pipeline ① - drafting polls from the news**
 - Collects article candidates from five Google News RSS feeds and dedupes them.
-- Calls the OpenAI Responses API in **JSON Schema strict mode**, getting title, description, options, category, push copy, and image prompt back as one structured payload — so a malformed response can't happen in the first place.
+- Calls the OpenAI Responses API in **JSON Schema strict mode**, getting title, description, options, category, push copy, and image prompt back as one structured payload - so a malformed response can't happen in the first place.
 - Feeds the last three days of draft titles into the prompt so **the same topic doesn't come around again**.
 - Generates a 4:5 thumbnail per draft with an image model and uploads it to Supabase Storage. Real-person likeness, media logos, and watermarks are forbidden in the prompt.
 - When generation finishes a **Slack notification** goes out, and an operator has to review and approve in the admin before anything publishes. **The AI never posts directly.**
 - Runs automatically at 8am and 2pm KST via Vercel Cron.
 
-**AI pipeline ② — turning closed polls into articles**
+**AI pipeline ② - turning closed polls into articles**
 - Aggregates responses from closed polls by **age, gender, and region**, paginating 1,000 rows at a time to cover the whole set.
 - On that basis the AI writes a title, summary, body, and key takeaways, published as a community insight post.
-- The prompt pins down rules like **"never introduce statistics that aren't in the data", "don't draw conclusions from segments under 20 respondents", and "don't take a side"** — invented numbers or a slanted read are the biggest risks here.
+- The prompt pins down rules like **"never introduce statistics that aren't in the data", "don't draw conclusions from segments under 20 respondents", and "don't take a side"** - invented numbers or a slanted read are the biggest risks here.
 - It has to write "9 out of 10 people" rather than statistical jargon, and I specified the ratio too: **60% of the body on issue context, only 40% on reading the numbers.**
 
 **Operations**
@@ -1272,50 +1454,50 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 - Admin identity is checked in **two places: middleware and the \`admins\` table**.
 - Cron endpoints are gated behind a \`CRON_SECRET\` bearer token.
 - The service role key, OpenAI key, and Slack webhook are used exclusively inside server Route Handlers.
-- Push sends are held back so **nothing buzzes at night** — outside 07:00–22:00 they roll to the next morning.`,
-      tr: `[Dangseon](https://dangseon.com)'u tek başıma işletmek için yaptığım yönetim konsolu — tek bir kenar çubuğu altında 20'den fazla ekran: anket oluşturmadan şikayet yönetimine, bildirim göndermeden ortak hakedişlerine kadar.
+- Push sends are held back so **nothing buzzes at night** - outside 07:00–22:00 they roll to the next morning.`,
+      ja: `[Dangseon](https://dangseon.com)の運用のために作った管理コンソールです。投票作成から通報処理、通知送信、精算まで、20以上の画面をひとつのサイドバー配下にまとめています。
 
-**AI hattı ① — haberlerden anket taslağı**
-- Beş Google Haberler RSS akışından aday makaleleri toplayıp yinelenenleri ayıklıyor.
-- OpenAI Responses API'sini **JSON Schema strict modunda** çağırıyor; başlık, açıklama, seçenekler, kategori, push metni ve görsel istemi tek yapılandırılmış yanıt olarak geliyor — bozuk biçimli bir yanıt en baştan mümkün olmuyor.
-- Son üç günün taslak başlıkları isteme ekleniyor, böylece **aynı konu tekrar dönmüyor**.
-- Her taslak için görsel modeliyle 4:5 küçük resim üretilip Supabase Storage'a yükleniyor. Gerçek kişi benzerliği, medya logoları ve filigranlar istemde yasak.
-- Üretim bitince **Slack bildirimi** gidiyor; yayına girmesi için operatörün yönetim panelinde onaylaması gerekiyor. **AI doğrudan yayımlamıyor.**
-- Vercel Cron ile KST 08:00 ve 14:00'te otomatik çalışıyor.
+**AIパイプライン① - ニュースから投票草案を作る**
+- 5つのGoogle News RSSから記事候補を集め、重複を取り除きます。
+- OpenAI Responses APIを**JSON Schema strictモード**で呼び、タイトル、説明、選択肢、カテゴリ、プッシュ文言、画像プロンプトをひとつの構造化レスポンスとして受け取ります。形式が崩れた応答がそもそも出ないようにするためです。
+- 直近3日間の草案タイトルをプロンプトに入れ、**同じ話題が繰り返されないように**しました。
+- 各草案ごとに画像モデルで4:5のサムネイルを生成し、Supabase Storageへアップロードします。実在人物の描写、メディアロゴ、ウォーターマークはプロンプトで禁止しました。
+- 生成が終わると**Slack通知**が飛び、運用者が管理画面で確認・承認して初めて実際の投票として公開されます。**AIが直接投稿しない構造**です。
+- 午前8時・午後2時（KST）にVercel Cronで自動実行されます。
 
-**AI hattı ② — kapanan anketleri yazıya çevirmek**
-- Kapanan anketlerin yanıtlarını **yaş, cinsiyet ve bölgeye** göre topluyor; tamamını taramak için 1.000'er satır sayfalıyor.
-- Bu temelde AI başlık, özet, gövde ve öne çıkan noktaları yazıyor ve topluluk içgörü yazısı olarak yayımlanıyor.
-- İsteme **"veride olmayan istatistik asla eklenmez", "20 kişinin altındaki kesitlerden kesin sonuç çıkarılmaz", "taraf tutulmaz"** gibi kurallar sabitlendi — uydurulmuş sayı veya yanlı okuma buradaki en büyük risk.
-- İstatistik jargonu yerine "10 kişiden 9'u" gibi yazması isteniyor; oran da belirtildi: **gövdenin %60'ı konu bağlamı, yalnızca %40'ı sayıların yorumu.**
+**AIパイプライン② - 終了した投票を読み物にする**
+- 終了した投票の回答を**年齢、性別、地域**ごとに集計します。1,000件ずつページネーションして全体を走査します。
+- この統計をもとに、AIがタイトル、要約、本文、重要ポイントを書き、コミュニティのインサイト記事として公開します。
+- プロンプトには**「データにない外部統計は絶対に入れない」「標本20人未満の区間は断定しない」「特定の立場を支持しない」**といったルールを固定しました。数字を作ったり、片側に寄った記事になることが一番大きなリスクだからです。
+- 統計用語ではなく「10人中9人」のように書かせ、**本文の60%は論点の文脈、40%だけを統計解釈**に使うよう比率も指定しました。
 
-**İşletme**
-- Üye yönetimi, profil değişikliği onayları, yaptırım ve ceza durumu
-- Anket yorumları ve topluluk gönderilerinde şikayet yönetimi
-- Banner, duyuru ve zamanlanabilir push gönderimi
-- Etkinlik, kupon ve hediye çeki API entegrasyonu
-- Referans ortağı mutabakatı ve e-imzalı sözleşmeler
-- Metrikleri **yalnızca count sorgularıyla** toplayan, tam satır çekmeyen genel bakış paneli
+**運用機能**
+- 会員管理、プロフィール変更承認、制裁・ペナルティ状況
+- 通報処理（投票コメント、コミュニティ投稿/コメント）
+- バナー、告知、プッシュ送信と予約
+- イベント、クーポン、ギフティショー連携（ビズマネー残高と商品照会）
+- 紹介パートナー精算と電子署名契約書
+- Overviewダッシュボード - 指標は**countクエリのみ**で集計し、全rowを取得しません。
 
-**Yetki ve güvenlik önlemleri**
-- Yönetici kimliği **iki yerde** doğrulanıyor: middleware ve \`admins\` tablosu.
-- Cron uç noktaları \`CRON_SECRET\` bearer token ile korunuyor.
-- Service role anahtarı, OpenAI anahtarı ve Slack webhook'u yalnızca sunucu Route Handler'ları içinde kullanılıyor.
-- Bildirimler **gece çalmasın diye** 07:00–22:00 dışında ertesi sabaha erteleniyor.`,
-      ar: `لوحة الإدارة التي بنيتها لتشغيل [Dangseon](https://dangseon.com) بمفردي — أكثر من 20 شاشة تحت شريط جانبي واحد، من إنشاء الاستطلاعات إلى معالجة البلاغات وإرسال الإشعارات وتسوية مستحقات الشركاء.
+**権限と安全装置**
+- 管理者判定は**middlewareと\`admins\`テーブルの2か所**で確認します。
+- cronエンドポイントは\`CRON_SECRET\` Bearerトークンで保護しています。
+- service roleキー、OpenAIキー、Slack WebhookはすべてサーバーRoute Handler内だけで使います。
+- プッシュは**夜に鳴らないように**07〜22時以外なら翌朝へ自動で送ります。`,
+      ar: `لوحة الإدارة التي بنيتها لتشغيل [Dangseon](https://dangseon.com) - أكثر من 20 شاشة تحت شريط جانبي واحد، من إنشاء الاستطلاعات إلى معالجة البلاغات وإرسال الإشعارات وتسوية مستحقات الشركاء.
 
-**خط الذكاء الاصطناعي ① — صياغة استطلاعات من الأخبار**
+**خط الذكاء الاصطناعي ① - صياغة استطلاعات من الأخبار**
 - يجمع المقالات المرشّحة من خمس تغذيات RSS لأخبار Google ويزيل المكرّر.
-- يستدعي OpenAI Responses API في **وضع JSON Schema الصارم**، فيعود العنوان والوصف والخيارات والتصنيف ونص الإشعار وموجّه الصورة في حمولة واحدة منظّمة — بحيث يستحيل أصلاً ورود استجابة مشوّهة.
+- يستدعي OpenAI Responses API في **وضع JSON Schema الصارم**، فيعود العنوان والوصف والخيارات والتصنيف ونص الإشعار وموجّه الصورة في حمولة واحدة منظّمة - بحيث يستحيل أصلاً ورود استجابة مشوّهة.
 - تُضاف عناوين مسودات آخر ثلاثة أيام إلى الموجّه كي **لا يتكرّر الموضوع نفسه**.
 - يولّد لكل مسودة صورة مصغّرة بنسبة 4:5 عبر نموذج صور ويرفعها إلى Supabase Storage، مع منع تصوير أشخاص حقيقيين وشعارات المؤسسات الإعلامية والعلامات المائية في الموجّه.
 - عند انتهاء التوليد يصل **إشعار Slack**، ولا يُنشر شيء قبل مراجعة المشرف وموافقته في اللوحة. **الذكاء الاصطناعي لا ينشر مباشرة.**
 - يعمل تلقائياً في الثامنة صباحاً والثانية ظهراً بتوقيت كوريا عبر Vercel Cron.
 
-**خط الذكاء الاصطناعي ② — تحويل الاستطلاعات المنتهية إلى مقالات**
+**خط الذكاء الاصطناعي ② - تحويل الاستطلاعات المنتهية إلى مقالات**
 - يجمّع استجابات الاستطلاعات المنتهية حسب **العمر والجنس والمنطقة**، مع ترقيم صفحات بألف سجل في كل مرة لتغطية المجموعة كاملة.
 - على هذا الأساس يكتب الذكاء الاصطناعي عنواناً وملخصاً ومتناً ونقاطاً أساسية، ويُنشر كمقال رؤى في المجتمع.
-- يثبّت الموجّه قواعد مثل **"لا تُضف إحصاءات غير موجودة في البيانات"، و"لا تجزم من شرائح أقل من 20 مشاركاً"، و"لا تنحَز لطرف"** — فالأرقام المختلقة أو القراءة المنحازة هما أكبر خطر هنا.
+- يثبّت الموجّه قواعد مثل **"لا تُضف إحصاءات غير موجودة في البيانات"، و"لا تجزم من شرائح أقل من 20 مشاركاً"، و"لا تنحَز لطرف"** - فالأرقام المختلقة أو القراءة المنحازة هما أكبر خطر هنا.
 - ويُلزَم بكتابة "9 من كل 10" بدل المصطلحات الإحصائية، مع تحديد النسبة أيضاً: **60% من المتن لسياق القضية و40% فقط لقراءة الأرقام.**
 
 **التشغيل**
@@ -1337,17 +1519,18 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //seobuds
   {
     slug: "seobuds",
+    logo: "seobuds.svg",
     weight: 1,
     title: {
       ko: "서부디에스 홈페이지",
       en: "SeobuDS Website",
-      tr: "SeobuDS Web Sitesi",
+      ja: "SeobuDSサイト",
       ar: "موقع SeobuDS",
     },
     blurb: {
       ko: "Next.js로 제작한 회사 소개 페이지. SEO 최적화와 구글·네이버 등록까지 완료.",
       en: "Company website built with Next.js. Fully SEO-optimized with Google and Naver indexing.",
-      tr: "Next.js ile yapılmış şirket tanıtım sitesi. Google ve Naver'da tam SEO optimizasyonu ile.",
+      ja: "Next.jsで制作した会社紹介サイト。SEO最適化とGoogle・Naver登録まで完了しました。",
       ar: "موقع تعريفي للشركة مبني بـ Next.js مع تحسين كامل لمحركات البحث وتسجيل على Google وNaver.",
     },
     tags: ["Next.js", "TypeScript", "TailwindCSS", "Vercel", "SEO"],
@@ -1355,18 +1538,18 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
     status: "Active",
     active: true,
     role: {
-      ko: "기획 · 디자인 · 개발 · 배포 (1인)",
-      en: "Planning · Design · Development · Deploy (solo)",
-      tr: "Planlama · Tasarım · Geliştirme · Dağıtım (tek kişi)",
-      ar: "التخطيط والتصميم والتطوير والنشر (منفرد)",
+      ko: "기획 · 디자인 · 개발 · 배포",
+      en: "Planning · Design · Development · Deploy",
+      ja: "企画 · デザイン · 開発 · デプロイ",
+      ar: "التخطيط والتصميم والتطوير والنشر",
     },
     stack: [
       {
-        group: { ko: "웹", en: "Web", tr: "Web", ar: "الويب" },
+        group: { ko: "웹", en: "Web", ja: "Web", ar: "الويب" },
         items: ["Next.js", "TypeScript", "TailwindCSS"],
       },
       {
-        group: { ko: "배포 · 그로스", en: "Deploy & Growth", tr: "Dağıtım & Büyüme", ar: "النشر والنمو" },
+        group: { ko: "배포 · 그로스", en: "Deploy & Growth", ja: "デプロイ・グロース", ar: "النشر والنمو" },
         items: ["Vercel", "구글 · 네이버 서치콘솔", "메타데이터 · OG 최적화"],
       },
     ],
@@ -1391,14 +1574,14 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
 
 📱 Fully responsive across mobile and desktop.
 `,
-      tr: `
-💡 Şirket tanıtımı ve hizmet bilgisi için resmi web sitesi.
+      ja: `
+💡 会社紹介とサービス案内のための公式Webサイトです。
 
-🧩 Next.js + TypeScript + TailwindCSS ile geliştirildi, Vercel üzerinde dağıtıldı.
+🧩 Next.js + TypeScript + TailwindCSSで開発し、Vercelへデプロイしました。
 
-🔍 Google ve Naver Search Console'a tam indeksleme ve optimize edilmiş meta verilerle SEO tamamlandı.
+🔍 Google・Naver Search Consoleへの登録とメタデータ最適化で、検索エンジンへの露出を整えました。
 
-📱 Mobil ve masaüstü için tam duyarlı tasarım.
+📱 モバイルからデスクトップまで対応するレスポンシブデザインです。
 `,
       ar: `
 💡 الموقع الرسمي للشركة لتقديم الخدمات ومعلومات الشركة.
@@ -1415,20 +1598,21 @@ Bu aşama, dört oyuncunun farklı numaralara (1–4) basmasıyla hızlanır; an
   //infocompany
   {
     slug: "infocompany",
+    logo: "infocompany.png",
     weight: 0,
     title: {
       ko: "인포컴퍼니",
       en: "InfoCompany",
-      tr: "InfoCompany",
+      ja: "InfoCompany",
       ar: "InfoCompany",
     },
     blurb: {
       ko: "React로 만든 회사 소개 페이지",
       en: "Company info page built with React",
-      tr: "React ile yapılmış şirket tanıtım sayfası",
+      ja: "Reactで制作した会社紹介ページ",
       ar: "صفحة تعريف الشركة مصممة بـ React",
     },
-    tags: ["React", "Web", "Firebase", "JavaScript"],
+    tags: ["React", "Firebase", "JavaScript"],
     area: "React",
     status: "Active",
     links: { link: "https://infocompany.co.kr" },
@@ -1452,11 +1636,11 @@ Company info page built with React.
 - Simple responsive layout
 - Deployed and live
     `,
-      tr: `
-React ile yapılmış şirket tanıtım sayfası.
-- Bölümler: Şirket bilgisi, Hizmetler, İletişim
-- Basit duyarlı tasarım
-- Yayında
+      ja: `
+Reactで制作した会社紹介ページです。
+- 会社情報、サービス、問い合わせセクションを実装
+- シンプルなレスポンシブレイアウト
+- デプロイ済み・運用中
     `,
       ar: `
 صفحة تعريف الشركة مصممة بـ React.
@@ -1477,13 +1661,13 @@ React ile yapılmış şirket tanıtım sayfası.
     title: {
       ko: "랜덤몽",
       en: "Random Mong",
-      tr: "Rastgele Mong",
+      ja: "Random Mong",
       ar: "راندوم مونج",
     },
     blurb: {
       ko: "Firebase Realtime Database를 활용한 실시간 랜덤 채팅 사이트",
       en: "A real-time random chat platform using Firebase Realtime Database",
-      tr: "Firebase Realtime Database kullanan gerçek zamanlı rastgele sohbet sitesi",
+      ja: "Firebase Realtime Databaseを活用したリアルタイムランダムチャットサイト",
       ar: "موقع دردشة عشوائي في الوقت الفعلي باستخدام Firebase Realtime Database",
     },
     tags: ["React", "TypeScript", "Firebase", "Realtime", "Study"],
@@ -1518,14 +1702,14 @@ Random Mong is a real-time random chat platform built with Firebase Realtime Dat
 - Implemented using TypeScript and React Hooks
 - Practice/learning project
     `,
-      tr: `
-Random Mong, Firebase Realtime Database ve React kullanılarak oluşturulmuş gerçek zamanlı rastgele sohbet sitesidir.
-- Kullanıcı adlarını saklama ve giriş/çıkış yönetimi
-- Gerçek zamanlı mesaj gönderme ve alma
-- Emoji seçici özelliği
-- Firebase Realtime Database üzerinden mesaj senkronizasyonu
-- TypeScript ve React Hooks ile uygulanmıştır
-- Öğrenme/deneme amaçlı proje
+      ja: `
+Random MongはFirebase Realtime DatabaseとReactで作ったリアルタイムランダムチャットサイトです。
+- ユーザー名の保存と入退室処理
+- リアルタイムでのメッセージ送受信
+- 絵文字選択機能
+- Firebase Realtime Databaseによるメッセージ同期
+- TypeScriptとReact Hooksで実装
+- 学習・実習用プロジェクト
     `,
       ar: `
 Random Mong هو موقع دردشة عشوائي في الوقت الفعلي تم إنشاؤه باستخدام Firebase Realtime Database وReact.
@@ -1552,13 +1736,13 @@ Random Mong هو موقع دردشة عشوائي في الوقت الفعلي �
     title: {
       ko: "Flutter",
       en: "Flutter Practice Project",
-      tr: "Flutter Uygulama Örneği",
+      ja: "Flutter実習プロジェクト",
       ar: "مشروع تجريبي فلاتر",
     },
     blurb: {
       ko: "Flutter/Dart 로 만든 간단한 실습 프로젝트 모음",
       en: "A collection of simple practice projects made with Flutter/Dart",
-      tr: "Flutter/Dart ile yapılmış basit uygulama örnekleri",
+      ja: "Flutter/Dartで作った簡単な実習プロジェクト集",
       ar: "مجموعة من المشاريع التجريبية البسيطة باستخدام Flutter/Dart",
     },
     tags: ["Flutter", "Dart", "Study"],
@@ -1584,11 +1768,11 @@ A collection of practice projects built with Flutter/Dart for portfolio purposes
 - Timer App (Pomodoro timer)
 - Webtoon Today (webtoon list and UI)
   `,
-      tr: `
-Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy çalışması:
-- Film Toplayıcı (film listesi ve detay görünümü)
-- Zamanlayıcı Uygulaması (Pomodoro zamanlayıcısı)
-- Bugünün Webtoon'u (webtoon listesi ve UI)
+      ja: `
+Flutter/Dartで作った複数の実習アプリをまとめたポートフォリオ用サンプルです。
+- 映画コレクター（映画リストと詳細表示）
+- タイマーアプリ（ポモドーロタイマー）
+- 今日のWebtoon（WebtoonリストとUI）
   `,
       ar: `
 مجموعة من المشاريع التجريبية باستخدام Flutter/Dart لأغراض المحفظة:
@@ -1610,13 +1794,13 @@ Flutter/Dart ile yapılmış çeşitli uygulama örneklerini içeren portföy ç
     title: {
       ko: "영화 모아보기",
       en: "Movie Collection",
-      tr: "Film Koleksiyonu",
+      ja: "映画コレクション",
       ar: "مجموعة الأفلام",
     },
     blurb: {
       ko: "다양한 영화 정보를 한눈에 볼 수 있는 페이지 예시입니다.",
       en: "A sample page to view various movie information at a glance.",
-      tr: "Çeşitli film bilgilerini tek bakışta görebileceğiniz örnek sayfa.",
+      ja: "さまざまな映画情報を一目で見られるサンプルページです。",
       ar: "صفحة تجريبية لعرض معلومات الأفلام المختلفة بنظرة واحدة.",
     },
     tags: ["React", "Next.js", "SSR", "Movie Info", "Study"],
@@ -1645,12 +1829,12 @@ This is a Movie Collection project.
 - Displays movie details, cast, and trailers
 - Styled with CSS modules
     `,
-      tr: `
-Bu bir Film Koleksiyonu projesidir.
-- Next.js + React ile yapıldı
-- Suspense ve dinamik import kullanımı
-- Film detayları, oyuncular ve fragmanlar gösterimi
-- CSS modülleri ile stil verilmiş
+      ja: `
+映画コレクションプロジェクトです。
+- Next.js + Reactベース
+- Suspenseとdynamic importを活用
+- 映画詳細、キャスト、予告編などを表示
+- CSS Modulesでスタイリング
     `,
       ar: `
 هذا مشروع لمجموعة أفلام.
@@ -1671,13 +1855,13 @@ Bu bir Film Koleksiyonu projesidir.
     title: {
       ko: "SNS 클론",
       en: "SNS Clone",
-      tr: "SNS Klon",
+      ja: "SNSクローン",
       ar: "نسخة SNS",
     },
     blurb: {
       ko: "TypeScript와 React, Firebase를 활용해 만든 SNS 클론 프로젝트. 로그인과 게시글 CRUD 기능을 구현.",
       en: "A SNS clone built with TypeScript, React, and Firebase. Implements login and CRUD operations for posts.",
-      tr: "TypeScript, React ve Firebase kullanılarak yapılan SNS klon projesi. Giriş ve gönderi CRUD işlemleri içerir.",
+      ja: "TypeScript、React、Firebaseで作ったSNSクローン。ログインと投稿CRUD機能を実装しました。",
       ar: "نسخة SNS مبنية باستخدام TypeScript وReact وFirebase. تتضمن تسجيل الدخول وعمليات CRUD للمنشورات.",
     },
     tags: [
@@ -1714,12 +1898,12 @@ This is an SNS clone project.
 - Display posts by individual users
 - Real-time data updates via Firebase Firestore
   `,
-      tr: `
-Bu bir SNS klon projesidir.
-- Firebase Authentication ile giriş/kayıt
-- Gönderi oluşturma, okuma, güncelleme, silme
-- Kullanıcıya özel gönderi gösterimi
-- Firebase Firestore ile gerçek zamanlı veri güncellemeleri
+      ja: `
+SNSクローンプロジェクトです。
+- Firebase Authenticationによるログイン/会員登録
+- 投稿の作成、読み取り、更新、削除
+- ユーザー別投稿表示
+- Firebase Firestoreによるリアルタイムデータ反映
   `,
       ar: `
 هذا مشروع نسخ SNS.
@@ -1743,13 +1927,13 @@ Bu bir SNS klon projesidir.
     title: {
       ko: "시니어 행동 감지 지능형 CCTV",
       en: "Intelligent CCTV for Senior Behavior Detection",
-      tr: "Yaşlı Davranışlarını Algılayan Akıllı CCTV",
+      ja: "高齢者行動検知スマートCCTV",
       ar: "كاميرات مراقبة ذكية لاكتشاف سلوك كبار السن",
     },
     blurb: {
       ko: "고령층의 낙상 및 이상행동을 실시간으로 감지하는 AI 기반 스마트 CCTV 시스템",
       en: "An AI-powered smart CCTV system that detects falls and abnormal behaviors of the elderly in real-time.",
-      tr: "Yaşlıların düşme ve anormal davranışlarını gerçek zamanlı olarak algılayan yapay zekâ destekli akıllı CCTV sistemi.",
+      ja: "高齢者の転倒や異常行動をリアルタイムで検知するAIベースのスマートCCTVシステム。",
       ar: "نظام كاميرات مراقبة ذكي يعمل بالذكاء الاصطناعي لاكتشاف سقوط أو سلوك غير طبيعي لكبار السن في الوقت الفعلي.",
     },
     tags: [
@@ -1765,11 +1949,11 @@ Bu bir SNS klon projesidir.
     status: "Study",
     stack: [
       {
-        group: { ko: "모델 · 비전", en: "Model & Vision", tr: "Model & Görü", ar: "النموذج والرؤية" },
+        group: { ko: "모델 · 비전", en: "Model & Vision", ja: "モデル・ビジョン", ar: "النموذج والرؤية" },
         items: ["YOLO", "TensorFlow", "OpenCV", "AI-HUB 시니어 이상행동 데이터셋"],
       },
       {
-        group: { ko: "서버", en: "Server", tr: "Sunucu", ar: "الخادم" },
+        group: { ko: "서버", en: "Server", ja: "サーバー", ar: "الخادم" },
         items: ["Python", "FastAPI", "실시간 영상 스트림 처리", "이상행동 알림 발송"],
       },
     ],
@@ -1797,12 +1981,12 @@ Video streams from CCTV cameras are analyzed continuously, and when abnormal mov
 
 This system integrates modern AI and computer vision algorithms to assist in elderly safety and enable timely response to accidents.`,
 
-      tr: `AI-HUB'un yaşlı davranış veri seti kullanılarak, huzurevlerinde yaşlı bireylerin düşme ve dolaşma gibi anormal davranışlarını gerçek zamanlı olarak algılayan akıllı CCTV sistemi geliştirildi.
+      ja: `AI-HUBの高齢者異常行動データセットを活用し、介護施設内の高齢者の転倒や徘徊などの異常行動をリアルタイムで検知するスマートCCTVシステムを開発しました。
 
-Proje, yaşlıların güvenliği için hızlı müdahale sağlamayı amaçlamaktadır. Python ve FastAPI kullanılarak geliştirilen sistem, OpenCV, YOLO ve TensorFlow ile **gerçek zamanlı düşme algılama** işlevi sunar.  
-CCTV kameralarından gelen görüntüler sürekli analiz edilir ve anormal hareketler algılandığında **bakıcılara veya yöneticilere anında bildirim gönderilir.**
+このプロジェクトは**高齢者の安全のための迅速な対応システム**を目標にし、PythonとFastAPIでサーバーを構築し、OpenCV、YOLO、TensorFlowを使って**リアルタイム転倒検知**機能を実装しました。  
+CCTVカメラから取得した映像を継続的に解析し、異常行動が検知されると**管理者や保護者へ即時通知**を送るようにしました。
 
-Bu sistem, modern yapay zekâ ve görüntü işleme algoritmalarını birleştirerek yaşlıların güvenliğini artırmayı ve kazalara hızlı tepki verilmesini sağlar.`,
+最新のAI技術と画像処理アルゴリズムを組み合わせ、高齢者の安全を補助し、事故発生時に素早く対応できるよう設計しました。`,
 
       ar: `تم تطوير نظام كاميرات مراقبة ذكي يعتمد على الذكاء الاصطناعي لاكتشاف السلوكيات غير الطبيعية مثل السقوط أو التجول بين كبار السن في الوقت الفعلي باستخدام مجموعة بيانات AI-HUB.
 
@@ -1829,13 +2013,13 @@ Bu sistem, modern yapay zekâ ve görüntü işleme algoritmalarını birleştir
     title: {
       ko: "라즈베리파이 오토 홀덤 카드 분배기",
       en: "Raspberry Pi Auto Hold’em Card Dealer",
-      tr: "Raspberry Pi Tabanlı Otomatik Hold’em Kart Dağıtıcısı",
+      ja: "Raspberry Pi自動ホールデムカード配布機",
       ar: "آلة توزيع بطاقات بوكر أوتوماتيكية تعتمد على Raspberry Pi",
     },
     blurb: {
       ko: "라즈베리파이와 서보모터를 이용해 인원 수를 입력하면 자동으로 카드를 분배",
       en: "A Raspberry Pi–powered system that automatically deals cards based on the number of players entered.",
-      tr: "Oyuncu sayısına göre otomatik kart dağıtımı yapan Raspberry Pi tabanlı bir sistem.",
+      ja: "人数を入力すると、Raspberry Piとサーボモーターで自動的にカードを配るシステム。",
       ar: "نظام يعتمد على Raspberry Pi يقوم بتوزيع البطاقات تلقائيًا بناءً على عدد اللاعبين المدخل.",
     },
     tags: [
@@ -1877,14 +2061,13 @@ Before the game starts, the system takes the number of players as input, then au
 Using GPIO and PWM control, it deals cards in order based on the “Seven Poker” rules.  
 The software logic and hardware system were fully integrated for smooth, autonomous operation.`,
 
-      tr: `Raspberry Pi ve servo motorlar kullanılarak yapılan otomatik Hold’em kart dağıtıcı.  
+      ja: `Raspberry Piとサーボモーターを使って、ホールデム用の自動カード配布機を制作しました。  
 
-Tüm yapı çizimlerle tasarlandı ve akrilik ile mukavvadan üretildi.  
-İki adet MG995 servo motor (360° dönebilen) Python kodlarıyla kontrol edilerek ana eksen ve kart çıkış mekanizması yönetildi.  
+全体構造を自分で図面化し、アクリル板とハードボードで外形を作りました。  
+Raspberry Pi上のPythonコードから2つのMG995サーボモーター（360°回転可能）を制御し、主軸の回転部とカード排出部の動きを調整しました。  
 
-Oyun başlamadan önce oyuncu sayısı girildiğinde, sistem otomatik olarak dağıtım döngülerini hesaplar  
-ve GPIO ile PWM sinyalleri aracılığıyla kartları sırasıyla dağıtır.  
-Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
+ゲーム開始前に人数を入力すると、システムが人数に合わせて配布回数を自動計算し、GPIOピンとPWM信号で2つのモーターを制御してカードを順番に配ります。  
+セブンポーカーのルールをもとにコードロジックを作成し、実際の物理装置と連動させて動作を確認しました。`,
 
       ar: `مشروع موزع بطاقات بوكر أوتوماتيكي يعتمد على Raspberry Pi ومحركات مؤازرة.  
 
@@ -1912,13 +2095,13 @@ Yazılım mantığı “Seven Poker” kurallarına dayanmaktadır.`,
     title: {
       ko: "ROS 라인트레이싱 로봇",
       en: "ROS Line Tracing Robot",
-      tr: "ROS Tabanlı Çizgi Takip Eden Robot",
+      ja: "ROSライントレーシングロボット",
       ar: "روبوت تتبع الخط باستخدام ROS",
     },
     blurb: {
       ko: "ROS 환경에서 카메라로 검은 선을 인식해 주행하는 자율주행 로봇 프로젝트입니다.",
       en: "A ROS autonomous driving robot that detects and follows black lines using a camera.",
-      tr: "Kamera ile siyah çizgileri algılayıp takip eden ROS tabanlı otonom robot projesi.",
+      ja: "ROS環境でカメラから黒い線を認識し、追従走行する自律走行ロボットプロジェクトです。",
       ar: "مشروع روبوت ذاتي القيادة يعتمد على ROS ويستخدم الكاميرا لاكتشاف الخطوط السوداء وتتبعها.",
     },
     tags: ["ROS", "Computer Vision", "Autonomous", "Python", "OpenCV", "Study"],
@@ -1952,14 +2135,14 @@ Key features:
 - Real-time logging and debugging  
 
 This project provided hands-on experience in integrating sensor input and motor control using ROS.`,
-      tr: `ROS (Robot Operating System) kullanarak çizgi takip eden bir robot geliştirdim.  
-Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve tekerlek hızları buna göre ayarlandı.  
+      ja: `ROS（Robot Operating System）を使ってライントレーシングロボットを実装しました。  
+Webカメラで入力された映像を処理して黒い線を認識し、線の位置に応じて左右の車輪速度を制御して走行経路を維持しました。  
 
-Öne çıkan özellikler:
-- OpenCV ile çizgi algılama  
-- ROS node'ları aracılığıyla motor kontrolü  
-- PID kontrol ile yumuşak hareket  
-- Gerçek zamanlı hata ayıklama ve günlükleme`,
+主な機能:
+- OpenCVによるライン認識と画像処理  
+- ROSノード間通信による速度制御  
+- PID制御を使ったなめらかな走行  
+- リアルタイムデバッグとログ監視`,
       ar: `قمت بتطبيق روبوت لتتبع الخط باستخدام نظام ROS.  
 تلتقط الكاميرا الفيديو ويُعالج لاكتشاف الخط الأسود،  
 ثم تُضبط سرعات العجلات للحفاظ على المسار.  
@@ -1983,13 +2166,13 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
     title: {
       ko: "Figma UI",
       en: "Figma UI",
-      tr: "Figma UI",
+      ja: "Figma UI",
       ar: "Figma",
     },
     blurb: {
       ko: "서비스 런칭 전 UI/UX 프로토타이핑과 컴포넌트 시스템 설계",
       en: "Prototyping and component system design for pre-launch services",
-      tr: "Lansman öncesi hizmetler için prototip oluşturma ve bileşen sistemi tasarımı",
+      ja: "サービスローンチ前のUI/UXプロトタイピングとコンポーネントシステム設計",
       ar: "تصميم النماذج الأولية ونظام المكونات للخدمات قبل الإطلاق",
     },
     tags: ["Figma", "UI/UX", "Design System"],
@@ -2002,7 +2185,7 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
     body: {
       ko: "사용자 흐름 설계, 와이어프레임 제작, 프로토타입 테스트까지 진행했습니다 🎨",
       en: "Designed user flows, wireframes, and interactive prototypes using Figma.",
-      tr: "Kullanıcı akışlarını, tel kafesleri ve etkileşimli prototipleri Figma kullanarak tasarladım 🎨",
+      ja: "Figmaでユーザーフロー、ワイヤーフレーム、インタラクティブプロトタイプを設計しました 🎨",
       ar: "صممت تدفقات المستخدم والنماذج الهيكلية والنماذج التفاعلية باستخدام Figma 🎨",
     },
     gallery: [
@@ -2018,13 +2201,13 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
     title: {
       ko: "정부지원사업 IR덱 및 제안서",
       en: "Government Funding IR Deck & Proposal",
-      tr: "Hükümet Destek Programı IR Sunumu ve Teklifi",
+      ja: "政府支援事業IRデック・提案書",
       ar: "عرض وملف تمويلي حكومي (IR Deck & Proposal)",
     },
     blurb: {
       ko: "정부지원사업을 위한 제안서, 사업계획서, IR 자료 기획 및 디자인",
       en: "Planned and designed proposals and IR decks for startup funding programs",
-      tr: "Devlet destek programları için teklif ve yatırım sunumu (IR deck) hazırlayıp tasarladım",
+      ja: "政府支援事業向けの提案書、事業計画書、IR資料の企画・デザイン",
       ar: "قمت بتخطيط وتصميم المقترحات وعروض المستثمرين (IR Deck) لبرامج التمويل الحكومية",
     },
     tags: ["IR Deck", "Proposal", "Branding", "Design"],
@@ -2037,7 +2220,7 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
     body: {
       ko: "사업 개요 정리부터 시각자료 구성, 발표용 IR 슬라이드 제작까지 담당했습니다 💼",
       en: "Handled overall planning, visual design, and pitch deck creation for funding presentations.",
-      tr: "Proje planlamasından sunum tasarımına ve IR slaytlarının hazırlanmasına kadar tüm süreci yönettim 💼",
+      ja: "事業概要の整理からビジュアル構成、発表用IRスライド制作まで担当しました 💼",
       ar: "تولّيت التخطيط العام وتصميم العروض وإنشاء شرائح العرض التقديمي للتمويل 💼",
     },
     gallery: [
@@ -2055,13 +2238,13 @@ Web kamerası ile görüntü alındı, OpenCV ile siyah çizgiler algılandı ve
     title: {
       ko: "Arduino Study",
       en: "Arduino Study",
-      tr: "Arduino Çalışması",
+      ja: "Arduino Study",
       ar: "دراسة أردوينو",
     },
     blurb: {
       ko: "아두이노를 배우며 진행한 프로젝트와 실습 기록 모음.",
       en: "Collection of Arduino projects and exercises.",
-      tr: "Arduino projeleri ve alıştırmalarının koleksiyonu.",
+      ja: "Arduinoを学びながら進めたプロジェクトと実習記録のまとめ。",
       ar: "مجموعة من مشاريع وتمارين أردوينو.",
     },
     tags: ["Arduino", "Electronics", "DIY", "Programming", "Study"],
@@ -2102,19 +2285,18 @@ creating a system where a motor automatically rotates when face recognition (bas
 This experiment combined hardware control with computer vision, introducing me to real-world embedded interaction.
 Although composed of small exercises, this project helped solidify my understanding of Arduino programming and hardware integration.
       `,
-      tr: `
-Farklı Arduino bileşenlerini ve kontrol yöntemlerini deneyerek oluşturduğum bir çalışma serisidir.
+      ja: `
+Arduinoを使ってさまざまなハードウェアコンポーネントを制御し、実験した記録です。
+基礎回路からセンサー、モーター、LED、ボタン、ピエゾブザー、抵抗まで扱い、
+自分で配線を組み、デジタル/アナログ入出力、抵抗計算、デバウンス処理などを学びました。
 
-Sensörler, motorlar, LED’ler, butonlar, piezo buzzer’lar ve dirençlerle çalıştım;
-devreler kurarak dijital/analog giriş çıkışlarını yönettim, direnç hesaplamaları ve debouncing uygulamaları yaptım.
+シリアルモニターとPuTTYログでデータ通信の流れを確認し、
+タイマー制御やサーボモーター角度制御など、さまざまな実習を行いました。
+また、Pythonを使ってArduinoとのシリアル通信を実装し、
+OpenCVベースの顔認識が人を検知するとモーターが自動回転するシステムも構成しました。
 
-Seri monitör ve PuTTY loglarıyla veri iletişimini gözlemledim,
-zamanlayıcılar ve servo motor kontrolü üzerinde çeşitli denemeler yaptım.
-Ayrıca Arduino ile Python arasında seri iletişim kurarak,
-OpenCV tabanlı yüz tanıma algılandığında motorun otomatik olarak dönmesini sağlayan bir sistem geliştirdim.
-
-Bu sayede donanım kontrolünü yazılım tabanlı görsel algılama ile birleştirme deneyimi kazandım.
-Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi konusundaki temelimi güçlendiren bir süreçti.
+これにより、ハードウェア制御とソフトウェアによる視覚認識を組み合わせる統合制御の基礎を経験しました。
+小さな実験の連続ですが、Arduinoプログラミングとハードウェア制御の基礎を固める過程でした。
 `,
       ar: `
 مجموعة من التجارب التي تستكشف مكونات وتحكمات مختلفة باستخدام Arduino.
@@ -2146,13 +2328,13 @@ Küçük deneylerden oluşsa da, Arduino programlama ve donanım etkileşimi kon
     title: {
       ko: "Unity Basics",
       en: "Unity Basics",
-      tr: "Unity Temelleri",
+      ja: "Unity Basics",
       ar: "أساسيات Unity",
     },
     blurb: {
       ko: "Unity와 C#를 활용한 기초 실습 프로젝트입니다.",
       en: "A basic Unity project for practicing with C#.",
-      tr: "C# ile pratik yapmak için temel Unity projesi.",
+      ja: "UnityとC#を使った基礎実習プロジェクトです。",
       ar: "مشروع Unity أساسي للتدرب على C#.",
     },
     tags: ["Unity", "C#", "Study"],
@@ -2176,11 +2358,11 @@ Basic Unity practice project using C#.
 - Simple obstacle avoidance game
 - Understanding Unity engine fundamentals
     `,
-      tr: `
-C# kullanılarak yapılan temel Unity uygulama projesi.
-- Nesne oluşturma ve basit kontroller
-- Engellerden kaçınma oyunu
-- Unity motorunun temellerini anlama
+      ja: `
+UnityとC#を使った基礎実習プロジェクトです。
+- オブジェクト生成と簡単な操作
+- 障害物避けゲームの実装
+- Unityエンジンの基本理解
     `,
       ar: `
 مشروع تدريب أساسي على Unity باستخدام C#.
@@ -2203,13 +2385,13 @@ C# kullanılarak yapılan temel Unity uygulama projesi.
     title: {
       ko: "Mediapipe",
       en: "Mediapipe",
-      tr: "Mediapipe",
+      ja: "Mediapipe",
       ar: "Mediapipe",
     },
     blurb: {
       ko: "Mediapipe, TensorFlow, Numpy를 활용한 손 인식 실습",
       en: "A hand gesture recognition practice project using Mediapipe, TensorFlow, and Numpy.",
-      tr: "Mediapipe, TensorFlow ve Numpy kullanarak el hareketleri tanıma deneme projesi.",
+      ja: "Mediapipe、TensorFlow、Numpyを使った手認識の実習プロジェクト。",
       ar: "مشروع تدريبي للتعرف على إيماءات اليد باستخدام Mediapipe وTensorFlow وNumpy.",
     },
     tags: ["Python", "Mediapipe", "TensorFlow", "Numpy", "Study"],
@@ -2233,11 +2415,11 @@ A practice project for hand gesture recognition using Mediapipe, TensorFlow, and
 - Simulated Sign Language translation
 - ML model training and data preprocessing practice
     `,
-      tr: `
-Mediapipe, TensorFlow ve Numpy kullanarak el hareketlerini tanıma deneme projesi.
-- El hareketlerini izleme ve deneme
-- İşaret dili çeviri simülasyonu
-- ML modeli eğitimi ve veri ön işleme denemesi
+      ja: `
+Mediapipe、TensorFlow、Numpyを使って手の認識を練習したプロジェクトです。
+- 手の動きの追跡と実験
+- 手話翻訳シミュレーション
+- MLモデル学習とデータ前処理の実習
     `,
       ar: `
 مشروع تدريبي للتعرف على إيماءات اليد باستخدام Mediapipe وTensorFlow وNumpy.
