@@ -3,10 +3,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import Section from "../components/Section";
 import Container from "../components/Container";
 import { PROJECTS, type Project } from "../data/projects";
+import { PROJECT_ICONS } from "../data/projectIcons";
 import { Link } from "react-router-dom";
 import {
-  Github,
-  ExternalLink,
   ImageOff,
   X,
   Boxes,
@@ -14,6 +13,7 @@ import {
   CircuitBoard,
   PenTool,
   FlaskConical,
+  Star,
   type LucideIcon,
 } from "lucide-react";
 import { useLang, type Lang } from "../context/LangContext";
@@ -36,9 +36,17 @@ const getBase = (src?: string, width = 800) => {
 // thumb이 없는 프로젝트가 14개다. 대부분 gallery는 채워져 있으니 첫 장을 빌려 쓴다.
 const coverOf = (p: Project) => p.thumb ?? p.gallery?.[0];
 
-type GroupKey = "products" | "games" | "hardware" | "design" | "experiments";
+type GroupKey =
+  | "selected"
+  | "products"
+  | "games"
+  | "hardware"
+  | "design"
+  | "experiments";
 
 const GROUP_ORDER: GroupKey[] = [
+  // 대표작을 맨 앞 묶음으로. 목록 밖으로 빼지 않아서 필터·개수가 어긋나지 않는다.
+  "selected",
   "products",
   "games",
   "hardware",
@@ -48,6 +56,7 @@ const GROUP_ORDER: GroupKey[] = [
 
 /** 분류마다 아이콘 하나씩. 색은 유지하되 모양이 뜻을 먼저 전한다. */
 const GROUP_ICON: Record<GroupKey, { Icon: LucideIcon; color: string }> = {
+  selected: { Icon: Star, color: "#b06040" },
   products: { Icon: Boxes, color: "#a8566a" },
   games: { Icon: Gamepad2, color: "#5b6bb0" },
   hardware: { Icon: CircuitBoard, color: "#a67c2c" },
@@ -56,45 +65,46 @@ const GROUP_ICON: Record<GroupKey, { Icon: LucideIcon; color: string }> = {
 };
 
 const GROUP_LABELS: Record<GroupKey, Record<Lang, string>> = {
-  products: { ko: "서비스", en: "Products", tr: "Ürünler", ar: "منتجات" },
-  games: { ko: "게임", en: "Games", tr: "Oyunlar", ar: "ألعاب" },
+  selected: {
+    ko: "대표작",
+    en: "Selected work",
+    ja: "代表作",
+    ar: "أعمال مختارة",
+  },
+  products: { ko: "서비스", en: "Products", ja: "サービス", ar: "منتجات" },
+  games: { ko: "게임", en: "Games", ja: "ゲーム", ar: "ألعاب" },
   hardware: {
     ko: "하드웨어 · 로보틱스",
     en: "Hardware & robotics",
-    tr: "Donanım ve robotik",
+    ja: "ハードウェア・ロボティクス",
     ar: "عتاد وروبوتات",
   },
   design: {
     ko: "디자인 · 기획",
     en: "Design & docs",
-    tr: "Tasarım ve dokümanlar",
+    ja: "デザイン・企画",
     ar: "تصميم ووثائق",
   },
   experiments: {
     ko: "실습 · 습작",
     en: "Experiments",
-    tr: "Denemeler",
+    ja: "実習・習作",
     ar: "تجارب",
   },
 };
 
 const COPY = {
-  heading: {
-    ko: "만든 것들",
-    en: "What I've built",
-    tr: "Yaptıklarım",
-    ar: "ما بنيته",
-  },
-  live: { ko: "운영 중", en: "Live", tr: "Yayında", ar: "قيد التشغيل" },
-  noImage: { ko: "이미지 없음", en: "No image", tr: "Görsel yok", ar: "لا صورة" },
-  archive: { ko: "분류별", en: "By category", tr: "Kategoriye göre", ar: "حسب الفئة" },
-  clear: { ko: "필터 해제", en: "Clear filter", tr: "Filtreyi kaldır", ar: "إزالة المرشّح" },
+  live: { ko: "운영 중", en: "Live", ja: "運用中", ar: "قيد التشغيل" },
+  noImage: { ko: "이미지 없음", en: "No image", ja: "画像なし", ar: "لا صورة" },
+  archive: { ko: "분류별", en: "By category", ja: "カテゴリ別", ar: "حسب الفئة" },
+  clear: { ko: "필터 해제", en: "Clear filter", ja: "フィルター解除", ar: "إزالة المرشّح" },
 } satisfies Record<string, Record<Lang, string>>;
 
 const countLabel = (n: number, lang: Lang) => (lang === "ko" ? `${n}개` : `${n}`);
 
 /** area와 status를 묶어서 사람이 읽는 분류로 바꾼다. Study는 area보다 우선한다. */
 const groupOf = (p: Project): GroupKey => {
+  if (p.weight === 3) return "selected";
   if (p.status === "Study") return "experiments";
   if (p.area === "Game") return "games";
   if (p.area === "ROS/Arduino") return "hardware";
@@ -105,6 +115,33 @@ const groupOf = (p: Project): GroupKey => {
 const isLive = (p: Project) => Boolean(p.active) || p.status === "Active";
 
 const MONO = "font-mono text-[13px] font-medium";
+
+/** 프로젝트 식별 마크. 로고가 있으면 로고, 없으면 lucide 아이콘.
+    썸네일과 별개로 제목 옆에 브랜드를 한 번 더 얹는 용도. */
+function ProjectMark({ p, size }: { p: Project; size: number }) {
+  if (p.logo)
+    return (
+      <img
+        src={`/logo/${p.logo}`}
+        alt=""
+        loading="lazy"
+        style={{ width: size, height: size }}
+        className="shrink-0 rounded-[5px] object-contain"
+      />
+    );
+
+  const Icon = PROJECT_ICONS[p.slug];
+  if (Icon)
+    return (
+      <Icon
+        style={{ width: size * 0.8, height: size * 0.8 }}
+        className="shrink-0 text-muted"
+        strokeWidth={1.75}
+        aria-hidden
+      />
+    );
+  return null;
+}
 
 function LiveTag({ lang, soft = false }: { lang: Lang; soft?: boolean }) {
   return (
@@ -214,102 +251,6 @@ function Cover({
   );
 }
 
-function SelectedCard({
-  p,
-  lang,
-  activeStack,
-  onSelectStack,
-}: {
-  p: Project;
-  lang: Lang;
-  activeStack: string | null;
-  onSelectStack: (tag: string) => void;
-}) {
-  const title = p.title[lang] ?? p.title.en;
-
-  return (
-    <div className="flex h-full flex-col overflow-hidden rounded-[22px] border border-border bg-panel transition-colors duration-200 hover:border-border-strong">
-      <Cover
-        src={coverOf(p)}
-        alt={title}
-        width={900}
-        lang={lang}
-        className="h-56 w-full shrink-0 rounded-none border-0 border-b border-border md:h-[268px]"
-      />
-
-      <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
-        <div className="flex flex-wrap items-center gap-2.5">
-          {isLive(p) && <LiveTag lang={lang} soft />}
-          {p.period && <span className={`${MONO} text-subtext`}>{p.period}</span>}
-        </div>
-
-        {/* 카드 전체가 아니라 제목만 링크. 칩을 눌러도 상세로 안 튄다. */}
-        <Link
-          to={`/projects/${p.slug}`}
-          className="text-2xl font-bold leading-tight tracking-[-0.03em] text-text transition-colors hover:text-accent-blue md:text-[30px]"
-        >
-          {title}
-        </Link>
-
-        <p className="max-w-[42ch] text-[17px] leading-[1.65] text-subtext">
-          {p.blurb[lang] ?? p.blurb.en}
-        </p>
-
-        {p.metrics?.length ? (
-          <dl className="mt-auto grid grid-cols-3 gap-3 rounded-2xl bg-sunken p-5">
-            {p.metrics.slice(0, 3).map((m) => (
-              <div key={m.value} className="flex flex-col gap-1.5">
-                <dd className="text-2xl font-bold leading-none tracking-[-0.03em] text-text">
-                  {m.value}
-                </dd>
-                <dt className="text-[13px] leading-snug text-subtext">
-                  {m.label[lang] ?? m.label.en}
-                </dt>
-              </div>
-            ))}
-          </dl>
-        ) : null}
-
-        <div className="flex flex-wrap items-center gap-2">
-          {p.tags?.slice(0, 6).map((t) => (
-            <StackChip
-              key={t}
-              tag={t}
-              size="md"
-              active={activeStack === t}
-              onSelect={onSelectStack}
-            />
-          ))}
-          <span className="ms-auto flex shrink-0 items-center gap-2">
-            {p.links?.link && (
-              <a
-                href={p.links.link}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`${title} — link`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2.5 font-mono text-[13px] font-medium text-subtext transition-colors hover:border-accent-blue hover:text-accent-blue"
-              >
-                Link <ExternalLink className="size-3.5" />
-              </a>
-            )}
-            {p.links?.code && (
-              <a
-                href={p.links.code}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`${title} — code`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2.5 font-mono text-[13px] font-medium text-subtext transition-colors hover:border-accent-blue hover:text-accent-blue"
-              >
-                Code <Github className="size-3.5" />
-              </a>
-            )}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ProjectRow({
   p,
   lang,
@@ -321,17 +262,23 @@ function ProjectRow({
   activeStack: string | null;
   onSelectStack: (tag: string) => void;
 }) {
+  // 대표작은 목록에서 빼내지 않고, 같은 줄 구조를 한 단계 키워서 눈에 먼저 들어오게 한다.
+  // 따로 떼어두면 필터가 걸릴 때 위아래가 어긋나서 몇 개가 걸린 건지 알 수 없었다.
+  const big = p.weight === 3;
   const title = p.title[lang] ?? p.title.en;
-  const all = p.tags ?? [];
-  // 필터가 걸려 있으면 그 스택이 3개 밖으로 밀려도 반드시 보이게 앞으로 당긴다
-  const tags =
-    activeStack && all.includes(activeStack)
-      ? [activeStack, ...all.filter((t) => t !== activeStack)].slice(0, 6)
-      : all.slice(0, 6);
+  // 칩 순서는 항상 데이터 그대로. 필터를 걸면 해당 칩을 맨 앞으로 당기던
+  // 동작이 있었는데, 누를 때마다 칩이 자리를 옮겨서 오히려 헷갈렸다.
+  const tags = (p.tags ?? []).slice(0, 6);
 
   return (
     // 호버는 배경과 테두리만. scale·translate 없음.
-    <div className="group relative grid grid-cols-[96px_minmax(0,1fr)] gap-4 rounded-2xl border border-transparent p-4 transition-[background-color,border-color] duration-200 hover:border-border hover:bg-panel sm:grid-cols-[132px_minmax(0,1fr)] sm:gap-[22px]">
+    <div
+      className={`group relative grid gap-4 rounded-2xl border border-transparent p-4 transition-[background-color,border-color] duration-200 hover:border-border hover:bg-panel sm:gap-[22px] ${
+        big
+          ? "grid-cols-[128px_minmax(0,1fr)] sm:grid-cols-[210px_minmax(0,1fr)]"
+          : "grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[132px_minmax(0,1fr)]"
+      }`}
+    >
       {/* 카드 전체를 덮는 투명 링크. 칩은 아래에서 z-10으로 이 위에 얹어
           링크 안에 버튼이 들어가지 않으면서도 카드 아무 데나 눌러 이동한다. */}
       <Link
@@ -346,18 +293,29 @@ function ProjectRow({
         width={320}
         lang={lang}
         zoomOnGroup
-        className="h-[72px] w-full sm:h-24"
+        className={big ? "h-[92px] w-full sm:h-[136px]" : "h-[72px] w-full sm:h-24"}
       />
 
       <div className="flex min-w-0 flex-col gap-2">
         <div className="flex flex-wrap items-center gap-2.5">
-          <span className="text-base font-semibold leading-snug tracking-[-0.02em] text-text transition-colors group-hover:text-accent-blue sm:text-xl">
+          <ProjectMark p={p} size={big ? 24 : 20} />
+          <span
+            className={`break-keep font-semibold leading-snug tracking-[-0.02em] text-text transition-colors group-hover:text-accent-blue ${
+              big ? "text-lg sm:text-2xl" : "text-base sm:text-xl"
+            }`}
+          >
             {title}
           </span>
           {isLive(p) && <LiveTag lang={lang} />}
         </div>
 
-        <p className="line-clamp-2 max-w-[68ch] text-[15px] leading-[1.6] text-subtext sm:text-base">
+        {/* break-keep: 한국어는 기본값이 글자 단위로 잘려서 "4자리만"이
+            "4자 / 리만"처럼 갈라진다. 단어 경계에서만 줄을 넘긴다. */}
+        <p
+          className={`max-w-[68ch] break-keep leading-[1.6] text-subtext ${
+            big ? "text-base sm:text-[17px]" : "line-clamp-2 text-[15px] sm:text-base"
+          }`}
+        >
           {p.blurb[lang] ?? p.blurb.en}
         </p>
 
@@ -411,24 +369,23 @@ export default function Projects() {
   const toggleStack = (tag: string) =>
     setActiveStack((cur) => (cur === tag ? null : tag));
 
-  const { selected, groups, shown, archiveTotal } = useMemo(() => {
-    const selected = PROJECTS.filter((p) => p.weight === 3);
-    const rest = PROJECTS.filter((p) => p.weight !== 3);
+  const { groups, shown } = useMemo(() => {
     const matches = (p: Project) =>
       !activeStack || (p.tags ?? []).includes(activeStack);
 
+    // 대표작을 위에 따로 떼어두던 구조를 버렸다. 목록과 따로 놀아서
+    // 필터를 걸면 위아래 개수가 어긋났고, 같은 프로젝트를 두 모양으로
+    // 관리해야 했다. 지금은 전부 한 목록이고 대표작만 줄을 크게 잡는다.
     const grouped = GROUP_ORDER.map((key) => ({
       key,
-      items: rest
-        .filter((p) => groupOf(p) === key && matches(p))
-        .sort((a, b) => (b.weight ?? 1) - (a.weight ?? 1)),
+      items: PROJECTS.filter((p) => groupOf(p) === key && matches(p)).sort(
+        (a, b) => (b.weight ?? 1) - (a.weight ?? 1)
+      ),
     })).filter((g) => g.items.length > 0);
 
     return {
-      selected,
       groups: grouped,
       shown: grouped.reduce((n, g) => n + g.items.length, 0),
-      archiveTotal: rest.length,
     };
   }, [activeStack]);
 
@@ -437,51 +394,37 @@ export default function Projects() {
       <div className="pt-16 md:pt-24">
         <Container>
           <Reveal reduceMotion={reduceMotion}>
-            <div className="flex flex-wrap items-end justify-between gap-8 border-b border-border pb-7">
+            <div className="flex flex-wrap items-end justify-between gap-8 pb-7">
               <div className="flex flex-col gap-3.5">
-                <span className="font-mono text-[13px] font-medium tracking-[0.16em] text-accent-green">
+                {/* 라벨이 곧 섹션 제목이다. 아래에 큰 글씨로 같은 말을 한 번 더
+                    쓰고 있었는데, 중복이라 지우고 h2를 이쪽으로 옮겼다. */}
+                <h2 className="font-mono text-[13px] font-medium tracking-[0.16em] text-accent-green">
                   01 — PROJECTS
-                </span>
-                <h2 className="text-4xl font-bold leading-[1.05] tracking-[-0.035em] text-text md:text-[52px]">
-                  {COPY.heading[lang]}
                 </h2>
               </div>
               <div className="flex shrink-0 items-baseline gap-2.5">
-                <span className="text-6xl font-bold leading-[0.9] tracking-[-0.05em] text-text md:text-[76px]">
+                <span className="text-5xl font-bold leading-none tracking-[-0.04em] text-text">
                   {PROJECTS.length}
                 </span>
-                <span className="pb-2 font-mono text-sm font-medium text-subtext">
+                <span className="font-mono text-sm font-medium text-subtext">
                   PROJECTS
                 </span>
               </div>
             </div>
           </Reveal>
 
-          <div className="grid gap-7 md:grid-cols-2">
-            {selected.map((p, i) => (
-              <Reveal key={p.slug} reduceMotion={reduceMotion} delay={i * 0.06}>
-                <SelectedCard
-                  p={p}
-                  lang={lang}
-                  activeStack={activeStack}
-                  onSelectStack={toggleStack}
-                />
-              </Reveal>
-            ))}
-          </div>
         </Container>
       </div>
 
-      {/* 아카이브는 한 톤 내려간 바닥 위에 얹어서 대표 작업과 층을 나눈다 */}
-      <div className="mt-16 border-t border-border bg-sunken py-14 md:mt-[72px] md:py-16">
+      {/* 대표작을 따로 떼어놓지 않으니 층을 나눌 이유도 없어졌다.
+          배경색과 제목을 걷어내고 목록 하나로 이어지게 둔다. */}
+      <div className="pb-14 pt-4 md:pb-16">
         <Container>
-          <Reveal reduceMotion={reduceMotion}>
-            <div className="flex flex-wrap items-baseline justify-between gap-6 pb-8">
-              <h3 className="text-2xl font-bold tracking-[-0.025em] text-text">
-                {COPY.archive[lang]} {countLabel(archiveTotal, lang)}
-              </h3>
-              {/* 필터 바를 없앴으니 해제 수단은 여기 하나만 남는다 */}
-              {activeStack ? (
+          {/* 전체 개수는 위 헤더의 "23 PROJECTS"가 이미 말하고 있다.
+              여기엔 필터가 걸렸을 때만, 해제 버튼을 겸해서 띄운다. */}
+          {activeStack && (
+            <Reveal reduceMotion={reduceMotion}>
+              <div className="flex flex-wrap items-baseline justify-end gap-6 pb-2">
                 <button
                   type="button"
                   onClick={() => setActiveStack(null)}
@@ -490,13 +433,9 @@ export default function Projects() {
                   {activeStack} · {countLabel(shown, lang)}
                   <X className="size-3.5" />
                 </button>
-              ) : (
-                <span className="font-mono text-[13px] font-medium text-subtext">
-                  {countLabel(shown, lang)}
-                </span>
-              )}
-            </div>
-          </Reveal>
+              </div>
+            </Reveal>
+          )}
 
           {groups.map((g) => (
             <Reveal key={g.key} reduceMotion={reduceMotion}>

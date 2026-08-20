@@ -5,6 +5,7 @@ import Container from "../components/Container";
 import { SKILL_GROUPS, SKILLS_COPY } from "../data/skills";
 import type { SkillLevel } from "../data/skills";
 import { PROJECTS } from "../data/projects";
+import { PROJECT_ICONS } from "../data/projectIcons";
 import { Link } from "react-router-dom";
 import {
   X,
@@ -60,25 +61,19 @@ const GROUP_ICON: Record<string, LucideIcon> = {
 };
 
 const COPY = {
-  heading: {
-    ko: "할 수 있는 것",
-    en: "What I can do",
-    tr: "Yapabildiklerim",
-    ar: "ما أستطيع فعله",
-  },
   usedIn: {
     ko: "이 스킬을 쓴 프로젝트",
     en: "Projects using this",
-    tr: "Bu yeteneği kullanan projeler",
+    ja: "このスキルを使ったプロジェクト",
     ar: "مشاريع تستخدم هذه المهارة",
   },
   noProject: {
     ko: "특정 프로젝트에 묶이지 않고 작업 전반에 쓰고 있어요",
     en: "Not tied to one project — it runs through all of the work",
-    tr: "Tek bir projeye bağlı değil, işin geneline yayılıyor",
+    ja: "特定のプロジェクトだけでなく、作業全体で使っています",
     ar: "ليست مرتبطة بمشروع بعينه، بل تمتد عبر العمل كله",
   },
-  close: { ko: "닫기", en: "Close", tr: "Kapat", ar: "إغلاق" },
+  close: { ko: "닫기", en: "Close", ja: "閉じる", ar: "إغلاق" },
 } satisfies Record<string, Record<Lang, string>>;
 
 const countLabel = (n: number, lang: Lang) => (lang === "ko" ? `${n}개` : `${n}`);
@@ -93,6 +88,13 @@ export default function Skills() {
     PROJECTS.forEach((p) => map.set(p.slug, p.title[lang] ?? p.title.en));
     return map;
   }, [lang]);
+
+  /** 로고가 있으면 로고, 없으면 lucide 아이콘으로 떨어진다. */
+  const projectLogo = useMemo(() => {
+    const map = new Map<string, string>();
+    PROJECTS.forEach((p) => p.logo && map.set(p.slug, p.logo));
+    return map;
+  }, []);
 
   const activeSkill = useMemo(() => {
     if (!active) return null;
@@ -124,13 +126,11 @@ export default function Skills() {
         >
           <div className="flex flex-wrap items-end justify-between gap-8 pb-9">
             <div className="flex flex-col gap-3.5">
-              <span className="font-mono text-[13px] font-medium tracking-[0.16em] text-accent-blue">
+              {/* Projects와 같은 이유로 큰 제목을 뺐다. 라벨이 제목 역할을 한다. */}
+              <h2 className="font-mono text-[13px] font-medium tracking-[0.16em] text-accent-blue">
                 02 — SKILLS
-              </span>
-              <h2 className="text-4xl font-bold leading-[1.05] tracking-[-0.035em] text-text md:text-[52px]">
-                {COPY.heading[lang]}
               </h2>
-              <p className="max-w-[46ch] text-[17px] leading-relaxed text-subtext">
+              <p className="max-w-[46ch] text-sm leading-relaxed text-muted">
                 {SKILLS_COPY.subtitle[lang] ?? SKILLS_COPY.subtitle.en}
               </p>
             </div>
@@ -191,45 +191,37 @@ export default function Skills() {
               </div>
 
               <div className="flex flex-col gap-3">
-                {/* 숙련도를 칩 모양으로만 암시하면 매번 범례를 찾아봐야 한다.
-                    줄 앞에 라벨을 직접 박아서 해석이 필요 없게 만든다. */}
+                {/* 줄 앞에 있던 주력/능숙/경험 라벨은 뺐다.
+                    숙련도 순서대로 줄이 나뉘고 칩 모양도 그대로라, 라벨 없이도
+                    위에서 아래로 읽으면 순서가 드러난다. */}
                 <div className="flex flex-col gap-1.5">
                   {LEVEL_ORDER.map((lv) => {
                     const items = g.skills.filter((s) => s.level === lv);
                     if (items.length === 0) return null;
 
                     return (
-                      <div
-                        key={lv}
-                        className="grid grid-cols-[44px_minmax(0,1fr)] items-start gap-2"
-                      >
-                        <span className="pt-1.5 font-mono text-[11px] font-medium tracking-wide text-muted">
-                          {SKILLS_COPY.legend[lv][lang] ??
-                            SKILLS_COPY.legend[lv].en}
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {items.map((s) => (
-                            <button
-                              key={s.name}
-                              type="button"
-                              aria-pressed={active === s.name}
-                              onClick={() =>
-                                setActive((cur) =>
-                                  cur === s.name ? null : s.name
-                                )
-                              }
-                              className={`rounded-md px-2.5 py-1.5 font-mono text-[13px] font-medium leading-none transition-colors duration-200 ${
-                                LEVEL_CHIP[s.level]
-                              } ${
-                                active === s.name
-                                  ? "ring-2 ring-accent-blue ring-offset-2 ring-offset-bg"
-                                  : ""
-                              }`}
-                            >
-                              {s.name}
-                            </button>
-                          ))}
-                        </div>
+                      <div key={lv} className="flex flex-wrap gap-1.5">
+                        {items.map((s) => (
+                          <button
+                            key={s.name}
+                            type="button"
+                            aria-pressed={active === s.name}
+                            onClick={() =>
+                              setActive((cur) =>
+                                cur === s.name ? null : s.name
+                              )
+                            }
+                            className={`rounded-md px-2.5 py-1.5 font-mono text-[13px] font-medium leading-none transition-colors duration-200 ${
+                              LEVEL_CHIP[s.level]
+                            } ${
+                              active === s.name
+                                ? "ring-2 ring-accent-blue ring-offset-2 ring-offset-bg"
+                                : ""
+                            }`}
+                          >
+                            {s.name}
+                          </button>
+                        ))}
                       </div>
                     );
                   })}
@@ -266,11 +258,36 @@ export default function Skills() {
                                 to={`/projects/${slug}`}
                                 className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg px-3 py-2 text-sm font-medium text-text transition-colors hover:border-accent-blue hover:text-accent-blue"
                               >
-                                <span
-                                  className="size-1.5 shrink-0 rounded-full"
-                                  style={{ backgroundColor: dot }}
-                                  aria-hidden
-                                />
+                                {/* 색 점만으로는 어느 프로젝트인지 안 읽힌다.
+                                    로고 > lucide 아이콘 > 그룹 색 점 순. */}
+                                {(() => {
+                                  const logo = projectLogo.get(slug);
+                                  if (logo)
+                                    return (
+                                      <img
+                                        src={`/logo/${logo}`}
+                                        alt=""
+                                        loading="lazy"
+                                        className="size-[18px] shrink-0 rounded-[4px] object-contain"
+                                      />
+                                    );
+                                  const Icon = PROJECT_ICONS[slug];
+                                  if (Icon)
+                                    return (
+                                      <Icon
+                                        className="size-4 shrink-0 text-muted"
+                                        strokeWidth={1.75}
+                                        aria-hidden
+                                      />
+                                    );
+                                  return (
+                                    <span
+                                      className="size-1.5 shrink-0 rounded-full"
+                                      style={{ backgroundColor: dot }}
+                                      aria-hidden
+                                    />
+                                  );
+                                })()}
                                 {projectTitles.get(slug)}
                               </Link>
                             ))}
