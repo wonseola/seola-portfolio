@@ -239,8 +239,8 @@ export default function About() {
                 <span className="font-medium whitespace-nowrap">
                   {lang === "ko"
                     ? "요즘 하는 일:"
-                    : lang === "tr"
-                    ? "Şu aralar neyle uğraşıyorum:"
+                    : lang === "ja"
+                    ? "最近していること:"
                     : lang === "ar"
                     ? "ما أعمل عليه حالياً:"
                     : "what I'm up to:"}

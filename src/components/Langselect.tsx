@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { useLang } from "../context/LangContext";
+import { useLang, type Lang } from "../context/LangContext";
 
 const LANG_OPTIONS = [
   { code: "ko", label: "🇰🇷 한국어" },
   { code: "en", label: "🇬🇧 English" },
-  { code: "tr", label: "🇹🇷 Türkçe" },
+  { code: "ja", label: "🇯🇵 日本語" },
   { code: "ar", label: "🇸🇦 العربية" },
 ] as const;
 
@@ -14,8 +14,8 @@ export default function LangSelect() {
   const [open, setOpen] = useState(false);
 
   const toggleDropdown = () => setOpen((prev) => !prev);
-  const selectLang = (code: string) => {
-    setLang(code as never);
+  const selectLang = (code: Lang) => {
+    setLang(code);
     setOpen(false);
   };
 

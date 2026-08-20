@@ -2,13 +2,13 @@ export const PROFILE = {
   name: {
     ko: "원설아",
     en: "Seola Won",
-    tr: "Seola Won",
+    ja: "Seola Won",
     ar: "Seola Won",
   },
   location: {
     ko: "김포, 대한민국",
     en: "Gimpo, South Korea",
-    tr: "Gimpo, Güney Kore",
+    ja: "韓国・金浦",
     ar: "جيمبو، كوريا الجنوبية",
   },
   email: "wonseola123@gmail.com",
@@ -24,10 +24,10 @@ export const PROFILE = {
       description:
         "Got questions or just wanna say hi? Feel free to drop a message!",
     },
-    tr: {
-      title: "İletişime geçelim",
+    ja: {
+      title: "つながりましょう",
       description:
-        "Bir sorunuz varsa veya sadece merhaba demek istiyorsanız, mesaj göndermekten çekinmeyin!",
+        "気になることがあったり、ちょっと挨拶したいだけでも、気軽にメッセージしてください！",
     },
     ar: {
       title: "لنتواصل",
@@ -39,10 +39,10 @@ export const PROFILE = {
     // 직함을 스스로 붙이는 대신 "무엇을 어디까지 하는지"로 바꿨다.
     ko: ["기획부터 배포까지", "웹으로 만들어 스토어까지", "만든 걸 직접 굴립니다"],
     en: ["I build it and I run it", "Web, all the way to the app stores", "Shipping small products solo"],
-    tr: [
-      "Yapıyorum ve ayakta tutuyorum",
-      "Web'den mağazaya kadar",
-      "Küçük ürünleri tek başıma çıkarıyorum",
+    ja: [
+      "作って、運用までやります",
+      "Webからストア公開まで",
+      "小さなプロダクトを一人で出します",
     ],
     ar: ["أبنيها وأشغّلها", "من الويب إلى متاجر التطبيقات", "أطلق منتجات صغيرة بمفردي"],
   },
@@ -68,15 +68,15 @@ I'm studying computer science at Korea National Open University alongside work. 
 
 Turns out keeping something alive is the harder half.`,
 
-    tr: `Ben Seola.
+    ja: `Seolaです。
 
-Frontend ile başladım, sonra işin arkasını merak ettim — veritabanı, dağıtım, derken ürünü canlıda ayakta tutmak.
+フロントエンドから始めましたが、作ったものを実際に動かそうとすると、サーバーも、デプロイも、運用も触るようになりました。
 
-Bugünlerde React ve Next.js ile yazıyorum, veriyi Supabase'de tutuyorum, Vercel ve Cloudflare'e çıkıyorum. Bir web uygulamasını Capacitor ile paketleyip iki mağazaya da soktum; Toss içinde çalışan mini uygulamalar da yaptım.
+最近はReactとNext.jsで作り、データはSupabaseに置き、VercelとCloudflareに載せています。Webで作ったものをCapacitorで包んでiOS・Androidのストアに出したこともあり、Tossの中で動くミニアプリも作りました。
 
-Çalışırken bir yandan Kore Açık Üniversitesi'nde bilgisayar bilimleri okuyorum. Son zamanlarda yapay zekânın canlı bir üründe gerçekten nerede işe yaradığını çözmeye çalışıyorum.
+仕事をしながら韓国放送通信大学でコンピュータサイエンスを学んでいます。最近は、AIを実際のサービスのどこに入れると本当に価値が出るのかを考えています。
 
-Bir şeyi yapmak değil, ayakta tutmak zormuş.`,
+作ることより、動き続ける状態にしておくことの方が難しいと学んでいます。`,
 
     ar: `أنا سيولا.
 
@@ -113,13 +113,13 @@ Bir şeyi yapmak değil, ayakta tutmak zormuş.`,
       "auto-saving university life",
       "brainstorming the next side project",
     ],
-    tr: [
-      "Yapay zekayı inceliyorum",
-      "React ile Flutter arasında bir yerdeyim",
-      "frontend evrenini keşfediyorum",
-      "yine kamp yapmayı düşünüyorum",
-      "üniversite hayatını kaydediyorum",
-      "yeni yan proje fikirleri topluyorum",
+    ja: [
+      "AIを勉強中",
+      "ReactとFlutterのあいだあたり",
+      "フロントエンドの世界を探索中",
+      "コードを書きながらキャンプのことを考えています",
+      "大学生活を途中保存中",
+      "次のサイドプロジェクトを構想中",
     ],
     ar: [
       "أدرس الذكاء الاصطناعي",
