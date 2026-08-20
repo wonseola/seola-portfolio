@@ -16,9 +16,9 @@ export function preloadCriticalAssets(): void {
     requestIdleCallback(() => {
       // Preload avatar and first project thumbnail
       const criticalImages = [
-        '/public/media/blip-auv/blip_thumb.jpg',
-        '/public/media/buzzcaster/buzzcaster_thumb.jpg',
-        '/public/media/et55/et55_thumb.jpg'
+        '/media/maple-04-board.webp',
+        '/media/ddphoto-05-composite.webp',
+        '/media/tosstime-01-home.webp'
       ];
 
       criticalImages.forEach(url => {
