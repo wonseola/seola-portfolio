@@ -1,4 +1,7 @@
 import React from "react";
+import { FaApple, FaGooglePlay, FaGlobe } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { BODY_ICONS } from "../data/bodyIcons";
 
 /**
  * 프로젝트 body에 쓰는 아주 작은 마크다운 렌더러.
@@ -7,6 +10,17 @@ import React from "react";
  */
 
 const TOKEN = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g;
+
+/**
+ * 링크 앞 아이콘은 주소를 보고 고른다. 본문에 이모지를 박아두면
+ * 기기마다 모양이 달라지고, 링크를 옮길 때 이모지가 따라오지 않는다.
+ */
+function iconFor(href: string) {
+  if (href.includes("apps.apple.com")) return FaApple;
+  if (href.includes("play.google.com")) return FaGooglePlay;
+  if (href.includes("github.com")) return FaGithub;
+  return FaGlobe;
+}
 
 function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
   return text.split(TOKEN).map((part, i) => {
@@ -24,7 +38,7 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
       return (
         <code
           key={key}
-          className="rounded-md border border-border bg-bg px-1.5 py-0.5 font-mono text-[0.85em] text-accent-purple"
+          className="rounded-md border border-border bg-sunken px-1.5 py-0.5 font-mono text-[0.85em] text-text-hi"
         >
           {part.slice(1, -1)}
         </code>
@@ -33,14 +47,16 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
 
     const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
     if (link) {
+      const Icon = iconFor(link[2]);
       return (
         <a
           key={key}
           href={link[2]}
           target="_blank"
           rel="noreferrer"
-          className="font-medium text-accent-purple underline decoration-accent-purple/40 underline-offset-4 transition-colors hover:decoration-accent-purple"
+          className="inline-flex items-baseline gap-1.5 font-medium text-text-hi underline decoration-border-strong decoration-[1.5px] underline-offset-[5px] transition-colors hover:text-accent-orange hover:decoration-accent-orange"
         >
+          <Icon className="size-[0.95em] shrink-0 translate-y-[0.1em]" aria-hidden />
           {link[1]}
         </a>
       );
@@ -64,7 +80,7 @@ export default function RichText({
 
   return (
     <div
-      className={`space-y-4 leading-relaxed text-subtext ${
+      className={`space-y-4 break-keep leading-relaxed text-subtext ${
         rtl ? "text-right" : "text-left"
       } ${className}`}
       dir={rtl ? "rtl" : undefined}
@@ -90,7 +106,7 @@ export default function RichText({
                   {run.lines.map((line, li) => (
                     <li key={li} className="flex gap-2.5">
                       <span
-                        className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-purple"
+                        className="mt-[0.62em] h-1.5 w-1.5 shrink-0 rounded-full bg-border-strong"
                         aria-hidden
                       />
                       <span>
@@ -100,9 +116,37 @@ export default function RichText({
                   ))}
                 </ul>
               ) : (
-                <p key={ri} className="whitespace-pre-line">
-                  {renderInline(run.lines.join("\n"), `${bi}-${ri}`)}
-                </p>
+                (() => {
+                  // 문단 맨 앞 이모지 마커는 lucide 아이콘으로 바꿔 단다.
+                  // 기기마다 이모지 모양이 달라지는 걸 피하고, 아이콘이
+                  // 본문 왼쪽에 걸려서 문단 시작이 눈에 잘 들어온다.
+                  const text = run.lines.join("\n");
+                  const hit = Object.keys(BODY_ICONS).find((e) =>
+                    text.startsWith(e)
+                  );
+                  if (!hit)
+                    return (
+                      <p key={ri} className="whitespace-pre-line">
+                        {renderInline(text, `${bi}-${ri}`)}
+                      </p>
+                    );
+                  const Icon = BODY_ICONS[hit];
+                  return (
+                    <p key={ri} className="flex gap-2.5 whitespace-pre-line">
+                      <Icon
+                        className="mt-[0.28em] size-[1.05em] shrink-0 text-muted"
+                        strokeWidth={1.75}
+                        aria-hidden
+                      />
+                      <span>
+                        {renderInline(
+                          text.slice(hit.length).trimStart(),
+                          `${bi}-${ri}`
+                        )}
+                      </span>
+                    </p>
+                  );
+                })()
               )
             )}
           </div>

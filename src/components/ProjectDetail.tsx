@@ -329,31 +329,38 @@ export default function ProjectDetail() {
               <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-subtext">
                 {lang === "ko"
                   ? "기술 스택"
-                  : lang === "tr"
-                  ? "Teknoloji Yığını"
+                  : lang === "ja"
+                  ? "技術スタック"
                   : lang === "ar"
                   ? "التقنيات المستخدمة"
                   : "Tech stack"}
               </h2>
-              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {/* 2열 카드로 깔았더니 그룹마다 항목 수가 달라 높이가 안 맞고,
+                  색도 라벨에만 있어 아무 뜻을 못 했다. Skills 섹션과 같은
+                  "왼쪽 분류 · 오른쪽 칩" 목록으로 맞춰 사이트 톤을 통일한다. */}
+              <div className="mt-4">
                 {project.stack.map((s, i) => {
                   const hex = METRIC_COLORS[i % METRIC_COLORS.length];
                   return (
                     <div
                       key={i}
-                      className="rounded-2xl border border-border bg-bg/50 p-4"
+                      className="grid gap-2 border-t border-hairline py-4 first:border-t-0 first:pt-0 sm:grid-cols-[132px_minmax(0,1fr)] sm:gap-5"
                     >
-                      <p
-                        className="text-xs font-semibold uppercase tracking-wider"
-                        style={{ color: hex }}
-                      >
-                        {s.group[lang] ?? s.group.en}
-                      </p>
-                      <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      <div className="flex items-center gap-2 self-start">
+                        <span
+                          className="size-1.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: hex }}
+                          aria-hidden
+                        />
+                        <span className="break-keep text-[13px] font-semibold tracking-[-0.01em] text-text-hi">
+                          {s.group[lang] ?? s.group.en}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
                         {s.items.map((it) => (
                           <span
                             key={it}
-                            className="rounded-lg border border-border bg-panel px-2 py-1 text-[11px] text-subtext"
+                            className="rounded-md border border-border bg-panel px-2.5 py-1.5 font-mono text-[12px] font-medium leading-none text-subtext"
                           >
                             {it}
                           </span>
@@ -380,13 +387,6 @@ export default function ProjectDetail() {
                   g.endsWith(".mp4") ||
                   g.endsWith(".webm") ||
                   g.endsWith(".mov");
-                const isImage =
-                  g.endsWith(".jpg") ||
-                  g.endsWith(".jpeg") ||
-                  g.endsWith(".png") ||
-                  g.endsWith(".gif") ||
-                  g.endsWith(".webp") ||
-                  g.endsWith(".svg");
                 const commonClass =
                   "mb-4 w-full rounded-2xl border border-border bg-bg/50 object-cover hover:opacity-90 transition-opacity";
                 return isVideo ? (
